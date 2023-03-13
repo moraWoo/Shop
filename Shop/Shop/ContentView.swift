@@ -8,19 +8,22 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @EnvironmentObject var appCoordinator: AppCoordinator
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        
+        switch appCoordinator.currentScreen {
+            case .main:
+                MainView()
+            case .details:
+                DetailsView()
+            case .login:
+                LogingView()
+            case .singIn:
+                SingInView()
+            case .profile:
+                ProfileView()
         }
-        .padding()
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
     }
 }

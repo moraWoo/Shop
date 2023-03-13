@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct ShopApp: App {
+    @StateObject var appCoordinator = AppCoordinator()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            appCoordinator.currentView
+                .environmentObject(appCoordinator)
         }
     }
 }
