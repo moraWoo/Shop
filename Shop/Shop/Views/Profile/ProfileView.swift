@@ -11,12 +11,15 @@ struct ProfileView: View {
     @ObservedObject var viewModel: ProfileViewModel
     
     var body: some View {
-        Text("ProfileView")
-    }
-}
-
-struct ProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileView()
+        VStack {
+            // Отображение профиля пользователя
+            Text("Логин: \(viewModel.user.login)")
+            Text("Имя: \(viewModel.user.name)")
+            
+            // Кнопка выхода из аккаунта
+            Button("Выйти") {
+                viewModel.signOut()
+            }
+        }
     }
 }

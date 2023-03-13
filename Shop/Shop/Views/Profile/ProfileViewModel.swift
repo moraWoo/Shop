@@ -8,13 +8,10 @@
 import Foundation
 
 class ProfileViewModel: ObservableObject {
-    private let coordinator: ProfileViewCoordinator
-
-    init(coordinator: ProfileViewCoordinator) {
-        self.coordinator = coordinator
-    }
-
-    func backTapped() {
-        coordinator.back()
+    @Published var user: User = User(login: "", name: "")
+    
+    func signOut() {
+        // Выход из аккаунта
+        // ...
     }
 }

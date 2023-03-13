@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-protocol Coordinator {
+protocol Coordinator: AnyObject {
     var childCoordinators: [Coordinator] { get set }
     var parentCoordinator: Coordinator? { get set }
     var currentView: AnyView { get set }
@@ -16,3 +16,4 @@ protocol Coordinator {
     func addChildCoordinator(_ coordinator: Coordinator)
     func removeChildCoordinator(_ coordinator: Coordinator)
 }
+

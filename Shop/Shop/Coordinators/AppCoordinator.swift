@@ -8,27 +8,41 @@
 import SwiftUI
 import Combine
 
-class AppCoordinator: ObservableObject {
-    @Published var currentView: AnyView
+class AppCoordinator: ObservableObject, Coordinator {
     
-    private var childCoordinators = [Coordinator]()
-    
-    init() {
-        let loginViewCoordinator = LoginViewCoordinator()
-        addChildCoordinator(loginViewCoordinator)
-        currentView = loginViewCoordinator.start()
+    @Published var currentView: AnyView = AnyView(Text(""))
+
+    var childCoordinators = [Coordinator]()
+    var parentCoordinator: Coordinator?
+
+    let viewAssembly: ViewAssembly
+     
+    init(viewAssembly: ViewAssembly) {
+        self.viewAssembly = viewAssembly
+        self.currentView = AnyView(viewAssembly.createMainView())
+//        super.init()
     }
     
-    private func addChildCoordinator(_ coordinator: Coordinator) {
+    func start() -> AnyView {
+        let signInView = viewAssembly.createSignInView()
+        self.currentView = AnyView(signInView)
+        
+        // Показать главное представление после входа в систему
+        showMainView()
+        
+        return self.currentView
+    }
+    
+    func addChildCoordinator(_ coordinator: Coordinator) {
         childCoordinators.append(coordinator)
     }
     
-    private func removeChildCoordinator(_ coordinator: Coordinator) {
+    func removeChildCoordinator(_ coordinator: Coordinator) {
         childCoordinators = childCoordinators.filter { $0 !== coordinator }
     }
     
     func showMainView() {
-        let mainViewCoordinator = MainViewCoordinator()
+        let mainViewCoordinator = MainViewCoordinator(viewAssembly: viewAssembly)
         addChildCoordinator(mainViewCoordinator)
         currentView = mainViewCoordinator.start()
     }

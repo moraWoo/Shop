@@ -1,5 +1,5 @@
 //
-//  LoginViewModel.swift
+//  SingInViewModel.swift
 //  Shop
 //
 //  Created by Ильдар on 13.03.2023.
@@ -7,12 +7,11 @@
 
 import Foundation
 
-class LoginViewModel: ObservableObject {
+class SignInViewModel: ObservableObject {
     @Published var login = ""
     @Published var password = ""
-    @Published var error: Error?
     
-    func login() {
+    func signInButtonTapped() {
         // Вход в аккаунт
         // ...
     }

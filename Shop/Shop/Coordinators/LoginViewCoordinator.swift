@@ -8,17 +8,23 @@
 import SwiftUI
 import Combine
 
-class LoginViewCoordinator: Coordinator {
+class LoginViewCoordinator: NSObject, Coordinator {
+    var childCoordinators: [Coordinator] = []
+    var parentCoordinator: Coordinator?
+    var currentView: AnyView = AnyView(Text("Details view"))
+    
+    init() {}
+    
     func start() -> AnyView {
         let viewModel = LoginViewModel()
         let view = LoginView(viewModel: viewModel)
         return AnyView(view)
     }
     
-    func showSignUpView() {
-        let signUpCoordinator = SignUpViewCoordinator()
-        addChildCoordinator(signUpCoordinator)
-        currentView = signUpCoordinator.start()
+    func showSignInView() {
+        let signInCoordinator = SignInCoordinator()
+        addChildCoordinator(signInCoordinator)
+        currentView = signInCoordinator.start()
     }
     
     private func addChildCoordinator(_ coordinator: Coordinator) {

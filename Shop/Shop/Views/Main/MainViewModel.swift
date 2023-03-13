@@ -8,17 +8,17 @@
 import Foundation
 
 class MainViewModel: ObservableObject {
-    private let coordinator: MainViewCoordinator
-     
-     init(coordinator: MainViewCoordinator) {
-         self.coordinator = coordinator
-     }
-     
-     func profileTapped() {
-         coordinator.showProfileView()
-     }
-     
-     func detailsTapped() {
-         coordinator.showDetailsView()
-     }
+    let coordinator: Coordinator
+    
+    init(coordinator: Coordinator) {
+        self.coordinator = coordinator
+    }
+    
+    func navigateToProfile() {
+//        coordinator.navigateToProfile()
+    }
+    
+    func navigateToDetails() {
+//        coordinator.navigateToDetails()
+    }
 }

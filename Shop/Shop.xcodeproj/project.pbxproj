@@ -14,8 +14,8 @@
 		776F647129BF688600B6C808 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F647029BF688600B6C808 /* AppCoordinator.swift */; };
 		776F647329BF694400B6C808 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F647229BF694400B6C808 /* MainView.swift */; };
 		776F647529BF698800B6C808 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F647429BF698800B6C808 /* MainViewModel.swift */; };
-		776F647729BF69CB00B6C808 /* SingInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F647629BF69CB00B6C808 /* SingInView.swift */; };
-		776F647929BF69E500B6C808 /* SingInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F647829BF69E500B6C808 /* SingInViewModel.swift */; };
+		776F647729BF69CB00B6C808 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F647629BF69CB00B6C808 /* SignInView.swift */; };
+		776F647929BF69E500B6C808 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F647829BF69E500B6C808 /* SignInViewModel.swift */; };
 		776F647B29BF6A0500B6C808 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F647A29BF6A0500B6C808 /* DetailsView.swift */; };
 		776F647D29BF6A1300B6C808 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F647C29BF6A1300B6C808 /* ProfileView.swift */; };
 		776F647F29BF6A2000B6C808 /* LogingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F647E29BF6A2000B6C808 /* LogingView.swift */; };
@@ -26,11 +26,10 @@
 		776F648929BF6A9400B6C808 /* DetailsViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F648829BF6A9400B6C808 /* DetailsViewCoordinator.swift */; };
 		776F648B29BF6AA800B6C808 /* ProfileViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F648A29BF6AA800B6C808 /* ProfileViewCoordinator.swift */; };
 		776F648D29BF6ABF00B6C808 /* LoginViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F648C29BF6ABF00B6C808 /* LoginViewCoordinator.swift */; };
-		776F648F29BF6AD600B6C808 /* SingInCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F648E29BF6AD600B6C808 /* SingInCoordinator.swift */; };
-		776F649129BF7F3D00B6C808 /* SingUpViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F649029BF7F3D00B6C808 /* SingUpViewCoordinator.swift */; };
-		776F649429BF7F5D00B6C808 /* SingUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F649329BF7F5D00B6C808 /* SingUpView.swift */; };
-		776F649629BF7F6F00B6C808 /* SingUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F649529BF7F6F00B6C808 /* SingUpViewModel.swift */; };
+		776F648F29BF6AD600B6C808 /* SignInCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F648E29BF6AD600B6C808 /* SignInCoordinator.swift */; };
 		776F649929BF82BC00B6C808 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F649829BF82BC00B6C808 /* Coordinator.swift */; };
+		776F649C29BFB58300B6C808 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F649B29BFB58300B6C808 /* Assembly.swift */; };
+		776F649F29BFB87B00B6C808 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F649E29BFB87B00B6C808 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,8 +41,8 @@
 		776F647029BF688600B6C808 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		776F647229BF694400B6C808 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		776F647429BF698800B6C808 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
-		776F647629BF69CB00B6C808 /* SingInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingInView.swift; sourceTree = "<group>"; };
-		776F647829BF69E500B6C808 /* SingInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingInViewModel.swift; sourceTree = "<group>"; };
+		776F647629BF69CB00B6C808 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		776F647829BF69E500B6C808 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		776F647A29BF6A0500B6C808 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
 		776F647C29BF6A1300B6C808 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		776F647E29BF6A2000B6C808 /* LogingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogingView.swift; sourceTree = "<group>"; };
@@ -54,11 +53,10 @@
 		776F648829BF6A9400B6C808 /* DetailsViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewCoordinator.swift; sourceTree = "<group>"; };
 		776F648A29BF6AA800B6C808 /* ProfileViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewCoordinator.swift; sourceTree = "<group>"; };
 		776F648C29BF6ABF00B6C808 /* LoginViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewCoordinator.swift; sourceTree = "<group>"; };
-		776F648E29BF6AD600B6C808 /* SingInCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingInCoordinator.swift; sourceTree = "<group>"; };
-		776F649029BF7F3D00B6C808 /* SingUpViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingUpViewCoordinator.swift; sourceTree = "<group>"; };
-		776F649329BF7F5D00B6C808 /* SingUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingUpView.swift; sourceTree = "<group>"; };
-		776F649529BF7F6F00B6C808 /* SingUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingUpViewModel.swift; sourceTree = "<group>"; };
+		776F648E29BF6AD600B6C808 /* SignInCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInCoordinator.swift; sourceTree = "<group>"; };
 		776F649829BF82BC00B6C808 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		776F649B29BFB58300B6C808 /* Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
+		776F649E29BFB87B00B6C808 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +89,7 @@
 		776F645829BF65ED00B6C808 /* Shop */ = {
 			isa = PBXGroup;
 			children = (
+				776F649A29BFB56F00B6C808 /* Assembly */,
 				776F649729BF82A400B6C808 /* Protocols */,
 				776F646929BF67B600B6C808 /* Models */,
 				776F646829BF67A100B6C808 /* Coordinators */,
@@ -115,12 +114,11 @@
 		776F646729BF679000B6C808 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				776F649229BF7F4600B6C808 /* SingUp */,
+				776F646B29BF67F100B6C808 /* SignIn */,
+				776F646C29BF683500B6C808 /* Login */,
+				776F646D29BF683E00B6C808 /* Profile */,
 				776F646E29BF685300B6C808 /* Main */,
 				776F646F29BF685A00B6C808 /* Details */,
-				776F646D29BF683E00B6C808 /* Profile */,
-				776F646C29BF683500B6C808 /* Login */,
-				776F646B29BF67F100B6C808 /* SignIn */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -129,12 +127,11 @@
 			isa = PBXGroup;
 			children = (
 				776F647029BF688600B6C808 /* AppCoordinator.swift */,
+				776F648E29BF6AD600B6C808 /* SignInCoordinator.swift */,
+				776F648C29BF6ABF00B6C808 /* LoginViewCoordinator.swift */,
+				776F648A29BF6AA800B6C808 /* ProfileViewCoordinator.swift */,
 				776F648629BF6A8300B6C808 /* MainViewCoordinator.swift */,
 				776F648829BF6A9400B6C808 /* DetailsViewCoordinator.swift */,
-				776F648A29BF6AA800B6C808 /* ProfileViewCoordinator.swift */,
-				776F648C29BF6ABF00B6C808 /* LoginViewCoordinator.swift */,
-				776F648E29BF6AD600B6C808 /* SingInCoordinator.swift */,
-				776F649029BF7F3D00B6C808 /* SingUpViewCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -142,6 +139,7 @@
 		776F646929BF67B600B6C808 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				776F649E29BFB87B00B6C808 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -156,8 +154,8 @@
 		776F646B29BF67F100B6C808 /* SignIn */ = {
 			isa = PBXGroup;
 			children = (
-				776F647629BF69CB00B6C808 /* SingInView.swift */,
-				776F647829BF69E500B6C808 /* SingInViewModel.swift */,
+				776F647629BF69CB00B6C808 /* SignInView.swift */,
+				776F647829BF69E500B6C808 /* SignInViewModel.swift */,
 			);
 			path = SignIn;
 			sourceTree = "<group>";
@@ -198,21 +196,20 @@
 			path = Details;
 			sourceTree = "<group>";
 		};
-		776F649229BF7F4600B6C808 /* SingUp */ = {
-			isa = PBXGroup;
-			children = (
-				776F649329BF7F5D00B6C808 /* SingUpView.swift */,
-				776F649529BF7F6F00B6C808 /* SingUpViewModel.swift */,
-			);
-			path = SingUp;
-			sourceTree = "<group>";
-		};
 		776F649729BF82A400B6C808 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
 				776F649829BF82BC00B6C808 /* Coordinator.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		776F649A29BFB56F00B6C808 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				776F649B29BFB58300B6C808 /* Assembly.swift */,
+			);
+			path = Assembly;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,9 +282,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				776F649429BF7F5D00B6C808 /* SingUpView.swift in Sources */,
 				776F648729BF6A8300B6C808 /* MainViewCoordinator.swift in Sources */,
-				776F647929BF69E500B6C808 /* SingInViewModel.swift in Sources */,
+				776F647929BF69E500B6C808 /* SignInViewModel.swift in Sources */,
 				776F648929BF6A9400B6C808 /* DetailsViewCoordinator.swift in Sources */,
 				776F647D29BF6A1300B6C808 /* ProfileView.swift in Sources */,
 				776F647F29BF6A2000B6C808 /* LogingView.swift in Sources */,
@@ -298,15 +294,15 @@
 				776F647329BF694400B6C808 /* MainView.swift in Sources */,
 				776F648329BF6A4B00B6C808 /* ProfileViewModel.swift in Sources */,
 				776F648D29BF6ABF00B6C808 /* LoginViewCoordinator.swift in Sources */,
-				776F649629BF7F6F00B6C808 /* SingUpViewModel.swift in Sources */,
+				776F649C29BFB58300B6C808 /* Assembly.swift in Sources */,
 				776F645C29BF65ED00B6C808 /* ContentView.swift in Sources */,
-				776F649129BF7F3D00B6C808 /* SingUpViewCoordinator.swift in Sources */,
 				776F648529BF6A5A00B6C808 /* LoginViewModel.swift in Sources */,
 				776F648129BF6A3B00B6C808 /* DetailsViewModel.swift in Sources */,
-				776F648F29BF6AD600B6C808 /* SingInCoordinator.swift in Sources */,
+				776F648F29BF6AD600B6C808 /* SignInCoordinator.swift in Sources */,
 				776F647B29BF6A0500B6C808 /* DetailsView.swift in Sources */,
-				776F647729BF69CB00B6C808 /* SingInView.swift in Sources */,
+				776F647729BF69CB00B6C808 /* SignInView.swift in Sources */,
 				776F645A29BF65ED00B6C808 /* ShopApp.swift in Sources */,
+				776F649F29BFB87B00B6C808 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

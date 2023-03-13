@@ -8,18 +8,24 @@
 import SwiftUI
 import Combine
 
-class ProfileViewCoordinator: Coordinator {
+class ProfileViewCoordinator: NSObject, Coordinator {
+    var childCoordinators: [Coordinator] = []
+    var parentCoordinator: Coordinator?
+    var currentView: AnyView = AnyView(Text("Details view"))
+    
+    override init() {}
+    
     func start() -> AnyView {
         let viewModel = ProfileViewModel()
-        let view = ProfileView(viewModel: viewModel, coordinator: self)
+        let view = ProfileView(viewModel: viewModel)
         return AnyView(view)
     }
     
-    private func addChildCoordinator(_ coordinator: Coordinator) {
+    func addChildCoordinator(_ coordinator: Coordinator) {
         childCoordinators.append(coordinator)
     }
     
-    private func removeChildCoordinator(_ coordinator: Coordinator) {
+    func removeChildCoordinator(_ coordinator: Coordinator) {
         childCoordinators = childCoordinators.filter { $0 !== coordinator }
     }
     

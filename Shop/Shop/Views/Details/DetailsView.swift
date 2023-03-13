@@ -11,16 +11,7 @@ struct DetailsView: View {
     @ObservedObject var viewModel: DetailsViewModel
     
     var body: some View {
-        Text("DetailsView")
-        
-        Button("Back") {
-            coordinator.back()
-        }
-    }
-}
-
-struct DetailsView_Previews: PreviewProvider {
-    static var previews: some View {
-        DetailsView()
+        // Отображение деталей
+        Text("Детали: \(viewModel.details)")
     }
 }

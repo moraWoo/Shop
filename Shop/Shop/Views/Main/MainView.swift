@@ -9,21 +9,15 @@ import SwiftUI
 
 struct MainView: View {
     @ObservedObject var viewModel: MainViewModel
-    
     var body: some View {
         VStack {
-            // ... view content
-            Button("Details") {
-                coordinator.showDetailsView()
+            // Навигация по экранам
+            Button("Мой профиль") {
+                viewModel.navigateToProfile()
             }
-            Button("Profile") {
-                coordinator.showProfileView()
+            Button("Детали") {
+                viewModel.navigateToDetails()
             }
         }
-    }
-}
-struct MainView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainView()
     }
 }

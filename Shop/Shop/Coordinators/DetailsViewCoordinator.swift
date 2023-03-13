@@ -8,17 +8,17 @@
 import SwiftUI
 import Combine
 
-class DetailsViewCoordinator: Coordinator {
+class DetailsViewCoordinator: NSObject, Coordinator {
     
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?
     var currentView: AnyView = AnyView(Text("Details view"))
     
-    init() {}
+    override init() {}
     
     func start() -> AnyView {
         let viewModel = DetailsViewModel()
-        let view = DetailsView(viewModel: viewModel, coordinator: self)
+        let view = DetailsView(viewModel: viewModel)
         return AnyView(view)
     }
     

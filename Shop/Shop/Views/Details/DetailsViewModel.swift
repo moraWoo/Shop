@@ -8,13 +8,6 @@
 import Foundation
 
 class DetailsViewModel: ObservableObject {
-    private let coordinator: DetailsViewCoordinator
-    
-    init(coordinator: DetailsViewCoordinator) {
-        self.coordinator = coordinator
-    }
-    
-    func backTapped() {
-//        coordinator.back()
-    }
+    @Published var details = ""
 }
+
