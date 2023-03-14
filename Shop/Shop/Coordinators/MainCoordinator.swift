@@ -31,8 +31,8 @@ class MainCoordinator: Coordinator {
             view = nil
         }
     }
-    
     func goToMainView() {
-        // Implement code to transition to main view
+        let mainView = MainView(viewModel: MainViewModel(coordinator: self))
+        view = AnyView(mainView)
     }
 }

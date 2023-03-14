@@ -15,9 +15,13 @@ class AppCoordinator: ObservableObject, Coordinator {
     var parentCoordinator: Coordinator?
     
     func start() -> AnyView {
-        let loginViewModel = LoginViewModel(coordinator: self)
-        let loginView = LoginView(viewModel: loginViewModel)
-        currentView = AnyView(loginView)
+        guard childCoordinators.isEmpty == false else {
+            let mainCoordinator = MainCoordinator()
+            addChildCoordinator(mainCoordinator)
+            mainCoordinator.start()
+            return currentView
+        }
+        currentView = AnyView(childCoordinators.last?.start())
         return currentView
     }
     
@@ -32,4 +36,5 @@ class AppCoordinator: ObservableObject, Coordinator {
         }
     }
 }
+
 

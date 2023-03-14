@@ -16,8 +16,8 @@ class AppAssembly {
         let mainAssembly = MainAssembly(dependencies: dependencies)
         let loginAssembly = LoginAssembly(dependencies: dependencies)
         
-        appCoordinator.addChildCoordinator(mainAssembly.dependencies.mainCoordinator)
         appCoordinator.addChildCoordinator(loginAssembly.dependencies.loginCoordinator)
+        appCoordinator.addChildCoordinator(mainAssembly.dependencies.mainCoordinator)
         
         return AnyView(loginAssembly.assemble())
     }

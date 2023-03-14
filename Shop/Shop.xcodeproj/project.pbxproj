@@ -63,6 +63,7 @@
 		776F64A029C0B59900B6C808 /* MainAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAssembly.swift; sourceTree = "<group>"; };
 		776F64A229C0B6A900B6C808 /* LoginAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAssembly.swift; sourceTree = "<group>"; };
 		776F64A529C0BD0C00B6C808 /* AppDependecies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependecies.swift; sourceTree = "<group>"; };
+		776F64A929C0E20E00B6C808 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +96,7 @@
 		776F645829BF65ED00B6C808 /* Shop */ = {
 			isa = PBXGroup;
 			children = (
+				776F64A929C0E20E00B6C808 /* Info.plist */,
 				776F64A429C0BCE100B6C808 /* AppDependencies */,
 				776F649A29BFB56F00B6C808 /* Assembly */,
 				776F649729BF82A400B6C808 /* Protocols */,

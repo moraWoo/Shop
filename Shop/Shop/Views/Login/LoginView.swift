@@ -44,7 +44,7 @@ struct LoginView: View {
         }
         .onAppear {
             DispatchQueue.main.async {
-                self.viewModel.goToMainView()
+                self.viewModel.login()
             }
         }
     }

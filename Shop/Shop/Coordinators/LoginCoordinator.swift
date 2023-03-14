@@ -14,9 +14,14 @@ class LoginCoordinator: Coordinator {
     var view: AnyView?
     
     func start() -> AnyView {
-        let dependencies = AppDependencies(loginCoordinator: self, mainCoordinator: MainCoordinator())
+        guard let mainCoordinator = parentCoordinator as? MainCoordinator else {
+            fatalError("parentCoordinator must not be nil or not be of type MainCoordinator")
+        }
+        let dependencies = AppDependencies(loginCoordinator: self, mainCoordinator: mainCoordinator)
         let loginView = LoginAssembly(dependencies: dependencies).assemble()
         view = AnyView(loginView)
         return view!
     }
 }
+
+
