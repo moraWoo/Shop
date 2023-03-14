@@ -42,10 +42,15 @@ struct LoginView: View {
                 .font(.title)
                 .fontWeight(.bold)
         }
-        .onAppear {
-            DispatchQueue.main.async {
-                self.viewModel.login()
-            }
-        }
+        Button(action: {
+            self.viewModel.login()
+        }, label: {
+            Text("Login")
+        })
+//        .onAppear {
+//            DispatchQueue.main.async {
+//        self.viewModel.goToMainView()
+//    }
+//        }
     }
 }

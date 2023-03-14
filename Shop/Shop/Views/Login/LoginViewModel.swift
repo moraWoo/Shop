@@ -23,6 +23,7 @@ class LoginViewModel: ObservableObject {
     
     func goToMainView() {
         guard let mainCoordinator = coordinator.parentCoordinator as? MainCoordinator else {
+            print("Ты не пройдешь")
             return
         }
         mainCoordinator.goToMainView()

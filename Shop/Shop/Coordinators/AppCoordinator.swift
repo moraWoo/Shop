@@ -17,22 +17,13 @@ class AppCoordinator: ObservableObject, Coordinator {
     func start() -> AnyView {
         guard childCoordinators.isEmpty == false else {
             let mainCoordinator = MainCoordinator()
-            addChildCoordinator(mainCoordinator)
-            print(mainCoordinator)
+            parentCoordinator?.addChildCoordinator(mainCoordinator)
             return mainCoordinator.start()
         }
         currentView = AnyView(childCoordinators.last?.start())
         return currentView
     }
-//    func start() -> AnyView {
-//        guard childCoordinators.isEmpty == false else {
-//            let loginCoordinator = LoginCoordinator()
-//            addChildCoordinator(loginCoordinator)
-//            return loginCoordinator.start()
-//        }
-//        currentView = AnyView(childCoordinators.last?.start())
-//        return currentView
-//    }
+    
     
     func addChildCoordinator(_ coordinator: Coordinator) {
         childCoordinators.append(coordinator)
@@ -47,3 +38,12 @@ class AppCoordinator: ObservableObject, Coordinator {
 }
 
 
+//    func start() -> AnyView {
+//        guard childCoordinators.isEmpty == false else {
+//            let loginCoordinator = LoginCoordinator()
+//            addChildCoordinator(loginCoordinator)
+//            return loginCoordinator.start()
+//        }
+//        currentView = AnyView(childCoordinators.last?.start())
+//        return currentView
+//    }
