@@ -11,9 +11,11 @@ class LoginViewModel: ObservableObject {
     @Published var username: String = ""
     @Published var password: String = ""
     var coordinator: Coordinator
+    var mainCoordinator: MainCoordinator
     
-    init(coordinator: Coordinator) {
+    init(coordinator: Coordinator, mainCoordinator: MainCoordinator) {
         self.coordinator = coordinator
+        self.mainCoordinator = mainCoordinator
     }
     
     func login() {
@@ -22,11 +24,17 @@ class LoginViewModel: ObservableObject {
     }
     
     func goToMainView() {
-        guard let mainCoordinator = coordinator.parentCoordinator as? MainCoordinator else {
-            print("Ты не пройдешь")
+        guard let parentCoordinator = coordinator.parentCoordinator as? MainCoordinator else {
+            print("Failed to find MainCoordinator")
             return
         }
+        
+        parentCoordinator.removeChildCoordinator(parentCoordinator)
+        mainCoordinator.parentCoordinator = parentCoordinator
+        parentCoordinator.addChildCoordinator(mainCoordinator)
+        
         mainCoordinator.goToMainView()
     }
 }
+
 

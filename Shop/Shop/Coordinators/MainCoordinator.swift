@@ -14,15 +14,9 @@ class MainCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     
     func start() -> AnyView {
-        let dependencies = AppDependencies(loginCoordinator: LoginCoordinator(), mainCoordinator: self)
-        let mainView = MainAssembly(dependencies: dependencies).assemble()
+        let mainView = MainView(viewModel: MainViewModel(coordinator: self))
         view = AnyView(mainView)
-        print("View from MainCoordinator")
-        if let view = view {
-            return view
-        } else {
-            return AnyView(EmptyView())
-        }
+        return view!
     }
     
     func addChildCoordinator(_ coordinator: Coordinator) {
@@ -33,9 +27,11 @@ class MainCoordinator: Coordinator {
     func removeChildCoordinator(_ coordinator: Coordinator) {
         if let index = childCoordinators.firstIndex(where: { $0 === coordinator }) {
             childCoordinators.remove(at: index)
+            coordinator.parentCoordinator = nil
             view = nil
         }
     }
+    
     func goToMainView() {
         let mainView = MainView(viewModel: MainViewModel(coordinator: self))
         view = AnyView(mainView)

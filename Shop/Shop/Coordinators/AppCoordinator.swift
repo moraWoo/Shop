@@ -16,9 +16,9 @@ class AppCoordinator: ObservableObject, Coordinator {
     
     func start() -> AnyView {
         guard childCoordinators.isEmpty == false else {
-            let mainCoordinator = MainCoordinator()
-            parentCoordinator?.addChildCoordinator(mainCoordinator)
-            return mainCoordinator.start()
+            let loginCoordinator = LoginCoordinator()
+            addChildCoordinator(loginCoordinator)
+            return loginCoordinator.start()
         }
         currentView = AnyView(childCoordinators.last?.start())
         return currentView
@@ -33,17 +33,7 @@ class AppCoordinator: ObservableObject, Coordinator {
     func removeChildCoordinator(_ coordinator: Coordinator) {
         if let index = childCoordinators.firstIndex(where: { $0 === coordinator }) {
             childCoordinators.remove(at: index)
+            coordinator.parentCoordinator = nil
         }
     }
 }
-
-
-//    func start() -> AnyView {
-//        guard childCoordinators.isEmpty == false else {
-//            let loginCoordinator = LoginCoordinator()
-//            addChildCoordinator(loginCoordinator)
-//            return loginCoordinator.start()
-//        }
-//        currentView = AnyView(childCoordinators.last?.start())
-//        return currentView
-//    }
