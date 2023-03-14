@@ -7,13 +7,35 @@
 
 import SwiftUI
 
+//protocol Coordinator: AnyObject {
+//    var childCoordinators: [Coordinator] { get set }
+//    var parentCoordinator: Coordinator? { get set }
+//    var currentView: AnyView { get set }
+//
+//    func start() -> AnyView
+//    func addChildCoordinator(_ coordinator: Coordinator)
+//    func removeChildCoordinator(_ coordinator: Coordinator)
+//}
+
 protocol Coordinator: AnyObject {
+    
     var childCoordinators: [Coordinator] { get set }
     var parentCoordinator: Coordinator? { get set }
-    var currentView: AnyView { get set }
     
     func start() -> AnyView
     func addChildCoordinator(_ coordinator: Coordinator)
     func removeChildCoordinator(_ coordinator: Coordinator)
 }
 
+extension Coordinator {
+    func addChildCoordinator(_ coordinator: Coordinator) {
+        childCoordinators.append(coordinator)
+        coordinator.parentCoordinator = self
+    }
+    
+    func removeChildCoordinator(_ coordinator: Coordinator) {
+        if let index = childCoordinators.firstIndex(where: { $0 === coordinator }) {
+            childCoordinators.remove(at: index)
+        }
+    }
+}

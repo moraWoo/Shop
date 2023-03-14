@@ -7,17 +7,24 @@
 
 import SwiftUI
 
+// Main Screen
+
 struct MainView: View {
     @ObservedObject var viewModel: MainViewModel
+
     var body: some View {
-        VStack {
-            // Навигация по экранам
-            Button("Мой профиль") {
-                viewModel.navigateToProfile()
+        NavigationView {
+            VStack {
+                Text("Welcome to the Main Screen")
+                    .font(.headline)
+                Button(action: {
+                    viewModel.logout()
+                }, label: {
+                    Text("Logout")
+                })
+                .padding()
             }
-            Button("Детали") {
-                viewModel.navigateToDetails()
-            }
+            .navigationTitle("Main Screen")
         }
     }
 }

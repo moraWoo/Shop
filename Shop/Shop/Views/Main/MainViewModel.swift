@@ -5,20 +5,24 @@
 //  Created by Ильдар on 13.03.2023.
 //
 
-import Foundation
+import SwiftUI
 
 class MainViewModel: ObservableObject {
-    let coordinator: Coordinator
+    var coordinator: MainCoordinator
     
-    init(coordinator: Coordinator) {
+    init(coordinator: MainCoordinator) {
         self.coordinator = coordinator
     }
     
-    func navigateToProfile() {
-//        coordinator.navigateToProfile()
+    func goToLoginView() {
+        guard let loginCoordinator = coordinator.parentCoordinator?.childCoordinators.first(where: { $0 is LoginCoordinator }) as? LoginCoordinator else {
+            return
+        }
+        loginCoordinator.start()
     }
     
-    func navigateToDetails() {
-//        coordinator.navigateToDetails()
+    func logout() {
+        coordinator.parentCoordinator?.removeChildCoordinator(coordinator)
     }
 }
+

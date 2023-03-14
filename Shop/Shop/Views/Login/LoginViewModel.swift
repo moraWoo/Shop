@@ -8,12 +8,24 @@
 import Foundation
 
 class LoginViewModel: ObservableObject {
-    @Published var login = ""
-    @Published var password = ""
-    @Published var error: Error?
+    @Published var username: String = ""
+    @Published var password: String = ""
+    var coordinator: Coordinator
+    
+    init(coordinator: Coordinator) {
+        self.coordinator = coordinator
+    }
     
     func login() {
-        // Вход в аккаунт
-        // ...
+        // Perform login action and notify delegate on success
+        goToMainView()
+    }
+    
+    func goToMainView() {
+        guard let mainCoordinator = coordinator.parentCoordinator as? MainCoordinator else {
+            return
+        }
+        mainCoordinator.goToMainView()
     }
 }
+

@@ -18,18 +18,21 @@
 		776F647929BF69E500B6C808 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F647829BF69E500B6C808 /* SignInViewModel.swift */; };
 		776F647B29BF6A0500B6C808 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F647A29BF6A0500B6C808 /* DetailsView.swift */; };
 		776F647D29BF6A1300B6C808 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F647C29BF6A1300B6C808 /* ProfileView.swift */; };
-		776F647F29BF6A2000B6C808 /* LogingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F647E29BF6A2000B6C808 /* LogingView.swift */; };
+		776F647F29BF6A2000B6C808 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F647E29BF6A2000B6C808 /* LoginView.swift */; };
 		776F648129BF6A3B00B6C808 /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F648029BF6A3B00B6C808 /* DetailsViewModel.swift */; };
 		776F648329BF6A4B00B6C808 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F648229BF6A4B00B6C808 /* ProfileViewModel.swift */; };
 		776F648529BF6A5A00B6C808 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F648429BF6A5A00B6C808 /* LoginViewModel.swift */; };
-		776F648729BF6A8300B6C808 /* MainViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F648629BF6A8300B6C808 /* MainViewCoordinator.swift */; };
-		776F648929BF6A9400B6C808 /* DetailsViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F648829BF6A9400B6C808 /* DetailsViewCoordinator.swift */; };
-		776F648B29BF6AA800B6C808 /* ProfileViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F648A29BF6AA800B6C808 /* ProfileViewCoordinator.swift */; };
-		776F648D29BF6ABF00B6C808 /* LoginViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F648C29BF6ABF00B6C808 /* LoginViewCoordinator.swift */; };
+		776F648729BF6A8300B6C808 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F648629BF6A8300B6C808 /* MainCoordinator.swift */; };
+		776F648929BF6A9400B6C808 /* DetailsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F648829BF6A9400B6C808 /* DetailsCoordinator.swift */; };
+		776F648B29BF6AA800B6C808 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F648A29BF6AA800B6C808 /* ProfileCoordinator.swift */; };
+		776F648D29BF6ABF00B6C808 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F648C29BF6ABF00B6C808 /* LoginCoordinator.swift */; };
 		776F648F29BF6AD600B6C808 /* SignInCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F648E29BF6AD600B6C808 /* SignInCoordinator.swift */; };
 		776F649929BF82BC00B6C808 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F649829BF82BC00B6C808 /* Coordinator.swift */; };
-		776F649C29BFB58300B6C808 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F649B29BFB58300B6C808 /* Assembly.swift */; };
+		776F649C29BFB58300B6C808 /* AppAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F649B29BFB58300B6C808 /* AppAssembly.swift */; };
 		776F649F29BFB87B00B6C808 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F649E29BFB87B00B6C808 /* User.swift */; };
+		776F64A129C0B59900B6C808 /* MainAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F64A029C0B59900B6C808 /* MainAssembly.swift */; };
+		776F64A329C0B6A900B6C808 /* LoginAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F64A229C0B6A900B6C808 /* LoginAssembly.swift */; };
+		776F64A629C0BD0C00B6C808 /* AppDependecies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F64A529C0BD0C00B6C808 /* AppDependecies.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,18 +48,21 @@
 		776F647829BF69E500B6C808 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		776F647A29BF6A0500B6C808 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
 		776F647C29BF6A1300B6C808 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		776F647E29BF6A2000B6C808 /* LogingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogingView.swift; sourceTree = "<group>"; };
+		776F647E29BF6A2000B6C808 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		776F648029BF6A3B00B6C808 /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
 		776F648229BF6A4B00B6C808 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		776F648429BF6A5A00B6C808 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
-		776F648629BF6A8300B6C808 /* MainViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewCoordinator.swift; sourceTree = "<group>"; };
-		776F648829BF6A9400B6C808 /* DetailsViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewCoordinator.swift; sourceTree = "<group>"; };
-		776F648A29BF6AA800B6C808 /* ProfileViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewCoordinator.swift; sourceTree = "<group>"; };
-		776F648C29BF6ABF00B6C808 /* LoginViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewCoordinator.swift; sourceTree = "<group>"; };
+		776F648629BF6A8300B6C808 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		776F648829BF6A9400B6C808 /* DetailsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCoordinator.swift; sourceTree = "<group>"; };
+		776F648A29BF6AA800B6C808 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
+		776F648C29BF6ABF00B6C808 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		776F648E29BF6AD600B6C808 /* SignInCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInCoordinator.swift; sourceTree = "<group>"; };
 		776F649829BF82BC00B6C808 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
-		776F649B29BFB58300B6C808 /* Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
+		776F649B29BFB58300B6C808 /* AppAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAssembly.swift; sourceTree = "<group>"; };
 		776F649E29BFB87B00B6C808 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		776F64A029C0B59900B6C808 /* MainAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAssembly.swift; sourceTree = "<group>"; };
+		776F64A229C0B6A900B6C808 /* LoginAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAssembly.swift; sourceTree = "<group>"; };
+		776F64A529C0BD0C00B6C808 /* AppDependecies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependecies.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +95,7 @@
 		776F645829BF65ED00B6C808 /* Shop */ = {
 			isa = PBXGroup;
 			children = (
+				776F64A429C0BCE100B6C808 /* AppDependencies */,
 				776F649A29BFB56F00B6C808 /* Assembly */,
 				776F649729BF82A400B6C808 /* Protocols */,
 				776F646929BF67B600B6C808 /* Models */,
@@ -128,10 +135,10 @@
 			children = (
 				776F647029BF688600B6C808 /* AppCoordinator.swift */,
 				776F648E29BF6AD600B6C808 /* SignInCoordinator.swift */,
-				776F648C29BF6ABF00B6C808 /* LoginViewCoordinator.swift */,
-				776F648A29BF6AA800B6C808 /* ProfileViewCoordinator.swift */,
-				776F648629BF6A8300B6C808 /* MainViewCoordinator.swift */,
-				776F648829BF6A9400B6C808 /* DetailsViewCoordinator.swift */,
+				776F648C29BF6ABF00B6C808 /* LoginCoordinator.swift */,
+				776F648A29BF6AA800B6C808 /* ProfileCoordinator.swift */,
+				776F648629BF6A8300B6C808 /* MainCoordinator.swift */,
+				776F648829BF6A9400B6C808 /* DetailsCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -163,7 +170,7 @@
 		776F646C29BF683500B6C808 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				776F647E29BF6A2000B6C808 /* LogingView.swift */,
+				776F647E29BF6A2000B6C808 /* LoginView.swift */,
 				776F648429BF6A5A00B6C808 /* LoginViewModel.swift */,
 			);
 			path = Login;
@@ -207,9 +214,19 @@
 		776F649A29BFB56F00B6C808 /* Assembly */ = {
 			isa = PBXGroup;
 			children = (
-				776F649B29BFB58300B6C808 /* Assembly.swift */,
+				776F649B29BFB58300B6C808 /* AppAssembly.swift */,
+				776F64A029C0B59900B6C808 /* MainAssembly.swift */,
+				776F64A229C0B6A900B6C808 /* LoginAssembly.swift */,
 			);
 			path = Assembly;
+			sourceTree = "<group>";
+		};
+		776F64A429C0BCE100B6C808 /* AppDependencies */ = {
+			isa = PBXGroup;
+			children = (
+				776F64A529C0BD0C00B6C808 /* AppDependecies.swift */,
+			);
+			path = AppDependencies;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,21 +299,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				776F648729BF6A8300B6C808 /* MainViewCoordinator.swift in Sources */,
+				776F64A129C0B59900B6C808 /* MainAssembly.swift in Sources */,
+				776F648729BF6A8300B6C808 /* MainCoordinator.swift in Sources */,
 				776F647929BF69E500B6C808 /* SignInViewModel.swift in Sources */,
-				776F648929BF6A9400B6C808 /* DetailsViewCoordinator.swift in Sources */,
+				776F648929BF6A9400B6C808 /* DetailsCoordinator.swift in Sources */,
 				776F647D29BF6A1300B6C808 /* ProfileView.swift in Sources */,
-				776F647F29BF6A2000B6C808 /* LogingView.swift in Sources */,
+				776F647F29BF6A2000B6C808 /* LoginView.swift in Sources */,
 				776F649929BF82BC00B6C808 /* Coordinator.swift in Sources */,
 				776F647529BF698800B6C808 /* MainViewModel.swift in Sources */,
 				776F647129BF688600B6C808 /* AppCoordinator.swift in Sources */,
-				776F648B29BF6AA800B6C808 /* ProfileViewCoordinator.swift in Sources */,
+				776F648B29BF6AA800B6C808 /* ProfileCoordinator.swift in Sources */,
 				776F647329BF694400B6C808 /* MainView.swift in Sources */,
 				776F648329BF6A4B00B6C808 /* ProfileViewModel.swift in Sources */,
-				776F648D29BF6ABF00B6C808 /* LoginViewCoordinator.swift in Sources */,
-				776F649C29BFB58300B6C808 /* Assembly.swift in Sources */,
+				776F648D29BF6ABF00B6C808 /* LoginCoordinator.swift in Sources */,
+				776F649C29BFB58300B6C808 /* AppAssembly.swift in Sources */,
 				776F645C29BF65ED00B6C808 /* ContentView.swift in Sources */,
 				776F648529BF6A5A00B6C808 /* LoginViewModel.swift in Sources */,
+				776F64A329C0B6A900B6C808 /* LoginAssembly.swift in Sources */,
+				776F64A629C0BD0C00B6C808 /* AppDependecies.swift in Sources */,
 				776F648129BF6A3B00B6C808 /* DetailsViewModel.swift in Sources */,
 				776F648F29BF6AD600B6C808 /* SignInCoordinator.swift in Sources */,
 				776F647B29BF6A0500B6C808 /* DetailsView.swift in Sources */,

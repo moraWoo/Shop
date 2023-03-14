@@ -7,39 +7,59 @@
 
 import SwiftUI
 import Combine
-
-//@main
-//struct ShopApp: App {
-//    let viewAssembly: ViewAssembly
 //
-//    lazy var appCoordinator: AppCoordinator = {
-//        return AppCoordinator(viewAssembly: viewAssembly)
+//@main
+//struct ShopApp {
+//    let assembly: AppAssembly
+//
+//    @StateObject var appCoordinator: AppCoordinator = {
+//        return AppCoordinator()
 //    }()
+//
+//    init() {
+//        assembly = AppAssembly()
+//    }
 //
 //    var body: some Scene {
 //        WindowGroup {
-//            appCoordinator.currentView
+//            appCoordinator.start()
 //                .environmentObject(appCoordinator)
 //        }
+//    }
+//
+//    static func main() {
+//        // Здесь вы можете добавить любой код, который должен быть выполнен при запуске приложения
 //    }
 //}
 @main
 struct ShopApp: App {
-    let appCoordinator: AppCoordinator
-    let viewAssembly: ViewAssembly
+    let assembly: AppAssembly
+
+    @StateObject var appCoordinator: AppCoordinator = {
+        return AppCoordinator()
+    }()
 
     init() {
-        self.appCoordinator = AppCoordinator(viewAssembly: self.viewAssembly)
-        self.viewAssembly = DefaultViewAssembly(coordinator: appCoordinator)
+        assembly = AppAssembly()
     }
-    
+
     var body: some Scene {
+        let contentView = appCoordinator.start()
+            .environmentObject(appCoordinator)
+
         WindowGroup {
-            appCoordinator.currentView
-                .environmentObject(appCoordinator)
+            contentView.environmentObject(appCoordinator)
         }
     }
+
+//    static func main() {
+//        // Здесь вы можете добавить любой код, который должен быть выполнен при запуске приложения
+//    }
 }
+
+
+
+
 
 
 
