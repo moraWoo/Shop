@@ -17,7 +17,12 @@ class MainCoordinator: Coordinator {
         let dependencies = AppDependencies(loginCoordinator: LoginCoordinator(), mainCoordinator: self)
         let mainView = MainAssembly(dependencies: dependencies).assemble()
         view = AnyView(mainView)
-        return view!
+        print("View from MainCoordinator")
+        if let view = view {
+            return view
+        } else {
+            return AnyView(EmptyView())
+        }
     }
     
     func addChildCoordinator(_ coordinator: Coordinator) {
