@@ -37,9 +37,6 @@ class MainCoordinator: Coordinator {
     }
     
     func goToMainView() {
-//        let mainView = MainView(viewModel: MainViewModel(coordinator: self))
-//        view = AnyView(mainView)
-//        parentCoordinator?.addChildCoordinator(self)
         DispatchQueue.main.async { [weak self] in
             let mainView = MainView(viewModel: MainViewModel(coordinator: self!))
             self?.view = AnyView(mainView)

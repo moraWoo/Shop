@@ -7,30 +7,7 @@
 
 import SwiftUI
 import Combine
-//
-//@main
-//struct ShopApp {
-//    let assembly: AppAssembly
-//
-//    @StateObject var appCoordinator: AppCoordinator = {
-//        return AppCoordinator()
-//    }()
-//
-//    init() {
-//        assembly = AppAssembly()
-//    }
-//
-//    var body: some Scene {
-//        WindowGroup {
-//            appCoordinator.start()
-//                .environmentObject(appCoordinator)
-//        }
-//    }
-//
-//    static func main() {
-//        // Здесь вы можете добавить любой код, который должен быть выполнен при запуске приложения
-//    }
-//}
+
 @main
 struct ShopApp: App {
     let assembly: AppAssembly
@@ -51,10 +28,6 @@ struct ShopApp: App {
             contentView.environmentObject(appCoordinator)
         }
     }
-
-//    static func main() {
-//        // Здесь вы можете добавить любой код, который должен быть выполнен при запуске приложения
-//    }
 }
 
 
