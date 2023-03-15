@@ -14,14 +14,18 @@ class MainCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     
     func start() -> AnyView {
+        print("MainCoordinator start()")
         let mainView = MainView(viewModel: MainViewModel(coordinator: self))
         view = AnyView(mainView)
+        parentCoordinator?.addChildCoordinator(self)
         return view!
     }
     
     func addChildCoordinator(_ coordinator: Coordinator) {
-        childCoordinators.append(coordinator)
-        coordinator.parentCoordinator = self
+        guard let appCoordinator = parentCoordinator as? AppCoordinator else {
+            return
+        }
+        appCoordinator.addChildCoordinator(coordinator)
     }
     
     func removeChildCoordinator(_ coordinator: Coordinator) {
@@ -33,7 +37,12 @@ class MainCoordinator: Coordinator {
     }
     
     func goToMainView() {
-        let mainView = MainView(viewModel: MainViewModel(coordinator: self))
-        view = AnyView(mainView)
+//        let mainView = MainView(viewModel: MainViewModel(coordinator: self))
+//        view = AnyView(mainView)
+//        parentCoordinator?.addChildCoordinator(self)
+        DispatchQueue.main.async { [weak self] in
+            let mainView = MainView(viewModel: MainViewModel(coordinator: self!))
+            self?.view = AnyView(mainView)
+        }
     }
 }

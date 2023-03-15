@@ -8,7 +8,7 @@
 import Foundation
 
 class AppDependencies {
-    let loginCoordinator: LoginCoordinator
+    var loginCoordinator: LoginCoordinator
     let mainCoordinator: MainCoordinator
     
     init(loginCoordinator: LoginCoordinator, mainCoordinator: MainCoordinator) {

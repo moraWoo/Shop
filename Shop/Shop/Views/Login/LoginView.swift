@@ -47,10 +47,10 @@ struct LoginView: View {
         }, label: {
             Text("Login")
         })
-//        .onAppear {
-//            DispatchQueue.main.async {
-//        self.viewModel.goToMainView()
-//    }
-//        }
+        .onAppear {
+            DispatchQueue.main.async {
+        self.viewModel.goToMainView()
+    }
+        }
     }
 }

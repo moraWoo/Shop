@@ -15,10 +15,18 @@ class MainAssembly {
     }
     
     func assemble() -> some View {
+        print("MainAssembly assemble()")
         let viewModel = MainViewModel(coordinator: dependencies.mainCoordinator)
         let view = MainView(viewModel: viewModel)
         dependencies.mainCoordinator.view = AnyView(view)
         
+        // Set the parent coordinator of LoginCoordinator
+        let loginCoordinator = LoginCoordinator()
+        loginCoordinator.parentCoordinator = dependencies.mainCoordinator
+        
+        dependencies.loginCoordinator = loginCoordinator
+        
         return AnyView(view)
+
     }
 }

@@ -15,6 +15,7 @@ class MainViewModel: ObservableObject {
     }
     
     func goToLoginView() {
+        print("MainViewModel goToLoginView()")
         guard let loginCoordinator = coordinator.parentCoordinator?.childCoordinators.first(where: { $0 is LoginCoordinator }) as? LoginCoordinator else {
             return
         }
@@ -23,6 +24,11 @@ class MainViewModel: ObservableObject {
     
     func logout() {
         coordinator.parentCoordinator?.removeChildCoordinator(coordinator)
+    }
+    func goToMainView() {
+        coordinator.goToMainView()
+        print("After goToMainView()")
+        coordinator.parentCoordinator?.addChildCoordinator(coordinator)
     }
 }
 
