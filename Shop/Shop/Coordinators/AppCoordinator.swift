@@ -16,12 +16,11 @@ class AppCoordinator: ObservableObject, Coordinator {
     
     func start() -> AnyView {
         print("AppCoordinator start()")
-        guard childCoordinators.isEmpty == false else {
+        if childCoordinators.isEmpty {
             let loginCoordinator = LoginCoordinator()
             addChildCoordinator(loginCoordinator)
-            return loginCoordinator.start()
+            currentView = loginCoordinator.start()
         }
-        currentView = AnyView(childCoordinators.last?.start())
         return currentView
     }
     

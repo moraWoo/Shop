@@ -23,20 +23,19 @@ class LoginViewModel: ObservableObject {
     }
     
     func goToMainView() {
-        guard let parentCoordinator = coordinator.parentCoordinator else {
+        guard let parentCoordinator = coordinator.parentCoordinator as? AppCoordinator else {
             print("Parent coordinator is nil")
             return
         }
         print("Parent coordinator type:", type(of: parentCoordinator))
         print("Child coordinators:", parentCoordinator.childCoordinators)
-        
-        coordinator.parentCoordinator?.addChildCoordinator(mainCoordinator)
 
         parentCoordinator.removeChildCoordinator(mainCoordinator)
         mainCoordinator.parentCoordinator = parentCoordinator
         parentCoordinator.addChildCoordinator(mainCoordinator)
-        
-        mainCoordinator.goToMainView()
+
+        let mainView = mainCoordinator.start()
+        parentCoordinator.currentView = mainView
     }
 }
 

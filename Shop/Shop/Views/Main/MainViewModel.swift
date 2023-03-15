@@ -23,8 +23,18 @@ class MainViewModel: ObservableObject {
     }
     
     func logout() {
-        coordinator.parentCoordinator?.removeChildCoordinator(coordinator)
+        guard let parentCoordinator = coordinator.parentCoordinator as? AppCoordinator else { return }
+        parentCoordinator.removeChildCoordinator(coordinator)
+        
+        DispatchQueue.main.async {
+            if let loginView = parentCoordinator.childCoordinators
+                .first(where: { $0 is LoginCoordinator })?
+                .start() {
+                parentCoordinator.currentView = loginView
+            }
+        }
     }
+    
     func goToMainView() {
         coordinator.goToMainView()
         print("After goToMainView()")
