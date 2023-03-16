@@ -96,6 +96,7 @@
 		776F645829BF65ED00B6C808 /* Shop */ = {
 			isa = PBXGroup;
 			children = (
+				77C024B629C2585B00326201 /* SystemDesing */,
 				776F64A929C0E20E00B6C808 /* Info.plist */,
 				776F64A429C0BCE100B6C808 /* AppDependencies */,
 				776F649A29BFB56F00B6C808 /* Assembly */,
@@ -229,6 +230,13 @@
 				776F64A529C0BD0C00B6C808 /* AppDependecies.swift */,
 			);
 			path = AppDependencies;
+			sourceTree = "<group>";
+		};
+		77C024B629C2585B00326201 /* SystemDesing */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SystemDesing;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
