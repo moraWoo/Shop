@@ -16,6 +16,7 @@
 		77C3272129C3AE710013AB57 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C3272029C3AE710013AB57 /* WelcomeView.swift */; };
 		77C3272329C3B3470013AB57 /* SecureTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C3272229C3B3470013AB57 /* SecureTextFieldView.swift */; };
 		77C3272529C3B3C20013AB57 /* SecureTextFieldParentProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C3272429C3B3C20013AB57 /* SecureTextFieldParentProtocol.swift */; };
+		77F620CB29C3C96E007941A9 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F620CA29C3C96E007941A9 /* MainView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		77C3272029C3AE710013AB57 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		77C3272229C3B3470013AB57 /* SecureTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureTextFieldView.swift; sourceTree = "<group>"; };
 		77C3272429C3B3C20013AB57 /* SecureTextFieldParentProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureTextFieldParentProtocol.swift; sourceTree = "<group>"; };
+		77F620CA29C3C96E007941A9 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +47,7 @@
 		77C024B729C35E0600326201 = {
 			isa = PBXGroup;
 			children = (
+				77F620CA29C3C96E007941A9 /* MainView.swift */,
 				77C024C229C35E0600326201 /* Views */,
 				77C024C129C35E0600326201 /* Products */,
 			);
@@ -162,6 +165,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				77C3272529C3B3C20013AB57 /* SecureTextFieldParentProtocol.swift in Sources */,
+				77F620CB29C3C96E007941A9 /* MainView.swift in Sources */,
 				77C3271F29C3AC430013AB57 /* ViewModifiers.swift in Sources */,
 				77C024C629C35E0600326201 /* ContentView.swift in Sources */,
 				77C024C429C35E0600326201 /* ViewsApp.swift in Sources */,
