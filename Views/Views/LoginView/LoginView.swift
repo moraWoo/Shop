@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct WelcomeView: View, SecuredTextFieldParentProtocol {
+struct LoginView: View, SecuredTextFieldParentProtocol {
     @State private var firstName = ""
     @State private var password = ""
     @State var hideKeyboard: (() -> Void)?
@@ -53,6 +53,6 @@ struct WelcomeView: View, SecuredTextFieldParentProtocol {
 
 struct WelcomeView_Previews: PreviewProvider {
     static var previews: some View {
-        WelcomeView()
+        LoginView()
     }
 }

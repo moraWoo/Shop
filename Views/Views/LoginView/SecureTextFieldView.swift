@@ -48,7 +48,6 @@ struct SecuredTextFieldView: View {
                         .scaledToFit()
                         .accentColor(.gray)
                         .frame(height: 13.0, alignment: Alignment.trailing)
-                        .background(.red)
                         .contentShape(Rectangle())
                 }).padding(.trailing, 10)
             }
