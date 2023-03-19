@@ -8,11 +8,25 @@
 import Foundation
 
 class AppDependencies {
+    let signUpCoordinator: SignUpCoordinator
     var loginCoordinator: LoginCoordinator
     let mainCoordinator: MainCoordinator
+    let personInfoCoordinator: PersonInfoCoordinator
+    let detailCoordinator: DetailCoordinator
+
     
-    init(loginCoordinator: LoginCoordinator, mainCoordinator: MainCoordinator) {
+    init(
+        signUpCoordinator: SignUpCoordinator,
+        loginCoordinator: LoginCoordinator,
+        mainCoordinator: MainCoordinator,
+        personInfoCoordinator: PersonInfoCoordinator,
+        detailCoordinator: DetailCoordinator
+    
+    ) {
         self.loginCoordinator = loginCoordinator
+        self.signUpCoordinator = signUpCoordinator
         self.mainCoordinator = mainCoordinator
+        self.personInfoCoordinator = personInfoCoordinator
+        self.detailCoordinator = detailCoordinator
     }
 }

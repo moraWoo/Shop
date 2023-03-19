@@ -14,7 +14,13 @@ class LoginCoordinator: Coordinator {
     var view: AnyView?
     
     func start() -> AnyView {
-        let dependencies = AppDependencies(loginCoordinator: self, mainCoordinator: MainCoordinator())
+        let dependencies = AppDependencies(
+            signUpCoordinator: SignUpCoordinator(),
+            loginCoordinator: self,
+            mainCoordinator: MainCoordinator(),
+            personInfoCoordinator: PersonInfoCoordinator(),
+            detailCoordinator: DetailCoordinator()
+        )
         let loginView = LoginAssembly(dependencies: dependencies).assemble()
         view = AnyView(loginView)
         print("View from LoginCoordinator \(view)")

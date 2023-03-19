@@ -17,10 +17,10 @@ class AppCoordinator: ObservableObject, Coordinator {
     func start() -> AnyView {
             print("AppCoordinator start()")
             if childCoordinators.isEmpty {
-                let loginCoordinator = LoginCoordinator()
-                addChildCoordinator(loginCoordinator)
+                let signUpCoordinator = SignUpCoordinator()
+                addChildCoordinator(signUpCoordinator)
                 DispatchQueue.main.async {
-                    self.currentView = loginCoordinator.start()
+                    self.currentView = signUpCoordinator.start()
                 }
             }
             return currentView
