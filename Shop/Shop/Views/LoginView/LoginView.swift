@@ -48,12 +48,13 @@ struct LoginView: View, SecuredTextFieldParentProtocol {
                     print("Login...")
                     showingAlert.toggle()
                     performHideKeyboard()
+                    viewModel.login()
                 } label: {
                     Text("Login")
                 }.buttonStyle(PrimaryButtonStyle())
-                    .alert(viewModel.password, isPresented: $showingAlert) {
-                        Button("OK", role: .cancel) { }
-                    }.padding(.top, 30)
+//                    .alert(viewModel.password, isPresented: $showingAlert) {
+//                        Button("OK", role: .cancel) { }
+//                    }.padding(.top, 30)
                 Spacer()
             }
             .padding(.leading, 43)
