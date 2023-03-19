@@ -29,8 +29,6 @@ import SwiftUI
 struct LoginView: View, SecuredTextFieldParentProtocol {
     @ObservedObject var viewModel: LoginViewModel
     
-    @State private var firstName = ""
-    @State private var password = ""
     @State var hideKeyboard: (() -> Void)?
     @State private var showingAlert = false
     
@@ -40,9 +38,8 @@ struct LoginView: View, SecuredTextFieldParentProtocol {
             Text("Welcome back")
                 .customFont(size: 26, weight: .semibold)
             VStack(spacing: 35) {
-                TextField("First name", text: $firstName)
-                    .textFieldInputData()
-                SecuredTextFieldView(text: $password, parent: self)
+                CustomTextField(title: "First name", text: $viewModel.firstName, prompt: viewModel.firstNamePrompt)
+                SecuredTextFieldView(text: $viewModel.password, parent: self)
             }.padding(.leading, 43)
                 .padding(.trailing, 43)
             
@@ -54,7 +51,7 @@ struct LoginView: View, SecuredTextFieldParentProtocol {
                 } label: {
                     Text("Login")
                 }.buttonStyle(PrimaryButtonStyle())
-                    .alert(password, isPresented: $showingAlert) {
+                    .alert(viewModel.password, isPresented: $showingAlert) {
                         Button("OK", role: .cancel) { }
                     }.padding(.top, 30)
                 Spacer()

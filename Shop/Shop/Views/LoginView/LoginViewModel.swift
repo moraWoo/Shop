@@ -14,38 +14,40 @@ class LoginViewModel: ObservableObject {
 
     @Published var canSubmit = false
     
-    @Published private var isValidPhone = false
-    @Published private var isValidEmail = false
-    @Published private var isValidPassword = false
+    @Published private var isValidFirstName = false
     
     var coordinator: Coordinator
     var mainCoordinator: MainCoordinator
     
-    var passwordPrompt: String? {
-        if isValidPassword == true || password.isEmpty {
+    var firstNamePrompt: String? {
+        if isValidFirstName == true || firstName.isEmpty {
             return nil
         } else {
-            return "Password - requerid field"
+            return "Enter correct first name"
         }
     }
     
     private var cancellableSet: Set<AnyCancellable> = []
     
+    private let namePredicate = NSPredicate(format: "SELF MATCHES %@", Regex.name.rawValue)
+        
     init(coordinator: Coordinator, mainCoordinator: MainCoordinator) {
         self.coordinator = coordinator
         self.mainCoordinator = mainCoordinator
         
-        $password
+        $firstName
             .debounce(for: 0.5, scheduler: RunLoop.main)
-            .map { password in
-                return password.count >= 8
+            .map { name in
+                return self.namePredicate.evaluate(with: name)
             }
-            .assign(to: \.isValidPassword, on: self)
+            .sink { [weak self] isValid in
+                self?.isValidFirstName = isValid
+            }
             .store(in: &cancellableSet)
         
-        $isValidPassword
-            .sink { isValid in
-                self.canSubmit = isValid
+        $isValidFirstName
+            .sink { [weak self] canSubmit in
+                self?.canSubmit = canSubmit
             }
             .store(in: &cancellableSet)
     }
