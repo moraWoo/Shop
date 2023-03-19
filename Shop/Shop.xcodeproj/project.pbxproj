@@ -57,6 +57,7 @@
 		77BEE52D29C71E4A0055EFB4 /* ChooseColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BEE52C29C71E4A0055EFB4 /* ChooseColor.swift */; };
 		77BEE52F29C71E600055EFB4 /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BEE52E29C71E600055EFB4 /* ColorPickerView.swift */; };
 		77BEE53229C727C50055EFB4 /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BEE53129C727C50055EFB4 /* Regex.swift */; };
+		77FA557C29C73F8E009638F3 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FA557B29C73F8E009638F3 /* CustomTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -112,6 +113,7 @@
 		77BEE52E29C71E600055EFB4 /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
 		77BEE53129C727C50055EFB4 /* Regex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Regex.swift; sourceTree = "<group>"; };
 		77BEE53D29C72E290055EFB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		77FA557B29C73F8E009638F3 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -371,6 +373,7 @@
 		77C024B629C2585B00326201 /* SystemDesing */ = {
 			isa = PBXGroup;
 			children = (
+				77FA557B29C73F8E009638F3 /* CustomTextField.swift */,
 			);
 			path = SystemDesing;
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 				776F647129BF688600B6C808 /* AppCoordinator.swift in Sources */,
 				776F648B29BF6AA800B6C808 /* PersonInfoCoordinator.swift in Sources */,
 				776F647329BF694400B6C808 /* MainView.swift in Sources */,
+				77FA557C29C73F8E009638F3 /* CustomTextField.swift in Sources */,
 				77BEE50629C719010055EFB4 /* SignUpAssembly.swift in Sources */,
 				776F648329BF6A4B00B6C808 /* PersonInfoViewModel.swift in Sources */,
 				77BEE52929C71E110055EFB4 /* ZoomImagesView.swift in Sources */,

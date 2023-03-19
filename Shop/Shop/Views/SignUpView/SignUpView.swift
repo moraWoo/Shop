@@ -6,13 +6,10 @@
 //
 
 import SwiftUI
+import Combine
 
 struct SignUpView: View {
     @ObservedObject var viewModel: SignUpViewModel
-
-    @State private var firstName = ""
-    @State private var lastName = ""
-    @State private var email = ""
     
     var body: some View {
         VStack(spacing: 70) {
@@ -20,11 +17,11 @@ struct SignUpView: View {
                 .customFont(size: 26, weight: .semibold)
             VStack(spacing: 15) {
                 VStack(spacing: 35) {
-                    TextField("First name", text: $firstName)
+                    TextField("First name", text: $viewModel.firstName)
                         .textFieldInputData()
-                    TextField("Last name", text: $lastName)
+                    TextField("Last name", text: $viewModel.lastName)
                         .textFieldInputData()
-                    TextField("Email", text: $email)
+                    TextField("Email", text: $viewModel.email)
                         .textFieldInputData()
                     Button {
                         print("Sign in...")
@@ -36,7 +33,9 @@ struct SignUpView: View {
                     Text("Already have an account?")
                         .customFont(size: 10, weight: .medium)
                         .foregroundColor(Color(red: 128/255, green: 128/255, blue: 128/255))
-                    Button(action: {}) {
+                    Button {
+                        viewModel.login()
+                    } label: {
                         Text("Log in")
                             .customFont(size: 10, weight: .medium)
                     }
@@ -45,14 +44,18 @@ struct SignUpView: View {
             }
             
             VStack(spacing: 38) {
-                Button(action: {}) {
+                Button {
+                    viewModel.login()
+                } label: {
                     Image("googleLogo")
                     Text("Sign in with Google")
                         .customFont(size: 12, weight: .medium)
                         .foregroundColor(.black)
                 }
-                
-                Button(action: {}) {
+
+                Button {
+                    viewModel.login()
+                } label: {
                     Image("appleLogo")
                     Text("Sign in with Apple")
                         .customFont(size: 12, weight: .medium)
