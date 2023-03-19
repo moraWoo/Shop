@@ -17,12 +17,9 @@ struct SignUpView: View {
                 .customFont(size: 26, weight: .semibold)
             VStack(spacing: 15) {
                 VStack(spacing: 35) {
-                    TextField("First name", text: $viewModel.firstName)
-                        .textFieldInputData()
-                    TextField("Last name", text: $viewModel.lastName)
-                        .textFieldInputData()
-                    TextField("Email", text: $viewModel.email)
-                        .textFieldInputData()
+                    CustomTextField(title: "First name", text: $viewModel.firstName, prompt: viewModel.firstNamePrompt)
+                    CustomTextField(title: "Last name", text: $viewModel.lastName, prompt: viewModel.lastNamePrompt)
+                    CustomTextField(title: "Email", text: $viewModel.email, prompt: viewModel.emailPrompt)
                     Button {
                         print("Sign in...")
                     } label: {

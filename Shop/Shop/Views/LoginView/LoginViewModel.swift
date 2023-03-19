@@ -9,9 +9,9 @@ import Foundation
 import Combine
 
 class LoginViewModel: ObservableObject {
-    @Published var username: String = ""
-    @Published var password: String = ""
-    
+    @Published var firstName = ""
+    @Published var password = ""
+
     @Published var canSubmit = false
     
     @Published private var isValidPhone = false
