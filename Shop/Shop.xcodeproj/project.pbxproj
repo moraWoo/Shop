@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		77627C3B29C8814700EA0E11 /* UserData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 77627C3929C8814700EA0E11 /* UserData.xcdatamodeld */; };
 		776F645A29BF65ED00B6C808 /* ShopApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F645929BF65ED00B6C808 /* ShopApp.swift */; };
 		776F645C29BF65ED00B6C808 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F645B29BF65ED00B6C808 /* ContentView.swift */; };
 		776F645E29BF65EF00B6C808 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 776F645D29BF65EF00B6C808 /* Assets.xcassets */; };
@@ -29,7 +30,6 @@
 		776F648F29BF6AD600B6C808 /* SignUpCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F648E29BF6AD600B6C808 /* SignUpCoordinator.swift */; };
 		776F649929BF82BC00B6C808 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F649829BF82BC00B6C808 /* Coordinator.swift */; };
 		776F649C29BFB58300B6C808 /* AppAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F649B29BFB58300B6C808 /* AppAssembly.swift */; };
-		776F649F29BFB87B00B6C808 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F649E29BFB87B00B6C808 /* User.swift */; };
 		776F64A129C0B59900B6C808 /* MainAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F64A029C0B59900B6C808 /* MainAssembly.swift */; };
 		776F64A329C0B6A900B6C808 /* LoginAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F64A229C0B6A900B6C808 /* LoginAssembly.swift */; };
 		776F64A629C0BD0C00B6C808 /* AppDependecies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F64A529C0BD0C00B6C808 /* AppDependecies.swift */; };
@@ -61,6 +61,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		77627C3A29C8814700EA0E11 /* UserData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserData.xcdatamodel; sourceTree = "<group>"; };
 		776F645629BF65ED00B6C808 /* Shop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		776F645929BF65ED00B6C808 /* ShopApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopApp.swift; sourceTree = "<group>"; };
 		776F645B29BF65ED00B6C808 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -84,7 +85,6 @@
 		776F648E29BF6AD600B6C808 /* SignUpCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCoordinator.swift; sourceTree = "<group>"; };
 		776F649829BF82BC00B6C808 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		776F649B29BFB58300B6C808 /* AppAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAssembly.swift; sourceTree = "<group>"; };
-		776F649E29BFB87B00B6C808 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		776F64A029C0B59900B6C808 /* MainAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAssembly.swift; sourceTree = "<group>"; };
 		776F64A229C0B6A900B6C808 /* LoginAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAssembly.swift; sourceTree = "<group>"; };
 		776F64A529C0BD0C00B6C808 /* AppDependecies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependecies.swift; sourceTree = "<group>"; };
@@ -162,6 +162,7 @@
 				776F646A29BF67C600B6C808 /* Tests */,
 				776F645F29BF65EF00B6C808 /* Preview Content */,
 				77BEE53D29C72E290055EFB4 /* Info.plist */,
+				77627C3929C8814700EA0E11 /* UserData.xcdatamodeld */,
 			);
 			path = Shop;
 			sourceTree = "<group>";
@@ -203,7 +204,6 @@
 		776F646929BF67B600B6C808 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				776F649E29BFB87B00B6C808 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -462,6 +462,7 @@
 				776F647D29BF6A1300B6C808 /* PersonInfoView.swift in Sources */,
 				776F647F29BF6A2000B6C808 /* LoginView.swift in Sources */,
 				77BEE52729C71DEA0055EFB4 /* MainImage.swift in Sources */,
+				77627C3B29C8814700EA0E11 /* UserData.xcdatamodeld in Sources */,
 				77BEE51929C71C570055EFB4 /* TabContents.swift in Sources */,
 				77BEE51529C71C160055EFB4 /* SearchBarView.swift in Sources */,
 				776F649929BF82BC00B6C808 /* Coordinator.swift in Sources */,
@@ -496,7 +497,6 @@
 				77BEE52D29C71E4A0055EFB4 /* ChooseColor.swift in Sources */,
 				77BEE51B29C71C7D0055EFB4 /* ItemCardView.swift in Sources */,
 				77BEE50A29C719350055EFB4 /* DetailAssembly.swift in Sources */,
-				776F649F29BFB87B00B6C808 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -699,6 +699,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		77627C3929C8814700EA0E11 /* UserData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				77627C3A29C8814700EA0E11 /* UserData.xcdatamodel */,
+			);
+			currentVersion = 77627C3A29C8814700EA0E11 /* UserData.xcdatamodel */;
+			path = UserData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 776F644E29BF65ED00B6C808 /* Project object */;
 }
