@@ -116,6 +116,22 @@ class SignUpViewModel: ObservableObject {
             let loginView = loginCoordinator.start()
             parentCoordinator.currentView = loginView
         }
+    
+    func goToMainView() {
+        guard let parentCoordinator = coordinator.parentCoordinator as? AppCoordinator else {
+            print("Parent coordinator is nil")
+            return
+        }
+        print("Parent coordinator type:", type(of: parentCoordinator))
+        print("Child coordinators:", parentCoordinator.childCoordinators)
+        
+        parentCoordinator.removeChildCoordinator(mainCoordinator)
+        mainCoordinator.parentCoordinator = parentCoordinator
+        parentCoordinator.addChildCoordinator(mainCoordinator)
+        
+        let mainView = mainCoordinator.start()
+        parentCoordinator.currentView = mainView
+    }
 
     func signUp() {
         userRepository.checkUser(firstName: firstName, lastName: lastName, email: email, password: password)
@@ -140,7 +156,6 @@ class SignUpViewModel: ObservableObject {
             }
             .store(in: &cancellableSet)
     }
-
     
     func checkUser() {
         userRepository.checkUser(firstName: firstName, lastName: lastName, email: email, password: password)
@@ -153,21 +168,5 @@ class SignUpViewModel: ObservableObject {
                 }
             }
             .store(in: &cancellableSet)
-    }
-    
-    func goToMainView() {
-        guard let parentCoordinator = coordinator.parentCoordinator as? AppCoordinator else {
-            print("Parent coordinator is nil")
-            return
-        }
-        print("Parent coordinator type:", type(of: parentCoordinator))
-        print("Child coordinators:", parentCoordinator.childCoordinators)
-        
-        parentCoordinator.removeChildCoordinator(mainCoordinator)
-        mainCoordinator.parentCoordinator = parentCoordinator
-        parentCoordinator.addChildCoordinator(mainCoordinator)
-        
-        let mainView = mainCoordinator.start()
-        parentCoordinator.currentView = mainView
     }
 }

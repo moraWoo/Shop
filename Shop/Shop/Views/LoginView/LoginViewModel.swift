@@ -35,8 +35,11 @@ class LoginViewModel: ObservableObject {
 
     private let userRepository: UserRepository
     
-    
-    init(coordinator: Coordinator, mainCoordinator: MainCoordinator, userRepository: UserRepository) {
+    init(
+        coordinator: Coordinator,
+        mainCoordinator: MainCoordinator,
+        userRepository: UserRepository
+    ) {
         self.coordinator = coordinator
         self.mainCoordinator = mainCoordinator
         self.userRepository = userRepository
@@ -71,7 +74,7 @@ class LoginViewModel: ObservableObject {
             .store(in: &cancellableSet)
     }
     
-    func successfullogin() {
+    func successfulLogin() {
         goToMainView()
     }
     

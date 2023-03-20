@@ -9,9 +9,17 @@ import SwiftUI
 
 class MainViewModel: ObservableObject {
     var coordinator: MainCoordinator
-    
-    init(coordinator: MainCoordinator) {
+    var personInfoCoordinator: PersonInfoCoordinator
+    private let userRepository: UserRepository
+
+    init(
+        coordinator: MainCoordinator,
+        personInfoCoordinator: PersonInfoCoordinator,
+        userRepository: UserRepository
+    ) {
         self.coordinator = coordinator
+        self.personInfoCoordinator = personInfoCoordinator
+        self.userRepository = userRepository
     }
     
     func goToLoginView() {
@@ -22,23 +30,34 @@ class MainViewModel: ObservableObject {
         loginCoordinator.start()
     }
     
-    func logout() {
-        guard let parentCoordinator = coordinator.parentCoordinator as? AppCoordinator else { return }
-        parentCoordinator.removeChildCoordinator(coordinator)
-        
-        DispatchQueue.main.async {
-            if let loginView = parentCoordinator.childCoordinators
-                .first(where: { $0 is LoginCoordinator })?
-                .start() {
-                parentCoordinator.currentView = loginView
-            }
-        }
-    }
-    
     func goToMainView() {
         coordinator.goToMainView()
         print("After goToMainView()")
         coordinator.parentCoordinator?.addChildCoordinator(coordinator)
+    }
+    
+    func personInfo() {
+        goToPersonInfoView()
+//        coordinator.goToPersonInfoView()
+//        print("After goToPersonInfoView()")
+//        coordinator.parentCoordinator?.addChildCoordinator(coordinator)
+    }
+    
+    func goToPersonInfoView() {
+        guard let parentCoordinator = coordinator.parentCoordinator as? AppCoordinator else {
+            print("Parent coordinator is nil")
+            return
+        }
+        print("Parent coordinator type:", type(of: parentCoordinator))
+        print("Child coordinators:", parentCoordinator.childCoordinators)
+        
+        parentCoordinator.removeChildCoordinator(personInfoCoordinator)
+        personInfoCoordinator.parentCoordinator = parentCoordinator
+        parentCoordinator.addChildCoordinator(personInfoCoordinator)
+        
+        let personInfoView = personInfoCoordinator.start()
+        
+        parentCoordinator.currentView = personInfoView
     }
 }
 

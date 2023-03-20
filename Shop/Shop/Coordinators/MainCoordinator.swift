@@ -12,14 +12,26 @@ class MainCoordinator: Coordinator {
     var view: AnyView?
     var parentCoordinator: Coordinator?
     var childCoordinators: [Coordinator] = []
+    let userRepository = UserRepository()
     
     func start() -> AnyView {
-        print("MainCoordinator start()")
-        let mainView = MainView(viewModel: MainViewModel(coordinator: self))
+        let dependencies = AppDependencies(
+            signUpCoordinator: SignUpCoordinator(),
+            loginCoordinator: LoginCoordinator(),
+            mainCoordinator: self,
+            personInfoCoordinator: PersonInfoCoordinator(),
+            detailCoordinator: DetailCoordinator()
+        )
+        let mainView = MainAssembly(dependencies: dependencies).assemble(userRepository: userRepository)
         view = AnyView(mainView)
-        parentCoordinator?.addChildCoordinator(self)
-        return view!
+        print("View from MainCoordinator \(view)")
+        if let view = view {
+            return view
+        } else {
+            return AnyView(EmptyView())
+        }
     }
+    
     
     func addChildCoordinator(_ coordinator: Coordinator) {
         guard let appCoordinator = parentCoordinator as? AppCoordinator else {
@@ -37,9 +49,14 @@ class MainCoordinator: Coordinator {
     }
     
     func goToMainView() {
+        
+        let personInfoCoordinator = PersonInfoCoordinator()
+
         DispatchQueue.main.async { [weak self] in
-            let mainView = MainView(viewModel: MainViewModel(coordinator: self!))
+            let mainView = MainView(viewModel: MainViewModel(coordinator: self!, personInfoCoordinator: personInfoCoordinator, userRepository: self!.userRepository))
             self?.view = AnyView(mainView)
         }
     }
+    
+    
 }

@@ -196,8 +196,8 @@
 				776F647029BF688600B6C808 /* AppCoordinator.swift */,
 				776F648E29BF6AD600B6C808 /* SignUpCoordinator.swift */,
 				776F648C29BF6ABF00B6C808 /* LoginCoordinator.swift */,
-				776F648A29BF6AA800B6C808 /* PersonInfoCoordinator.swift */,
 				776F648629BF6A8300B6C808 /* MainCoordinator.swift */,
+				776F648A29BF6AA800B6C808 /* PersonInfoCoordinator.swift */,
 				776F648829BF6A9400B6C808 /* DetailCoordinator.swift */,
 			);
 			path = Coordinators;

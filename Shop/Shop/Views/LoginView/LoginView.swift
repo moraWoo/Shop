@@ -29,7 +29,7 @@ struct LoginView: View, SecuredTextFieldParentProtocol {
                     print("Login...")
                     showingAlert.toggle()
                     performHideKeyboard()
-                    viewModel.successfullogin()
+                    viewModel.successfulLogin()
                 } label: {
                     Text("Login")
                 }.buttonStyle(PrimaryButtonStyle())

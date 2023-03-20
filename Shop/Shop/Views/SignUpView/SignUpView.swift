@@ -10,7 +10,8 @@ import Combine
 
 struct SignUpView: View {
     @ObservedObject var viewModel: SignUpViewModel
-    
+    @State private var showingAlertTextFieldsIsEmpty = false
+
     var body: some View {
         VStack(spacing: 70) {
             Text("Sign in")
@@ -25,7 +26,12 @@ struct SignUpView: View {
                         viewModel.signUp()
                     } label: {
                         Text("Sign in")
-                    }.buttonStyle(PrimaryButtonStyle())
+                    }
+                    .buttonStyle(PrimaryButtonStyle())
+                    .alert("Fields are not filled", isPresented: $showingAlertTextFieldsIsEmpty) {
+                                Button("OK", role: .cancel) { }
+                            }
+
                 }
                 HStack() {
                     Text("Already have an account?")

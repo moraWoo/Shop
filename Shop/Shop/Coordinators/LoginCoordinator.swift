@@ -31,16 +31,7 @@ class LoginCoordinator: Coordinator {
             return AnyView(EmptyView())
         }
     }
-    
-    func login() {
-        let mainCoordinator = MainCoordinator()
-        addChildCoordinator(mainCoordinator)
-        let viewModel = LoginViewModel(coordinator: self, mainCoordinator: mainCoordinator, userRepository: userRepository)
-        let loginView = LoginView(viewModel: viewModel)
-        let view = AnyView(loginView)
-        self.view = view
-    }
-    
+        
     func addChildCoordinator(_ coordinator: Coordinator) {
         childCoordinators.append(coordinator)
         coordinator.parentCoordinator = self

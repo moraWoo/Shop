@@ -16,7 +16,11 @@ class LoginAssembly {
     }
     
     func assemble(userRepository: UserRepository) -> some View {
-        let viewModel = LoginViewModel(coordinator: dependencies.loginCoordinator, mainCoordinator: dependencies.mainCoordinator, userRepository: userRepository)
+        let viewModel = LoginViewModel(
+            coordinator: dependencies.loginCoordinator,
+            mainCoordinator: dependencies.mainCoordinator,
+            userRepository: userRepository
+        )
         let view = LoginView(viewModel: viewModel)
         dependencies.loginCoordinator.view = AnyView(view)
         

@@ -44,8 +44,7 @@ struct MainView: View {
         NavigationView {
             ZStack {
                 if selectedTab == 4 {
-            
-//                    PersonInfoView()
+//                    viewModel.personInfo()
                 } else {
                     VStack {
                         TopBarView()

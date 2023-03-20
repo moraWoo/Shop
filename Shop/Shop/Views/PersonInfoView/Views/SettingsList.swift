@@ -70,23 +70,23 @@ struct SettingsList: View {
             }
         }
     }
-
+    
     var body: some View {
-         NavigationView {
-             ScrollView {
-                 TopView()
-                 
-                 VStack(alignment: .leading) {
-                     ForEach(Array(zip(labels, uniquePics)), id: \.0) { label, pic in
-                         settingsRow(label: label, pic: pic)
-                             .padding(.vertical, 5)
-                     }
-                 }
-                 .padding(.leading, 32)
-                 .padding(.trailing, 32)
-             }
-             .background(Color.white)
-         }
-         .accentColor(.black) // Set the accent color to black
-     }
- }
+        NavigationView {
+            ScrollView {
+                TopView()
+                
+                VStack(alignment: .leading) {
+                    ForEach(Array(zip(labels, uniquePics)), id: \.0) { label, pic in
+                        settingsRow(label: label, pic: pic)
+                            .padding(.vertical, 5)
+                    }
+                }
+                .padding(.leading, 32)
+                .padding(.trailing, 32)
+            }
+            .background(Color.white)
+        }
+        .accentColor(.black) // Set the accent color to black
+    }
+}
