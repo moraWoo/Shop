@@ -51,16 +51,19 @@ class SignUpViewModel: ObservableObject {
 
     var coordinator: SignUpCoordinator
     var loginCoordinator: LoginCoordinator
+    var mainCoordinator: MainCoordinator
     
     init(
         coordinator: SignUpCoordinator,
         loginCoordinator: LoginCoordinator,
+        mainCoordinator: MainCoordinator,
         userRepository: UserRepository
     ) {
         self.userRepository = userRepository
         self.coordinator = coordinator
         self.loginCoordinator = loginCoordinator
-        
+        self.mainCoordinator = mainCoordinator
+
         $firstName
             .debounce(for: 0.5, scheduler: RunLoop.main)
             .map { name in
@@ -125,6 +128,7 @@ class SignUpViewModel: ObservableObject {
                         .sink { success in
                             if success {
                                 print("User created successfully")
+                                self.goToMainView()
                                 // Перейдите на следующий экран или выполните другое действие
                             } else {
                                 print("Error creating user")
@@ -150,5 +154,20 @@ class SignUpViewModel: ObservableObject {
             }
             .store(in: &cancellableSet)
     }
-
+    
+    func goToMainView() {
+        guard let parentCoordinator = coordinator.parentCoordinator as? AppCoordinator else {
+            print("Parent coordinator is nil")
+            return
+        }
+        print("Parent coordinator type:", type(of: parentCoordinator))
+        print("Child coordinators:", parentCoordinator.childCoordinators)
+        
+        parentCoordinator.removeChildCoordinator(mainCoordinator)
+        mainCoordinator.parentCoordinator = parentCoordinator
+        parentCoordinator.addChildCoordinator(mainCoordinator)
+        
+        let mainView = mainCoordinator.start()
+        parentCoordinator.currentView = mainView
+    }
 }
