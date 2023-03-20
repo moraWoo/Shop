@@ -12,8 +12,10 @@ class SignUpCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?
     var view: AnyView?
+    let userRepository = UserRepository()
     
     func start() -> AnyView {
+
         let dependencies = AppDependencies(
             signUpCoordinator: self,
             loginCoordinator: LoginCoordinator(),
@@ -21,7 +23,7 @@ class SignUpCoordinator: Coordinator {
             personInfoCoordinator: PersonInfoCoordinator(),
             detailCoordinator: DetailCoordinator()
         )
-        let signUpView = SignUpAssembly(dependencies: dependencies).assemble()
+        let signUpView = SignUpAssembly(dependencies: dependencies).assemble(userRepository: userRepository)
         view = AnyView(signUpView)
         print("View from SignCoordinator \(view)")
         if let view = view {

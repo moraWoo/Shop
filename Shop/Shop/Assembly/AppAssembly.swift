@@ -10,6 +10,9 @@ import SwiftUI
 class AppAssembly {
     
     static func assemble() -> some View {
+        let coreDataManager = CoreDataManager.shared
+        let userRepository = UserRepository(coreDataManager: coreDataManager)
+        
         let dependencies = AppDependencies(
             signUpCoordinator: SignUpCoordinator(),
             loginCoordinator: LoginCoordinator(),
@@ -37,6 +40,6 @@ class AppAssembly {
         print("AppCoordinator child coordinators:", appCoordinator.childCoordinators)
         print("MainCoordinator parent coordinator:", mainAssembly.dependencies.mainCoordinator.parentCoordinator)
         
-        return AnyView(signUpAssembly.assemble())
+        return AnyView(signUpAssembly.assemble(userRepository: userRepository))
     }
 }

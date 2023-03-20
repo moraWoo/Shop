@@ -6,25 +6,6 @@
 //
 
 import SwiftUI
-//
-//struct LoginView: View {
-//    @ObservedObject var viewModel: LoginViewModel
-//
-//    var body: some View {
-//        VStack {
-//            Text("Login View")
-//                .font(.title)
-//                .fontWeight(.bold)
-//        }
-//        Button(action: {
-//            self.viewModel.login()
-//        }, label: {
-//            Text("Login")
-//        })
-//    }
-//}
-
-import SwiftUI
 
 struct LoginView: View, SecuredTextFieldParentProtocol {
     @ObservedObject var viewModel: LoginViewModel
@@ -48,7 +29,7 @@ struct LoginView: View, SecuredTextFieldParentProtocol {
                     print("Login...")
                     showingAlert.toggle()
                     performHideKeyboard()
-                    viewModel.login()
+                    viewModel.successfullogin()
                 } label: {
                     Text("Login")
                 }.buttonStyle(PrimaryButtonStyle())

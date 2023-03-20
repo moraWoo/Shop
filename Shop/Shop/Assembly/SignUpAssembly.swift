@@ -15,8 +15,8 @@ class SignUpAssembly {
         self.dependencies = dependencies
     }
     
-    func assemble() -> some View {
-        let viewModel = SignUpViewModel(coordinator: dependencies.signUpCoordinator, loginCoordinator: dependencies.loginCoordinator)
+    func assemble(userRepository: UserRepository) -> some View {
+        let viewModel = SignUpViewModel(coordinator: dependencies.signUpCoordinator, loginCoordinator: dependencies.loginCoordinator, userRepository: userRepository)
         let view = SignUpView(viewModel: viewModel)
         dependencies.signUpCoordinator.view = AnyView(view)
         

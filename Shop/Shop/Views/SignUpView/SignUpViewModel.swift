@@ -12,6 +12,7 @@ class SignUpViewModel: ObservableObject {
     @Published var firstName = ""
     @Published var lastName = ""
     @Published var email = ""
+    @Published var password = ""
     
     @Published var canSubmit = false
     
@@ -44,14 +45,19 @@ class SignUpViewModel: ObservableObject {
     }
     
     private var cancellableSet: Set<AnyCancellable> = []
-    
     private let emailPredicate = NSPredicate(format: "SELF MATCHES %@", Regex.email.rawValue)
     private let namePredicate = NSPredicate(format: "SELF MATCHES %@", Regex.name.rawValue)
+    private let userRepository: UserRepository
 
     var coordinator: SignUpCoordinator
     var loginCoordinator: LoginCoordinator
     
-    init(coordinator: SignUpCoordinator, loginCoordinator: LoginCoordinator) {
+    init(
+        coordinator: SignUpCoordinator,
+        loginCoordinator: LoginCoordinator,
+        userRepository: UserRepository
+    ) {
+        self.userRepository = userRepository
         self.coordinator = coordinator
         self.loginCoordinator = loginCoordinator
         
@@ -107,4 +113,42 @@ class SignUpViewModel: ObservableObject {
             let loginView = loginCoordinator.start()
             parentCoordinator.currentView = loginView
         }
+
+    func signUp() {
+        userRepository.checkUser(firstName: firstName, lastName: lastName, email: email, password: password)
+            .sink { user in
+                if user != nil {
+                    print("User already exists")
+                    // Отобразите сообщение об ошибке или выполните другое действие
+                } else {
+                    self.userRepository.createUser(firstName: self.firstName, lastName: self.lastName, email: self.email, password: self.password)
+                        .sink { success in
+                            if success {
+                                print("User created successfully")
+                                // Перейдите на следующий экран или выполните другое действие
+                            } else {
+                                print("Error creating user")
+                                // Отобразите сообщение об ошибке или выполните другое действие
+                            }
+                        }
+                        .store(in: &self.cancellableSet)
+                }
+            }
+            .store(in: &cancellableSet)
+    }
+
+    
+    func checkUser() {
+        userRepository.checkUser(firstName: firstName, lastName: lastName, email: email, password: password)
+            .sink { user in
+                if user != nil {
+                    print("User already exists")
+                    // Отобразите сообщение об ошибке или выполните другое действие
+                } else {
+                    self.signUp()
+                }
+            }
+            .store(in: &cancellableSet)
+    }
+
 }

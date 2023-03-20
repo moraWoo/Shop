@@ -13,6 +13,7 @@ class AppDependencies {
     let mainCoordinator: MainCoordinator
     let personInfoCoordinator: PersonInfoCoordinator
     let detailCoordinator: DetailCoordinator
+    let userRepository: UserRepository
 
     
     init(
@@ -21,6 +22,7 @@ class AppDependencies {
         mainCoordinator: MainCoordinator,
         personInfoCoordinator: PersonInfoCoordinator,
         detailCoordinator: DetailCoordinator
+        
     
     ) {
         self.loginCoordinator = loginCoordinator
@@ -28,5 +30,7 @@ class AppDependencies {
         self.mainCoordinator = mainCoordinator
         self.personInfoCoordinator = personInfoCoordinator
         self.detailCoordinator = detailCoordinator
+        self.userRepository = UserRepository()
+
     }
 }

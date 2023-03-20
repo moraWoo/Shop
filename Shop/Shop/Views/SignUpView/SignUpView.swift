@@ -22,6 +22,7 @@ struct SignUpView: View {
                     CustomTextField(title: "Email", text: $viewModel.email, prompt: viewModel.emailPrompt)
                     Button {
                         print("Sign in...")
+                        viewModel.signUp()
                     } label: {
                         Text("Sign in")
                     }.buttonStyle(PrimaryButtonStyle())

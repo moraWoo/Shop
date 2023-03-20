@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		77627C3B29C8814700EA0E11 /* UserData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 77627C3929C8814700EA0E11 /* UserData.xcdatamodeld */; };
+		77627C3D29C885F500EA0E11 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77627C3C29C885F500EA0E11 /* UserRepository.swift */; };
 		776F645A29BF65ED00B6C808 /* ShopApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F645929BF65ED00B6C808 /* ShopApp.swift */; };
 		776F645C29BF65ED00B6C808 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F645B29BF65ED00B6C808 /* ContentView.swift */; };
 		776F645E29BF65EF00B6C808 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 776F645D29BF65EF00B6C808 /* Assets.xcassets */; };
@@ -62,6 +63,7 @@
 
 /* Begin PBXFileReference section */
 		77627C3A29C8814700EA0E11 /* UserData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserData.xcdatamodel; sourceTree = "<group>"; };
+		77627C3C29C885F500EA0E11 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		776F645629BF65ED00B6C808 /* Shop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		776F645929BF65ED00B6C808 /* ShopApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopApp.swift; sourceTree = "<group>"; };
 		776F645B29BF65ED00B6C808 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -297,6 +299,7 @@
 			isa = PBXGroup;
 			children = (
 				77BEE4FB29C715340055EFB4 /* DataManager.swift */,
+				77627C3C29C885F500EA0E11 /* UserRepository.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -480,6 +483,7 @@
 				77BEE51D29C71C990055EFB4 /* ItemRowView.swift in Sources */,
 				776F645C29BF65ED00B6C808 /* ContentView.swift in Sources */,
 				776F648529BF6A5A00B6C808 /* LoginViewModel.swift in Sources */,
+				77627C3D29C885F500EA0E11 /* UserRepository.swift in Sources */,
 				776F64A329C0B6A900B6C808 /* LoginAssembly.swift in Sources */,
 				776F64A629C0BD0C00B6C808 /* AppDependecies.swift in Sources */,
 				776F648129BF6A3B00B6C808 /* DetailViewModel.swift in Sources */,

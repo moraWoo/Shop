@@ -11,11 +11,12 @@ import Combine
 class LoginViewModel: ObservableObject {
     @Published var firstName = ""
     @Published var password = ""
-
+    
     @Published var canSubmit = false
     
     @Published private var isValidFirstName = false
-    
+    @Published private var isValidPassword = false
+
     var coordinator: Coordinator
     var mainCoordinator: MainCoordinator
     
@@ -28,12 +29,17 @@ class LoginViewModel: ObservableObject {
     }
     
     private var cancellableSet: Set<AnyCancellable> = []
-    
+
     private let namePredicate = NSPredicate(format: "SELF MATCHES %@", Regex.name.rawValue)
-        
-    init(coordinator: Coordinator, mainCoordinator: MainCoordinator) {
+    private let passwordPredicate = NSPredicate(format: "SELF MATCHES %@", Regex.password.rawValue)
+
+    private let userRepository: UserRepository
+    
+    
+    init(coordinator: Coordinator, mainCoordinator: MainCoordinator, userRepository: UserRepository) {
         self.coordinator = coordinator
         self.mainCoordinator = mainCoordinator
+        self.userRepository = userRepository
         
         $firstName
             .debounce(for: 0.5, scheduler: RunLoop.main)
@@ -45,14 +51,27 @@ class LoginViewModel: ObservableObject {
             }
             .store(in: &cancellableSet)
         
-        $isValidFirstName
+        $password
+            .debounce(for: 0.5, scheduler: RunLoop.main)
+            .map { password in
+                return self.passwordPredicate.evaluate(with: password)
+            }
+            .sink { [weak self] isValid in
+                self?.isValidPassword = isValid
+            }
+            .store(in: &cancellableSet)
+        
+        Publishers.CombineLatest($isValidFirstName, $isValidPassword)
+            .map { isValidFirstName, isValidPassword in
+                return isValidFirstName && isValidPassword
+            }
             .sink { [weak self] canSubmit in
                 self?.canSubmit = canSubmit
             }
             .store(in: &cancellableSet)
     }
     
-    func login() {
+    func successfullogin() {
         goToMainView()
     }
     
@@ -63,13 +82,27 @@ class LoginViewModel: ObservableObject {
         }
         print("Parent coordinator type:", type(of: parentCoordinator))
         print("Child coordinators:", parentCoordinator.childCoordinators)
-
+        
         parentCoordinator.removeChildCoordinator(mainCoordinator)
         mainCoordinator.parentCoordinator = parentCoordinator
         parentCoordinator.addChildCoordinator(mainCoordinator)
-
+        
         let mainView = mainCoordinator.start()
         parentCoordinator.currentView = mainView
+    }
+
+    func login() {
+        userRepository.checkUser(firstName: firstName, password: password)
+            .sink { user in
+                if let user = user {
+                    print("User logged in successfully")
+                    // Перейдите на следующий экран или выполните другое действие
+                } else {
+                    print("Invalid credentials")
+                    // Отобразите сообщение об ошибке или выполните другое действие
+                }
+            }
+            .store(in: &cancellableSet)
     }
 }
 
