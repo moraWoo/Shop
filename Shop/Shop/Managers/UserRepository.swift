@@ -33,15 +33,10 @@ class UserRepository: ObservableObject {
         }
     }
 
-    func checkUser(firstName: String, lastName: String? = nil, email: String? = nil, password: String) -> AnyPublisher<User?, Never> {
+    func checkUser(firstName: String, lastName: String? = nil, email: String? = nil, password: String? = nil) -> AnyPublisher<User?, Never> {
         let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
 
         var predicates: [NSPredicate] = [NSPredicate(format: "firstName == %@", firstName)]
-
-        guard !password.isEmpty else {
-            return Just(nil).eraseToAnyPublisher()
-        }
-        predicates.append(NSPredicate(format: "password == %@", password))
 
         if let lastName = lastName {
             predicates.append(NSPredicate(format: "lastName == %@", lastName))
@@ -49,6 +44,10 @@ class UserRepository: ObservableObject {
 
         if let email = email {
             predicates.append(NSPredicate(format: "email == %@", email))
+        }
+
+        if let password = password, !password.isEmpty {
+            predicates.append(NSPredicate(format: "password == %@", password))
         }
 
         fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
@@ -61,5 +60,6 @@ class UserRepository: ObservableObject {
             return Just(nil).eraseToAnyPublisher()
         }
     }
+
 }
 

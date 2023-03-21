@@ -10,8 +10,10 @@ import Combine
 
 struct SignUpView: View {
     @ObservedObject var viewModel: SignUpViewModel
+    
     @State private var showingAlertTextFieldsIsEmpty = false
-
+    @State private var showPasswordInput = false
+    
     var body: some View {
         VStack(spacing: 70) {
             Text("Sign in")
@@ -22,16 +24,24 @@ struct SignUpView: View {
                     CustomTextField(title: "Last name", text: $viewModel.lastName, prompt: viewModel.lastNamePrompt)
                     CustomTextField(title: "Email", text: $viewModel.email, prompt: viewModel.emailPrompt)
                     Button {
-                        print("Sign in...")
-                        viewModel.signUp()
+                        if viewModel.firstName.isEmpty || viewModel.lastName.isEmpty || viewModel.email.isEmpty {
+                            showingAlertTextFieldsIsEmpty = true
+                        } else {
+                            print("Sign in...")
+                            viewModel.checkUser()
+                        }
                     } label: {
                         Text("Sign in")
                     }
                     .buttonStyle(PrimaryButtonStyle())
                     .alert("Fields are not filled", isPresented: $showingAlertTextFieldsIsEmpty) {
-                                Button("OK", role: .cancel) { }
-                            }
-
+                        Button("OK", role: .cancel) { }
+                    }
+                    .alert(isPresented: $viewModel.showErrorAlert) {
+                        Alert(title: Text("User exist"),
+                              message: Text("Choose another name"),
+                              dismissButton: .default(Text("OK")))
+                    }
                 }
                 HStack() {
                     Text("Already have an account?")
@@ -56,7 +66,7 @@ struct SignUpView: View {
                         .customFont(size: 12, weight: .medium)
                         .foregroundColor(.black)
                 }
-
+                
                 Button {
                     viewModel.login()
                 } label: {

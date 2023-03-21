@@ -20,6 +20,8 @@ class SignUpViewModel: ObservableObject {
     @Published private var isValidLastName = false
     @Published private var isValidEmail = false
     
+    @Published var showErrorAlert = false
+    
     var firstNamePrompt: String? {
         if isValidFirstName == true || firstName.isEmpty {
             return nil
@@ -48,7 +50,7 @@ class SignUpViewModel: ObservableObject {
     private let emailPredicate = NSPredicate(format: "SELF MATCHES %@", Regex.email.rawValue)
     private let namePredicate = NSPredicate(format: "SELF MATCHES %@", Regex.name.rawValue)
     private let userRepository: UserRepository
-
+    
     var coordinator: SignUpCoordinator
     var loginCoordinator: LoginCoordinator
     var mainCoordinator: MainCoordinator
@@ -63,7 +65,7 @@ class SignUpViewModel: ObservableObject {
         self.coordinator = coordinator
         self.loginCoordinator = loginCoordinator
         self.mainCoordinator = mainCoordinator
-
+        
         $firstName
             .debounce(for: 0.5, scheduler: RunLoop.main)
             .map { name in
@@ -94,7 +96,7 @@ class SignUpViewModel: ObservableObject {
             }
             .assign(to: \.canSubmit, on: self)
             .store(in: &cancellableSet)
-
+        
     }
     
     func login() {
@@ -102,20 +104,20 @@ class SignUpViewModel: ObservableObject {
     }
     
     func goToLoginView() {
-            guard let parentCoordinator = coordinator.parentCoordinator as? AppCoordinator else {
-                print("Parent coordinator is nil")
-                return
-            }
-            print("Parent coordinator type:", type(of: parentCoordinator))
-            print("Child coordinators:", parentCoordinator.childCoordinators)
-
-            parentCoordinator.removeChildCoordinator(loginCoordinator)
-            loginCoordinator.parentCoordinator = parentCoordinator
-            parentCoordinator.addChildCoordinator(loginCoordinator)
-
-            let loginView = loginCoordinator.start()
-            parentCoordinator.currentView = loginView
+        guard let parentCoordinator = coordinator.parentCoordinator as? AppCoordinator else {
+            print("Parent coordinator is nil")
+            return
         }
+        print("Parent coordinator type:", type(of: parentCoordinator))
+        print("Child coordinators:", parentCoordinator.childCoordinators)
+        
+        parentCoordinator.removeChildCoordinator(loginCoordinator)
+        loginCoordinator.parentCoordinator = parentCoordinator
+        parentCoordinator.addChildCoordinator(loginCoordinator)
+        
+        let loginView = loginCoordinator.start()
+        parentCoordinator.currentView = loginView
+    }
     
     func goToMainView() {
         guard let parentCoordinator = coordinator.parentCoordinator as? AppCoordinator else {
@@ -132,7 +134,7 @@ class SignUpViewModel: ObservableObject {
         let mainView = mainCoordinator.start()
         parentCoordinator.currentView = mainView
     }
-
+    
     func signUp() {
         userRepository.checkUser(firstName: firstName, lastName: lastName, email: email, password: password)
             .sink { user in
@@ -158,11 +160,11 @@ class SignUpViewModel: ObservableObject {
     }
     
     func checkUser() {
-        userRepository.checkUser(firstName: firstName, lastName: lastName, email: email, password: password)
+        userRepository.checkUser(firstName: firstName)
             .sink { user in
                 if user != nil {
                     print("User already exists")
-                    // Отобразите сообщение об ошибке или выполните другое действие
+                    self.showErrorAlert = true
                 } else {
                     self.signUp()
                 }
