@@ -7,28 +7,6 @@
 
 import SwiftUI
 
-// Main Screen
-
-//struct MainView: View {
-//    @ObservedObject var viewModel: MainViewModel
-//
-//    var body: some View {
-//        NavigationView {
-//            VStack {
-//                Text("Welcome to the Main Screen")
-//                    .font(.headline)
-//                Button(action: {
-//                    viewModel.logout()
-//                }, label: {
-//                    Text("Logout")
-//                })
-//                .padding()
-//            }
-//            .navigationTitle("Main Screen")
-//        }
-//    }
-//}
-
 struct MainView: View {
     @ObservedObject var viewModel: MainViewModel
     
@@ -43,15 +21,11 @@ struct MainView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                if selectedTab == 4 {
-//                    viewModel.personInfo()
-                } else {
-                    VStack {
-                        TopBarView()
-                        SearchBarView()
-                        CircleButtonView()
-                        ItemRowView(items: items, selectedTab: $selectedTab)
-                    }
+                VStack {
+                    TopBarView()
+                    SearchBarView()
+                    CircleButtonView()
+                    ItemRowView(items: items, selectedTab: $selectedTab)
                 }
                 VStack {
                     Spacer()
@@ -60,6 +34,11 @@ struct MainView: View {
                 }
             }
             .background(Color.clear.edgesIgnoringSafeArea(.all))
+            .onChange(of: selectedTab, perform: { value in
+                if value == 4 {
+                    viewModel.personInfo()
+                }
+            })
         }
     }
 }

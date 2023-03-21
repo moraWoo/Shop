@@ -38,9 +38,7 @@ class MainViewModel: ObservableObject {
     
     func personInfo() {
         goToPersonInfoView()
-//        coordinator.goToPersonInfoView()
-//        print("After goToPersonInfoView()")
-//        coordinator.parentCoordinator?.addChildCoordinator(coordinator)
+
     }
     
     func goToPersonInfoView() {
