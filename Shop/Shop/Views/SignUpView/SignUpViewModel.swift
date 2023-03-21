@@ -136,24 +136,13 @@ class SignUpViewModel: ObservableObject {
     }
     
     func signUp() {
-        userRepository.checkUser(firstName: firstName, lastName: lastName, email: email, password: password)
-            .sink { user in
-                if user != nil {
-                    print("User already exists")
-                    // Отобразите сообщение об ошибке или выполните другое действие
+        userRepository.createUser(firstName: firstName, lastName: lastName, email: email, password: password)
+            .sink { success in
+                if success {
+                    print("User created successfully")
+                    self.goToMainView()
                 } else {
-                    self.userRepository.createUser(firstName: self.firstName, lastName: self.lastName, email: self.email, password: self.password)
-                        .sink { success in
-                            if success {
-                                print("User created successfully")
-                                self.goToMainView()
-                                // Перейдите на следующий экран или выполните другое действие
-                            } else {
-                                print("Error creating user")
-                                // Отобразите сообщение об ошибке или выполните другое действие
-                            }
-                        }
-                        .store(in: &self.cancellableSet)
+                    print("Error creating user")
                 }
             }
             .store(in: &cancellableSet)

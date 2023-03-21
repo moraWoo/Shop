@@ -28,7 +28,7 @@ struct SignUpView: View {
                             showingAlertTextFieldsIsEmpty = true
                         } else {
                             print("Sign in...")
-                            viewModel.checkUser()
+                            showPasswordInput = true
                         }
                     } label: {
                         Text("Sign in")
@@ -79,5 +79,17 @@ struct SignUpView: View {
         }
         .padding(.leading, 43)
         .padding(.trailing, 43)
+        .sheet(isPresented: $showPasswordInput) {
+            VStack {
+                Text("Enter your password")
+                    .font(.headline)
+                SecureField("Password", text: $viewModel.password)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding()
+                Button("Submit") {
+                    viewModel.signUp()
+                }
+            }
+        }
     }
 }
