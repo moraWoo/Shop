@@ -27,15 +27,17 @@ struct LoginView: View, SecuredTextFieldParentProtocol {
             VStack {
                 Button {
                     print("Login...")
-                    showingAlert.toggle()
                     performHideKeyboard()
-                    viewModel.successfulLogin()
+                    viewModel.login()
                 } label: {
                     Text("Login")
                 }.buttonStyle(PrimaryButtonStyle())
-//                    .alert(viewModel.password, isPresented: $showingAlert) {
-//                        Button("OK", role: .cancel) { }
-//                    }.padding(.top, 30)
+                .alert(isPresented: $viewModel.showErrorAlert) {
+                    Alert(title: Text("Ошибка"),
+                          message: Text("Неверное имя пользователя или пароль"),
+                          dismissButton: .default(Text("OK")))
+                }
+                .padding(.top, 30)
                 Spacer()
             }
             .padding(.leading, 43)

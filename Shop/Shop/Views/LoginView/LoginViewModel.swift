@@ -16,6 +16,8 @@ class LoginViewModel: ObservableObject {
     
     @Published private var isValidFirstName = false
     @Published private var isValidPassword = false
+    
+    @Published var showErrorAlert = false
 
     var coordinator: Coordinator
     var mainCoordinator: MainCoordinator
@@ -99,10 +101,10 @@ class LoginViewModel: ObservableObject {
             .sink { user in
                 if let user = user {
                     print("User logged in successfully")
-                    // Перейдите на следующий экран или выполните другое действие
+                    self.successfulLogin()
                 } else {
                     print("Invalid credentials")
-                    // Отобразите сообщение об ошибке или выполните другое действие
+                    self.showErrorAlert = true
                 }
             }
             .store(in: &cancellableSet)
