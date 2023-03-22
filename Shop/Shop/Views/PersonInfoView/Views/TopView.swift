@@ -1,31 +1,37 @@
-//
-//  TopView.swift
-//  Shop
-//
-//  Created by Ильдар on 19.03.2023.
-//
-
 import SwiftUI
 
 struct TopView: View {
+    @Binding var profileImage: UIImage?
+    @State private var showImagePicker = false
+    
     var body: some View {
         VStack {
             Text("Profile")
                 .customFont(size: 15, weight: .bold)
                 .padding(.top, 19)
-            Button(action: {}) {
-                Image("person")
+            if let uiImage = profileImage {
+                Image(uiImage: uiImage)
                     .resizable()
+                    .frame(width: 60, height: 60).clipShape(Circle())
                     .aspectRatio(contentMode: .fit)
                     .scaledToFit()
-                    .frame(width: 60, height: 60)
+                    .clipShape(Circle())
+            } else {
+                Image("person")
+                    .resizable()
+                    .frame(width: 60, height: 60).clipShape(Circle())
+                    .aspectRatio(contentMode: .fit)
+                    .scaledToFit()
             }
             Button {
-                //
+                showImagePicker.toggle()
             } label: {
                 Text("Change photo")
                     .customFont(size: 8, weight: .medium)
                     .foregroundColor(Color(red: 128/255, green: 128/255, blue: 128/255))
+            }
+            .sheet(isPresented: $showImagePicker) {
+                ImagePicker(image: $profileImage)
             }
             Text("Satria Adhi Pradana")
                 .customFont(size: 15, weight: .bold)
@@ -47,3 +53,4 @@ struct TopView: View {
         }
     }
 }
+

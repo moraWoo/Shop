@@ -1,17 +1,12 @@
-//
-//  MainViewModel.swift
-//  Shop
-//
-//  Created by Ильдар on 13.03.2023.
-//
-
 import SwiftUI
 
 class MainViewModel: ObservableObject {
+    @Published var profileImage: UIImage?
+
     var coordinator: MainCoordinator
     var personInfoCoordinator: PersonInfoCoordinator
     private let userRepository: UserRepository
-
+    
     init(
         coordinator: MainCoordinator,
         personInfoCoordinator: PersonInfoCoordinator,

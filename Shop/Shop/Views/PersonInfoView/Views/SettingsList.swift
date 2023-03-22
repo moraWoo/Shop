@@ -1,14 +1,7 @@
-//
-//  SettingsList.swift
-//  Shop
-//
-//  Created by Ильдар on 19.03.2023.
-//
-
 import SwiftUI
 
 struct SettingsList: View {
-    @EnvironmentObject var personInfoViewModel: PersonInfoViewModel
+    @EnvironmentObject var viewModel: PersonInfoViewModel
 
     let labels = [
         "Trade store", "Payment method", "Balance", "Trade history", "Restore Purchase", "Help", "Log out"
@@ -54,16 +47,16 @@ struct SettingsList: View {
     @ViewBuilder
     func settingsRow(label: String, pic: String) -> some View {
         if label == "Balance" {
-            // ... other code ...
+            //
         } else if label == "Help" {
             Button(action: {
-                // Handle help button tap
+                //
             }) {
                 createRow(label: label, pic: pic, showChevron: false)
             }
         } else if label == "Log out" {
             Button(action: {
-                personInfoViewModel.logout()
+                viewModel.logout()
             }) {
                 createRow(label: label, pic: pic, showChevron: false)
             }
@@ -77,8 +70,8 @@ struct SettingsList: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                TopView()
-                
+                TopView(profileImage: $viewModel.profileImage)
+
                 VStack(alignment: .leading) {
                     ForEach(Array(zip(labels, uniquePics)), id: \.0) { label, pic in
                         settingsRow(label: label, pic: pic)

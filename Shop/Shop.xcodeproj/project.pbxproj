@@ -10,7 +10,6 @@
 		77627C3B29C8814700EA0E11 /* UserData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 77627C3929C8814700EA0E11 /* UserData.xcdatamodeld */; };
 		77627C3D29C885F500EA0E11 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77627C3C29C885F500EA0E11 /* UserRepository.swift */; };
 		776F645A29BF65ED00B6C808 /* ShopApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F645929BF65ED00B6C808 /* ShopApp.swift */; };
-		776F645C29BF65ED00B6C808 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F645B29BF65ED00B6C808 /* ContentView.swift */; };
 		776F645E29BF65EF00B6C808 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 776F645D29BF65EF00B6C808 /* Assets.xcassets */; };
 		776F646129BF65EF00B6C808 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 776F646029BF65EF00B6C808 /* Preview Assets.xcassets */; };
 		776F647129BF688600B6C808 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F647029BF688600B6C808 /* AppCoordinator.swift */; };
@@ -58,6 +57,7 @@
 		77BEE52D29C71E4A0055EFB4 /* ChooseColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BEE52C29C71E4A0055EFB4 /* ChooseColor.swift */; };
 		77BEE52F29C71E600055EFB4 /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BEE52E29C71E600055EFB4 /* ColorPickerView.swift */; };
 		77BEE53229C727C50055EFB4 /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BEE53129C727C50055EFB4 /* Regex.swift */; };
+		77D2B30B29CB6F210013D3DF /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D2B30A29CB6F210013D3DF /* ImagePicker.swift */; };
 		77FA557C29C73F8E009638F3 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FA557B29C73F8E009638F3 /* CustomTextField.swift */; };
 /* End PBXBuildFile section */
 
@@ -66,7 +66,6 @@
 		77627C3C29C885F500EA0E11 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		776F645629BF65ED00B6C808 /* Shop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		776F645929BF65ED00B6C808 /* ShopApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopApp.swift; sourceTree = "<group>"; };
-		776F645B29BF65ED00B6C808 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		776F645D29BF65EF00B6C808 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		776F646029BF65EF00B6C808 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		776F647029BF688600B6C808 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
@@ -115,6 +114,7 @@
 		77BEE52E29C71E600055EFB4 /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
 		77BEE53129C727C50055EFB4 /* Regex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Regex.swift; sourceTree = "<group>"; };
 		77BEE53D29C72E290055EFB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		77D2B30A29CB6F210013D3DF /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		77FA557B29C73F8E009638F3 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -155,11 +155,9 @@
 				776F64A429C0BCE100B6C808 /* AppDependencies */,
 				776F649A29BFB56F00B6C808 /* Assembly */,
 				776F649729BF82A400B6C808 /* Protocols */,
-				776F646929BF67B600B6C808 /* Models */,
 				776F646829BF67A100B6C808 /* Coordinators */,
 				776F646729BF679000B6C808 /* Views */,
 				776F645929BF65ED00B6C808 /* ShopApp.swift */,
-				776F645B29BF65ED00B6C808 /* ContentView.swift */,
 				776F645D29BF65EF00B6C808 /* Assets.xcassets */,
 				776F646A29BF67C600B6C808 /* Tests */,
 				776F645F29BF65EF00B6C808 /* Preview Content */,
@@ -201,13 +199,6 @@
 				776F648829BF6A9400B6C808 /* DetailCoordinator.swift */,
 			);
 			path = Coordinators;
-			sourceTree = "<group>";
-		};
-		776F646929BF67B600B6C808 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		776F646A29BF67C600B6C808 /* Tests */ = {
@@ -326,6 +317,7 @@
 			children = (
 				77BEE52229C71D500055EFB4 /* TopView.swift */,
 				77BEE52429C71D6B0055EFB4 /* SettingsList.swift */,
+				77D2B30A29CB6F210013D3DF /* ImagePicker.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -469,6 +461,7 @@
 				77BEE51929C71C570055EFB4 /* TabContents.swift in Sources */,
 				77BEE51529C71C160055EFB4 /* SearchBarView.swift in Sources */,
 				776F649929BF82BC00B6C808 /* Coordinator.swift in Sources */,
+				77D2B30B29CB6F210013D3DF /* ImagePicker.swift in Sources */,
 				776F647529BF698800B6C808 /* MainViewModel.swift in Sources */,
 				776F647129BF688600B6C808 /* AppCoordinator.swift in Sources */,
 				776F648B29BF6AA800B6C808 /* PersonInfoCoordinator.swift in Sources */,
@@ -481,7 +474,6 @@
 				776F648D29BF6ABF00B6C808 /* LoginCoordinator.swift in Sources */,
 				776F649C29BFB58300B6C808 /* AppAssembly.swift in Sources */,
 				77BEE51D29C71C990055EFB4 /* ItemRowView.swift in Sources */,
-				776F645C29BF65ED00B6C808 /* ContentView.swift in Sources */,
 				776F648529BF6A5A00B6C808 /* LoginViewModel.swift in Sources */,
 				77627C3D29C885F500EA0E11 /* UserRepository.swift in Sources */,
 				776F64A329C0B6A900B6C808 /* LoginAssembly.swift in Sources */,

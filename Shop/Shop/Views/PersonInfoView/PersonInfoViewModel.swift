@@ -1,16 +1,14 @@
-//
-//  ProfileViewModel.swift
-//  Shop
-//
-//  Created by Ильдар on 13.03.2023.
-//
-
 import Foundation
+import SwiftUI
+import Combine
 
 class PersonInfoViewModel: ObservableObject {
+    @Published var profileImage: UIImage?
+    
     var coordinator: PersonInfoCoordinator
     var loginCoordinator: LoginCoordinator
     private let userRepository: UserRepository
+    private var cancellableSet: Set<AnyCancellable> = []
     
     init(
         coordinator: PersonInfoCoordinator,
@@ -33,5 +31,23 @@ class PersonInfoViewModel: ObservableObject {
                 parentCoordinator.currentView = loginView
             }
         }
+    }
+    
+    func saveAvatar(firstName: String, avatar: UIImage) {
+        userRepository.saveUserAvatar(firstName: firstName, avatar: avatar)
+            .sink { success in
+                print("Avatar save result: \(success)")
+            }
+            .store(in: &cancellableSet)
+    }
+
+    func loadAvatar(firstName: String) {
+        userRepository.loadUserAvatar(firstName: firstName)
+            .sink { avatar in
+                if let avatar = avatar {
+                    // Обработка загруженного аватара
+                }
+            }
+            .store(in: &cancellableSet)
     }
 }

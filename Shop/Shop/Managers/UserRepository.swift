@@ -1,11 +1,5 @@
-//
-//  UserRepository.swift
-//  Shop
-//
-//  Created by Ильдар on 20.03.2023.
-//
-
 import Foundation
+import UIKit
 import CoreData
 import Combine
 
@@ -61,5 +55,50 @@ class UserRepository: ObservableObject {
         }
     }
 
+    func saveUserAvatar(firstName: String, avatar: UIImage) -> AnyPublisher<Bool, Never> {
+        let context = coreDataManger.persistentContainer.viewContext
+        let userPublisher = fetchUserByFirstName(firstName, context: context)
+
+        return userPublisher.flatMap { user -> AnyPublisher<Bool, Never> in
+            guard let user = user else { return Just(false).eraseToAnyPublisher() }
+            if let avatarData = avatar.jpegData(compressionQuality: 1.0) {
+                do {
+                    user.avatar = avatarData
+                    try self.coreDataManger.persistentContainer.viewContext.save()
+                    return Just(true).eraseToAnyPublisher()
+                } catch {
+                    print("Error creating user: \(error)")
+                    return Just(false).eraseToAnyPublisher()
+                }
+            } else {
+                return Just(false).eraseToAnyPublisher()
+            }
+        }.eraseToAnyPublisher()
+    }
+
+    func loadUserAvatar(firstName: String) -> AnyPublisher<UIImage?, Never> {
+        let context = coreDataManger.persistentContainer.viewContext
+        let userPublisher = fetchUserByFirstName(firstName, context: context)
+
+        return userPublisher.map { user -> UIImage? in
+            if let avatarData = user?.avatar {
+                return UIImage(data: avatarData)
+            }
+            return nil
+        }.eraseToAnyPublisher()
+    }
+
+    private func fetchUserByFirstName(_ firstName: String, context: NSManagedObjectContext) -> AnyPublisher<User?, Never> {
+        let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "firstName == %@", firstName)
+
+        do {
+            let result = try context.fetch(fetchRequest)
+            return Just(result.first).eraseToAnyPublisher()
+        } catch {
+            print("Error fetching user: \(error)")
+            return Just(nil).eraseToAnyPublisher()
+        }
+    }
 }
 

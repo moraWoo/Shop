@@ -1,10 +1,3 @@
-//
-//  MainView.swift
-//  Shop
-//
-//  Created by Ильдар on 13.03.2023.
-//
-
 import SwiftUI
 
 struct MainView: View {
@@ -22,7 +15,7 @@ struct MainView: View {
         NavigationView {
             ZStack {
                 VStack {
-                    TopBarView()
+                    TopBarView(profileImage: $viewModel.profileImage)
                     SearchBarView()
                     CircleButtonView()
                     ItemRowView(items: items, selectedTab: $selectedTab)

@@ -1,16 +1,8 @@
-//
-//  TopBarView.swift
-//  Shop
-//
-//  Created by Ильдар on 19.03.2023.
-//
-
-import SwiftUI
-
 import SwiftUI
 
 struct TopBarView: View {
-    
+    @Binding var profileImage: UIImage?
+
     var body: some View {
         HStack {
             Button(action: {}) {

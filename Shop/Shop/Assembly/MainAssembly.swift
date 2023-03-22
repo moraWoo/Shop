@@ -1,10 +1,3 @@
-//
-//  MainAssembly.swift
-//  Shop
-//
-//  Created by Ильдар on 14.03.2023.
-//
-
 import SwiftUI
 
 class MainAssembly {
