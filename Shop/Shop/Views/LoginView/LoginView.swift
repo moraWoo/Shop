@@ -28,7 +28,7 @@ struct LoginView: View, SecuredTextFieldParentProtocol {
                     .alert(isPresented: $viewModel.showErrorAlert) {
                         if viewModel.firstName.isEmpty || viewModel.password.isEmpty {
                             return Alert(title: Text("Error"),
-                                         message: Text("Fields are not filled"),
+                                         message: Text("Please enter your first name and password"),
                                          dismissButton: .default(Text("OK")))
                         } else {
                             return Alert(title: Text("Error"),
