@@ -57,24 +57,26 @@ class UserRepository: ObservableObject {
 
     func saveUserAvatar(firstName: String, avatar: UIImage) -> AnyPublisher<Bool, Never> {
         let context = coreDataManger.persistentContainer.viewContext
-        let userPublisher = fetchUserByFirstName(firstName, context: context)
-
-        return userPublisher.flatMap { user -> AnyPublisher<Bool, Never> in
-            guard let user = user else { return Just(false).eraseToAnyPublisher() }
-            if let avatarData = avatar.jpegData(compressionQuality: 1.0) {
-                do {
-                    user.avatar = avatarData
-                    try self.coreDataManger.persistentContainer.viewContext.save()
-                    return Just(true).eraseToAnyPublisher()
-                } catch {
-                    print("Error creating user: \(error)")
-                    return Just(false).eraseToAnyPublisher()
-                }
+        let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "firstName == %@", firstName)
+        
+        do {
+            let result = try coreDataManger.persistentContainer.viewContext.fetch(fetchRequest)
+            print("result: \(result)")
+            if let user = result.first, let avatarData = avatar.jpegData(compressionQuality: 1.0) {
+                user.avatar = avatarData
+                try coreDataManger.persistentContainer.viewContext.save()
+                return Just(true).eraseToAnyPublisher()
             } else {
+                print("User not found or unable to convert avatar to data")
                 return Just(false).eraseToAnyPublisher()
             }
-        }.eraseToAnyPublisher()
+        } catch {
+            print("Error fetching user: \(error)")
+            return Just(false).eraseToAnyPublisher()
+        }
     }
+
 
     func loadUserAvatar(firstName: String) -> AnyPublisher<UIImage?, Never> {
         let context = coreDataManger.persistentContainer.viewContext

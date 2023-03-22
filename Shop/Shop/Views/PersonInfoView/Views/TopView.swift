@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct TopView: View {
+    @EnvironmentObject var viewModel: PersonInfoViewModel
     @Binding var profileImage: UIImage?
     @State private var showImagePicker = false
     
@@ -31,7 +32,8 @@ struct TopView: View {
                     .foregroundColor(Color(red: 128/255, green: 128/255, blue: 128/255))
             }
             .sheet(isPresented: $showImagePicker) {
-                ImagePicker(image: $profileImage)
+                ImagePicker(image: $profileImage, firstName: "Satria Adhi Pradana")
+                    .environmentObject(viewModel)
             }
             Text("Satria Adhi Pradana")
                 .customFont(size: 15, weight: .bold)

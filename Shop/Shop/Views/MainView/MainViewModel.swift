@@ -2,6 +2,7 @@ import SwiftUI
 
 class MainViewModel: ObservableObject {
     @Published var profileImage: UIImage?
+    @Published var firstName: String?
 
     var coordinator: MainCoordinator
     var personInfoCoordinator: PersonInfoCoordinator
@@ -33,7 +34,6 @@ class MainViewModel: ObservableObject {
     
     func personInfo() {
         goToPersonInfoView()
-
     }
     
     func goToPersonInfoView() {
@@ -51,6 +51,10 @@ class MainViewModel: ObservableObject {
         let personInfoView = personInfoCoordinator.start()
         
         parentCoordinator.currentView = personInfoView
+    }
+    
+    func setFirstName(_ firstName: String) {
+        self.firstName = firstName
     }
 }
 
