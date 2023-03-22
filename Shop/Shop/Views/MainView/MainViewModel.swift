@@ -3,6 +3,7 @@ import SwiftUI
 class MainViewModel: ObservableObject {
     @Published var profileImage: UIImage?
     @Published var firstName: String?
+    @Published var selectedUserFirstName = ""
 
     var coordinator: MainCoordinator
     var personInfoCoordinator: PersonInfoCoordinator
@@ -33,6 +34,7 @@ class MainViewModel: ObservableObject {
     }
     
     func personInfo() {
+//        personInfoCoordinator.viewModel.userFirstName = selectedUserFirstName
         goToPersonInfoView()
     }
     

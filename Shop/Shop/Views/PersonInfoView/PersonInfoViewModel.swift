@@ -4,12 +4,13 @@ import Combine
 
 class PersonInfoViewModel: ObservableObject {
     @Published var profileImage: UIImage?
+    @Published var userFirstName = ""
     
     var coordinator: PersonInfoCoordinator
     var loginCoordinator: LoginCoordinator
     private let userRepository: UserRepository
     private var cancellableSet: Set<AnyCancellable> = []
-    
+
     init(
         coordinator: PersonInfoCoordinator,
         loginCoordinator: LoginCoordinator,
