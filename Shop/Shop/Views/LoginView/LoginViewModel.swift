@@ -97,6 +97,12 @@ class LoginViewModel: ObservableObject {
     }
 
     func login() {
+        if firstName.isEmpty || password.isEmpty {
+            print("Fields cannot be empty")
+            self.showErrorAlert = true
+            return
+        }
+        
         userRepository.checkUser(firstName: firstName, password: password)
             .sink { user in
                 if let user = user {

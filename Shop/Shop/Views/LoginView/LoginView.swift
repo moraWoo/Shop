@@ -32,12 +32,18 @@ struct LoginView: View, SecuredTextFieldParentProtocol {
                 } label: {
                     Text("Login")
                 }.buttonStyle(PrimaryButtonStyle())
-                .alert(isPresented: $viewModel.showErrorAlert) {
-                    Alert(title: Text("Ошибка"),
-                          message: Text("Неверное имя пользователя или пароль"),
-                          dismissButton: .default(Text("OK")))
-                }
-                .padding(.top, 30)
+                    .alert(isPresented: $viewModel.showErrorAlert) {
+                        if viewModel.firstName.isEmpty || viewModel.password.isEmpty {
+                            return Alert(title: Text("Ошибка"),
+                                         message: Text("Поля не могут быть пустыми"),
+                                         dismissButton: .default(Text("OK")))
+                        } else {
+                            return Alert(title: Text("Ошибка"),
+                                         message: Text("Неверное имя пользователя или пароль"),
+                                         dismissButton: .default(Text("OK")))
+                        }
+                    }
+                    .padding(.top, 30)
                 Spacer()
             }
             .padding(.leading, 43)
