@@ -13,6 +13,7 @@ struct PersonInfoView: View {
     var body: some View {
         VStack() {
             SettingsList()
+                .environmentObject(viewModel)
         }
     }
 }

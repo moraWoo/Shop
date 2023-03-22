@@ -34,12 +34,12 @@ struct LoginView: View, SecuredTextFieldParentProtocol {
                 }.buttonStyle(PrimaryButtonStyle())
                     .alert(isPresented: $viewModel.showErrorAlert) {
                         if viewModel.firstName.isEmpty || viewModel.password.isEmpty {
-                            return Alert(title: Text("Ошибка"),
-                                         message: Text("Поля не могут быть пустыми"),
+                            return Alert(title: Text("Error"),
+                                         message: Text("Fields are not filled"),
                                          dismissButton: .default(Text("OK")))
                         } else {
-                            return Alert(title: Text("Ошибка"),
-                                         message: Text("Неверное имя пользователя или пароль"),
+                            return Alert(title: Text("Error"),
+                                         message: Text("The username or password you entered is incorrect"),
                                          dismissButton: .default(Text("OK")))
                         }
                     }

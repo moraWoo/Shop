@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct SettingsList: View {
+    @EnvironmentObject var personInfoViewModel: PersonInfoViewModel
+
     let labels = [
         "Trade store", "Payment method", "Balance", "Trade history", "Restore Purchase", "Help", "Log out"
     ]
@@ -52,15 +54,16 @@ struct SettingsList: View {
     @ViewBuilder
     func settingsRow(label: String, pic: String) -> some View {
         if label == "Balance" {
-            HStack {
-                createRow(label: label, pic: pic, showChevron: false)
-                Text("$1593")
-                    .customFont(size: 14, weight: .medium)
-                    .foregroundColor(.black)
-            }
-        } else if label == "Help" || label == "Log out" {
+            // ... other code ...
+        } else if label == "Help" {
             Button(action: {
-                // Handle button tap
+                // Handle help button tap
+            }) {
+                createRow(label: label, pic: pic, showChevron: false)
+            }
+        } else if label == "Log out" {
+            Button(action: {
+                personInfoViewModel.logout()
             }) {
                 createRow(label: label, pic: pic, showChevron: false)
             }
