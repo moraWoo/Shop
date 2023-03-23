@@ -19,6 +19,20 @@ class PersonInfoViewModel: ObservableObject {
         self.coordinator = coordinator
         self.loginCoordinator = loginCoordinator
         self.userRepository = userRepository
+        
+        // Set the user's first name when the currentUser is updated
+        userRepository.$currentUser
+            .compactMap { $0?.firstName }
+            .assign(to: \.userFirstName, on: self)
+            .store(in: &cancellableSet)
+        
+        // Load the user's avatar when the currentUser is updated
+        userRepository.$currentUser
+            .compactMap { $0?.firstName }
+            .sink { [weak self] firstName in
+                self?.loadAvatar(firstName: firstName)
+            }
+            .store(in: &cancellableSet)
     }
     
     func logout() {
