@@ -1,6 +1,5 @@
 import SwiftUI
 
-
 struct LoginView: View, SecuredTextFieldParentProtocol {
     @ObservedObject var viewModel: LoginViewModel
     
