@@ -48,7 +48,11 @@ class UserRepository: ObservableObject {
 
         do {
             let result = try coreDataManger.persistentContainer.viewContext.fetch(fetchRequest)
-            return Just(result.first).eraseToAnyPublisher()
+            return Just(result.first)
+                .handleEvents(receiveOutput: { [weak self] user in
+                    self?.currentUser = user
+                })
+                .eraseToAnyPublisher()
         } catch {
             print("Error fetching user: \(error)")
             return Just(nil).eraseToAnyPublisher()
