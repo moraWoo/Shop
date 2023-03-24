@@ -110,6 +110,23 @@ class UserRepository: ObservableObject {
             saveContext()
         }
     }
+    
+    func fetchAvatar() -> AnyPublisher<UIImage?, Never> {
+        guard let currentUser = currentUser else {
+            return Just(nil).eraseToAnyPublisher()
+        }
+
+        if let avatarData = currentUser.avatar {
+            if let uiImage = UIImage(data: avatarData) {
+                return Just(uiImage).eraseToAnyPublisher()
+            } else {
+                print("Error converting avatar data to UIImage")
+                return Just(nil).eraseToAnyPublisher()
+            }
+        } else {
+            return Just(nil).eraseToAnyPublisher()
+        }
+    }
 
 }
 

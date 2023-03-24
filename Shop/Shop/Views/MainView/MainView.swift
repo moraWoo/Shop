@@ -15,7 +15,7 @@ struct MainView: View {
         NavigationView {
             ZStack {
                 VStack {
-                    TopBarView(profileImage: $viewModel.profileImage)
+                    TopBarView(viewModel: viewModel, profileImage: $viewModel.profileImage)
                     SearchBarView()
                     CircleButtonView()
                     ItemRowView(items: items, selectedTab: $selectedTab)

@@ -9,7 +9,7 @@ class MainViewModel: ObservableObject {
     var personInfoCoordinator: PersonInfoCoordinator
     private let userRepository: UserRepository
     private var cancellableSet: Set<AnyCancellable> = []
-
+    
     init(
         coordinator: MainCoordinator,
         personInfoCoordinator: PersonInfoCoordinator,
@@ -57,5 +57,14 @@ class MainViewModel: ObservableObject {
             }
             .store(in: &cancellableSet)
     }
+    
+    func fetchAvatar() {
+        userRepository.fetchAvatar()
+            .sink { image in
+                self.profileImage = image
+            }
+            .store(in: &cancellableSet)
+    }
+
 }
 
