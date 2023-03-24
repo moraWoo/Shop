@@ -13,7 +13,7 @@ class SignUpAssembly {
             coordinator: dependencies.signUpCoordinator,
             loginCoordinator: dependencies.loginCoordinator,
             mainCoordinator: dependencies.mainCoordinator,
-            userRepository: userRepository
+            userRepository: dependencies.userRepository
         )
         let view = SignUpView(viewModel: viewModel)
         dependencies.signUpCoordinator.view = AnyView(view)

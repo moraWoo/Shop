@@ -34,10 +34,12 @@ struct TopView: View {
             .sheet(isPresented: $showImagePicker) {
                 ImagePicker(image: $profileImage, viewModel: viewModel, firstName: viewModel.firstName ?? "Name haven't loaded")
             }
-            Text(viewModel.firstName ?? "Not Loaded Name")
+
+            Text(viewModel.userRepository.currentUser?.firstName ?? "Not Loaded Name")
                 .customFont(size: 15, weight: .bold)
                 .foregroundColor(Color(red: 63/255, green: 63/255, blue: 63/255))
                 .padding(.bottom, 36)
+
             ZStack(alignment: .leading) {
                 Button {
                     print("Login...")

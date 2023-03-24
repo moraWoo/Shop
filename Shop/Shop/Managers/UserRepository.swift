@@ -7,6 +7,18 @@ class UserRepository: ObservableObject {
     private let coreDataManger: CoreDataManager
     private var cancellables: Set<AnyCancellable> = []
     
+    var currentUser: User? {
+        let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "isLogged == %@", NSNumber(value: true))
+        do {
+            let users = try coreDataManger.persistentContainer.viewContext.fetch(fetchRequest)
+            return users.first
+        } catch {
+            print("Failed to fetch logged in user: \(error)")
+            return nil
+        }
+    }
+    
     init(coreDataManager: CoreDataManager = CoreDataManager.shared) {
         self.coreDataManger = coreDataManager
     }
@@ -17,6 +29,8 @@ class UserRepository: ObservableObject {
         newUser.lastName = lastName
         newUser.email = email
         newUser.password = "123"
+        newUser.isLogged = true
+        
         do {
             try coreDataManger.persistentContainer.viewContext.save()
             return Just(true).eraseToAnyPublisher()
@@ -57,6 +71,35 @@ class UserRepository: ObservableObject {
         } catch {
             print("Error fetching user: \(error)")
             return Just(nil).eraseToAnyPublisher()
+        }
+    }
+    
+    func setIsLogged(user: User, isLogged: Bool) {
+        user.isLogged = isLogged
+        do {
+            try coreDataManger.persistentContainer.viewContext.save()
+        } catch {
+            print("Error updating user isLogged status: \(error)")
+        }
+    }
+    
+    func fetchLoggedInUser() -> AnyPublisher<User?, Never> {
+        let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "isLogged == true")
+        do {
+            let result = try coreDataManger.persistentContainer.viewContext.fetch(fetchRequest)
+            return Just(result.first).eraseToAnyPublisher()
+        } catch {
+            print("Error fetching logged in user: \(error)")
+            return Just(nil).eraseToAnyPublisher()
+        }
+    }
+    
+    func saveContext() {
+        do {
+            try coreDataManger.persistentContainer.viewContext.save()
+        } catch {
+            print("Error saving context: \(error)")
         }
     }
 }

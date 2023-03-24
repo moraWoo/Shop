@@ -5,6 +5,7 @@ class DetailCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?
     var view: AnyView?
+    let userRepository = UserRepository()
     
     func start() -> AnyView {
         let dependencies = AppDependencies(
@@ -12,7 +13,8 @@ class DetailCoordinator: Coordinator {
             loginCoordinator: LoginCoordinator(),
             mainCoordinator: MainCoordinator(),
             personInfoCoordinator: PersonInfoCoordinator(),
-            detailCoordinator: self
+            detailCoordinator: self,
+            userRepository: userRepository
         )
         let detailView = DetailAssembly(dependencies: dependencies).assemble()
         view = AnyView(detailView)

@@ -13,7 +13,8 @@ class AppDependencies {
         loginCoordinator: LoginCoordinator,
         mainCoordinator: MainCoordinator,
         personInfoCoordinator: PersonInfoCoordinator,
-        detailCoordinator: DetailCoordinator
+        detailCoordinator: DetailCoordinator,
+        userRepository: UserRepository
     ) {
         self.loginCoordinator = loginCoordinator
         self.signUpCoordinator = signUpCoordinator

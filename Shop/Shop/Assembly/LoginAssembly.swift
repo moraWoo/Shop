@@ -12,7 +12,7 @@ class LoginAssembly {
         let viewModel = LoginViewModel(
             coordinator: dependencies.loginCoordinator,
             mainCoordinator: dependencies.mainCoordinator,
-            userRepository: userRepository
+            userRepository: dependencies.userRepository
         )
         let view = LoginView(viewModel: viewModel)
         dependencies.loginCoordinator.view = AnyView(view)

@@ -6,11 +6,11 @@ class PersonInfoViewModel: ObservableObject {
     
     var coordinator: PersonInfoCoordinator
     var loginCoordinator: LoginCoordinator
-    private let userRepository: UserRepository
+    let userRepository: UserRepository
     private var cancellableSet: Set<AnyCancellable> = []
 
     var firstName: String? {
-        userRepository.firstName
+        userRepository.currentUser?.firstName
     }
     
     init(
@@ -24,15 +24,25 @@ class PersonInfoViewModel: ObservableObject {
     }
     
     func logout() {
+        if let currentUser = userRepository.currentUser {
+            userRepository.setIsLogged(user: currentUser, isLogged: false)
+            userRepository.saveContext()
+        }
+        
         guard let parentCoordinator = coordinator.parentCoordinator as? AppCoordinator else { return }
         parentCoordinator.removeChildCoordinator(coordinator)
         
+        if let loginCoordinator = parentCoordinator.childCoordinators.first(where: { $0 is LoginCoordinator }) {
+            parentCoordinator.removeChildCoordinator(loginCoordinator)
+        }
+        
+        loginCoordinator.parentCoordinator = parentCoordinator
+        parentCoordinator.addChildCoordinator(loginCoordinator)
+        
         DispatchQueue.main.async {
-            if let loginView = parentCoordinator.childCoordinators
-                .first(where: { $0 is LoginCoordinator })?
-                .start() {
-                parentCoordinator.currentView = loginView
-            }
+            let loginView = self.loginCoordinator.start()
+            parentCoordinator.currentView = loginView
         }
     }
+
 }

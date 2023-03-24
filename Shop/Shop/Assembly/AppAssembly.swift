@@ -11,7 +11,8 @@ class AppAssembly {
             loginCoordinator: LoginCoordinator(),
             mainCoordinator: MainCoordinator(),
             personInfoCoordinator: PersonInfoCoordinator(),
-            detailCoordinator: DetailCoordinator()
+            detailCoordinator: DetailCoordinator(),
+            userRepository: userRepository
         )
         
         let appCoordinator = AppCoordinator()

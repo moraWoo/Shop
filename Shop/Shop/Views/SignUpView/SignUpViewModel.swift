@@ -133,13 +133,28 @@ class SignUpViewModel: ObservableObject {
             .sink { success in
                 if success {
                     print("User created successfully")
-                    self.goToMainView()
+                    
+                    self.userRepository.checkUser(firstName: self.firstName)
+                        .sink { user in
+                            if let user = user {
+                                self.userRepository.setIsLogged(user: user, isLogged: true)
+                                self.userRepository.saveContext()
+                                self.goToMainView()
+                            } else {
+                                print("Error retrieving created user")
+                            }
+                        }
+                        .store(in: &self.cancellableSet)
                 } else {
                     print("Error creating user")
                 }
             }
             .store(in: &cancellableSet)
     }
+
+
+
+
     
     func checkUser() {
         userRepository.checkUser(firstName: firstName)

@@ -13,7 +13,8 @@ class LoginCoordinator: Coordinator {
             loginCoordinator: self,
             mainCoordinator: MainCoordinator(),
             personInfoCoordinator: PersonInfoCoordinator(),
-            detailCoordinator: DetailCoordinator()
+            detailCoordinator: DetailCoordinator(),
+            userRepository: userRepository
         )
         let loginView = LoginAssembly(dependencies: dependencies).assemble(userRepository: userRepository)
         view = AnyView(loginView)

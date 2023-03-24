@@ -12,7 +12,7 @@ class MainAssembly {
         let viewModel = MainViewModel(
             coordinator: dependencies.mainCoordinator,
             personInfoCoordinator: dependencies.personInfoCoordinator,
-            userRepository: userRepository
+            userRepository: dependencies.userRepository
         )
         let view = MainView(viewModel: viewModel)
         dependencies.mainCoordinator.view = AnyView(view)

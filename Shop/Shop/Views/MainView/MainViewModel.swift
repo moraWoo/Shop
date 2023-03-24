@@ -8,7 +8,8 @@ class MainViewModel: ObservableObject {
     var coordinator: MainCoordinator
     var personInfoCoordinator: PersonInfoCoordinator
     private let userRepository: UserRepository
-    
+    private var cancellableSet: Set<AnyCancellable> = []
+
     init(
         coordinator: MainCoordinator,
         personInfoCoordinator: PersonInfoCoordinator,
@@ -17,6 +18,8 @@ class MainViewModel: ObservableObject {
         self.coordinator = coordinator
         self.personInfoCoordinator = personInfoCoordinator
         self.userRepository = userRepository
+        
+        fetchLoggedInUser()
     }
     
     func goToMainView() {
@@ -27,7 +30,7 @@ class MainViewModel: ObservableObject {
     
     func personInfo() {
         goToPersonInfoView()
-        print("personInfo \(String(describing: userRepository.firstName))")
+        print("personInfo \(String(describing: userRepository.currentUser))")
     }
     
     func goToPersonInfoView() {
@@ -45,6 +48,14 @@ class MainViewModel: ObservableObject {
         let personInfoView = personInfoCoordinator.start()
         
         parentCoordinator.currentView = personInfoView
+    }
+    
+    func fetchLoggedInUser() {
+        userRepository.fetchLoggedInUser()
+            .sink { user in
+                self.firstName = user?.firstName
+            }
+            .store(in: &cancellableSet)
     }
 }
 

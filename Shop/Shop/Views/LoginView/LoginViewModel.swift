@@ -99,8 +99,9 @@ class LoginViewModel: ObservableObject {
         
         userRepository.checkUser(firstName: firstName, password: password)
             .sink { user in
-                if user != nil {
+                if let user = user {
                     print("User logged in successfully")
+                    self.userRepository.setIsLogged(user: user, isLogged: true) // добавьте эту строку
                     self.successfulLogin()
                 } else {
                     print("Invalid credentials")

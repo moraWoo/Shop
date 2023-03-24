@@ -2,9 +2,9 @@ import SwiftUI
 import Combine
 
 class MainCoordinator: Coordinator {
-    var view: AnyView?
-    var parentCoordinator: Coordinator?
     var childCoordinators: [Coordinator] = []
+    var parentCoordinator: Coordinator?
+    var view: AnyView?
     let userRepository = UserRepository()
     
     func start() -> AnyView {
@@ -13,7 +13,8 @@ class MainCoordinator: Coordinator {
             loginCoordinator: LoginCoordinator(),
             mainCoordinator: self,
             personInfoCoordinator: PersonInfoCoordinator(),
-            detailCoordinator: DetailCoordinator()
+            detailCoordinator: DetailCoordinator(),
+            userRepository: userRepository
         )
         let mainView = MainAssembly(dependencies: dependencies).assemble(userRepository: userRepository)
         view = AnyView(mainView)

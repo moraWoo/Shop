@@ -14,7 +14,8 @@ class SignUpCoordinator: Coordinator {
             loginCoordinator: LoginCoordinator(),
             mainCoordinator: MainCoordinator(),
             personInfoCoordinator: PersonInfoCoordinator(),
-            detailCoordinator: DetailCoordinator()
+            detailCoordinator: DetailCoordinator(),
+            userRepository: userRepository
         )
         let signUpView = SignUpAssembly(dependencies: dependencies).assemble(userRepository: userRepository)
         view = AnyView(signUpView)
