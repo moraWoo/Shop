@@ -31,8 +31,12 @@ class AppAssembly {
 
         
         print("AppCoordinator child coordinators:", appCoordinator.childCoordinators)
-        print("MainCoordinator parent coordinator:", mainAssembly.dependencies.mainCoordinator.parentCoordinator)
-        
+        print("AppCoordinator child coordinators:", appCoordinator.childCoordinators)
+        if let mainCoordinatorParentCoordinator = mainAssembly.dependencies.mainCoordinator.parentCoordinator {
+            print("MainCoordinator parent coordinator:", mainCoordinatorParentCoordinator)
+        } else {
+            print("MainCoordinator parent coordinator is nil")
+        }
         return AnyView(signUpAssembly.assemble(userRepository: userRepository))
     }
 }

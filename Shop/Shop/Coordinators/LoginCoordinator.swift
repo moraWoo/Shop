@@ -17,7 +17,7 @@ class LoginCoordinator: Coordinator {
         )
         let loginView = LoginAssembly(dependencies: dependencies).assemble(userRepository: userRepository)
         view = AnyView(loginView)
-        print("View from LoginCoordinator \(view)")
+        print("View from LoginCoordinator \(String(describing: view))")
         if let view = view {
             return view
         } else {

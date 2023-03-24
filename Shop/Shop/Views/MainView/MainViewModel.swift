@@ -4,7 +4,6 @@ import Combine
 class MainViewModel: ObservableObject {
     @Published var profileImage: UIImage?
     @Published var firstName: String?
-    @Published var selectedUserFirstName = ""
 
     var coordinator: MainCoordinator
     var personInfoCoordinator: PersonInfoCoordinator
@@ -20,14 +19,6 @@ class MainViewModel: ObservableObject {
         self.userRepository = userRepository
     }
     
-    func goToLoginView() {
-        print("MainViewModel goToLoginView()")
-        guard let loginCoordinator = coordinator.parentCoordinator?.childCoordinators.first(where: { $0 is LoginCoordinator }) as? LoginCoordinator else {
-            return
-        }
-        loginCoordinator.start()
-    }
-    
     func goToMainView() {
         coordinator.goToMainView()
         print("After goToMainView()")
@@ -35,7 +26,6 @@ class MainViewModel: ObservableObject {
     }
     
     func personInfo() {
-//        personInfoCoordinator.viewModel.userFirstName = selectedUserFirstName
         goToPersonInfoView()
     }
     

@@ -16,7 +16,7 @@ class DetailCoordinator: Coordinator {
         )
         let detailView = DetailAssembly(dependencies: dependencies).assemble()
         view = AnyView(detailView)
-        print("View from DetailCoordinator \(view)")
+        print("View from DetailCoordinator \(String(describing: view))")
         if let view = view {
             return view
         } else {

@@ -17,7 +17,7 @@ class MainCoordinator: Coordinator {
         )
         let mainView = MainAssembly(dependencies: dependencies).assemble(userRepository: userRepository)
         view = AnyView(mainView)
-        print("View from MainCoordinator \(view)")
+        print("View from MainCoordinator \(String(describing: view))")
         if let view = view {
             return view
         } else {

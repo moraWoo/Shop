@@ -18,7 +18,7 @@ class SignUpCoordinator: Coordinator {
         )
         let signUpView = SignUpAssembly(dependencies: dependencies).assemble(userRepository: userRepository)
         view = AnyView(signUpView)
-        print("View from SignCoordinator \(view)")
+        print("View from SignCoordinator \(String(describing: view))")
         if let view = view {
             return view
         } else {

@@ -35,7 +35,7 @@ struct TopView: View {
                 ImagePicker(image: $profileImage, firstName: "Satria Adhi Pradana")
                     .environmentObject(viewModel)
             }
-            Text(viewModel.userFirstName)
+            Text("12345")
                 .customFont(size: 15, weight: .bold)
                 .foregroundColor(Color(red: 63/255, green: 63/255, blue: 63/255))
                 .padding(.bottom, 36)

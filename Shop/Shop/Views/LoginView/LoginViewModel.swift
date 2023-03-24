@@ -11,7 +11,6 @@ class LoginViewModel: ObservableObject {
     @Published private var isValidPassword = false
     
     @Published var showErrorAlert = false
-    @Published var selectedUserFirstName = ""
 
     var coordinator: Coordinator
     var mainCoordinator: MainCoordinator
@@ -71,7 +70,6 @@ class LoginViewModel: ObservableObject {
     }
     
     func successfulLogin() {
-        selectedUserFirstName = firstName
         goToMainView()
     }
     
@@ -100,7 +98,7 @@ class LoginViewModel: ObservableObject {
         
         userRepository.checkUser(firstName: firstName, password: password)
             .sink { user in
-                if let user = user {
+                if user != nil {
                     print("User logged in successfully")
                     self.successfulLogin()
                 } else {
