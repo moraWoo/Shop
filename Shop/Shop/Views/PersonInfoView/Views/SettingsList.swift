@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct SettingsList: View {
-    @EnvironmentObject var viewModel: PersonInfoViewModel
+    @ObservedObject var viewModel: PersonInfoViewModel
 
     let labels = [
         "Trade store", "Payment method", "Balance", "Trade history", "Restore Purchase", "Help", "Log out"
@@ -70,7 +70,7 @@ struct SettingsList: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                TopView(profileImage: $viewModel.profileImage)
+                TopView(viewModel: viewModel, profileImage: $viewModel.profileImage)
 
                 VStack(alignment: .leading) {
                     ForEach(Array(zip(labels, uniquePics)), id: \.0) { label, pic in

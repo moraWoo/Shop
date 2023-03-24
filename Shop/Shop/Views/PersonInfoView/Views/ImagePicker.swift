@@ -4,7 +4,7 @@ import UIKit
 struct ImagePicker: UIViewControllerRepresentable {
     @Environment(\.presentationMode) var presentationMode
     @Binding var image: UIImage?
-    @EnvironmentObject var viewModel: PersonInfoViewModel
+    @ObservedObject var viewModel: PersonInfoViewModel
     let firstName: String
 
     func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
