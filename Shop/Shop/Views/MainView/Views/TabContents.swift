@@ -31,7 +31,7 @@ struct Tab1View: View {
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 12) {
                                 ForEach(items[row], id: \.self) { item in
-                                    ItemCardView(item: item, row: row)
+                                    ItemCardView(item: item as? String ?? "", row: row)
                                 }
                             }
                             .padding(.horizontal, 11) // Добавляем отступы слева и справа по 11 для элементов

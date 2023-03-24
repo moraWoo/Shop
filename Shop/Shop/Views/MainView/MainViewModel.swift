@@ -4,6 +4,7 @@ import Combine
 class MainViewModel: ObservableObject {
     @Published var profileImage: UIImage?
     @Published var firstName: String?
+    @Published var mainViewItems: [[Any]] = []
 
     var coordinator: MainCoordinator
     var personInfoCoordinator: PersonInfoCoordinator
@@ -27,6 +28,8 @@ class MainViewModel: ObservableObject {
            let avatarData = currentUser.avatar {
             profileImage = UIImage(data: avatarData)
         }
+        
+        fetchLatestAndFlashSaleProducts()
     }
     
     func goToMainView() {
@@ -73,5 +76,22 @@ class MainViewModel: ObservableObject {
             .store(in: &cancellableSet)
     }
 
+    func fetchLatestAndFlashSaleProducts() {
+        networkManager.fetchLatestAndFlashSale()
+            .sink { [weak self] completion in
+                switch completion {
+                case .finished:
+                    print("Successfully fetched latest and flash sale products")
+                case .failure(let error):
+                    print("Error fetching latest and flash sale products: \(error)")
+                }
+            } receiveValue: { [weak self] latestProductsResponse, flashSaleResponse in
+                DispatchQueue.main.async {
+                    self?.mainViewItems[0] = latestProductsResponse.latest
+                    self?.mainViewItems[1] = flashSaleResponse.flashSale
+                }
+            }
+            .store(in: &cancellableSet)
+    }
 }
 
