@@ -27,6 +27,7 @@ class MainViewModel: ObservableObject {
     
     func personInfo() {
         goToPersonInfoView()
+        print("personInfo \(String(describing: userRepository.firstName))")
     }
     
     func goToPersonInfoView() {
@@ -44,10 +45,6 @@ class MainViewModel: ObservableObject {
         let personInfoView = personInfoCoordinator.start()
         
         parentCoordinator.currentView = personInfoView
-    }
-    
-    func setFirstName(_ firstName: String) {
-        self.firstName = firstName
     }
 }
 

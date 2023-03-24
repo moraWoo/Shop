@@ -11,7 +11,7 @@ class LoginViewModel: ObservableObject {
     @Published private var isValidPassword = false
     
     @Published var showErrorAlert = false
-
+    
     var coordinator: Coordinator
     var mainCoordinator: MainCoordinator
     
@@ -24,10 +24,10 @@ class LoginViewModel: ObservableObject {
     }
     
     private var cancellableSet: Set<AnyCancellable> = []
-
+    
     private let namePredicate = NSPredicate(format: "SELF MATCHES %@", Regex.name.rawValue)
     private let passwordPredicate = NSPredicate(format: "SELF MATCHES %@", Regex.password.rawValue)
-
+    
     private let userRepository: UserRepository
     
     init(
@@ -71,6 +71,7 @@ class LoginViewModel: ObservableObject {
     
     func successfulLogin() {
         goToMainView()
+        print("successfulLogin \(self.firstName)")
     }
     
     func goToMainView() {
@@ -88,7 +89,7 @@ class LoginViewModel: ObservableObject {
         let mainView = mainCoordinator.start()
         parentCoordinator.currentView = mainView
     }
-
+    
     func login() {
         if firstName.isEmpty || password.isEmpty {
             print("Fields cannot be empty")
@@ -100,7 +101,6 @@ class LoginViewModel: ObservableObject {
             .sink { user in
                 if user != nil {
                     print("User logged in successfully")
-                    self.userRepository.firstName = user?.firstName
                     self.successfulLogin()
                 } else {
                     print("Invalid credentials")

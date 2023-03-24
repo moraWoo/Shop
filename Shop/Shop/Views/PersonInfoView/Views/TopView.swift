@@ -33,7 +33,6 @@ struct TopView: View {
             }
             .sheet(isPresented: $showImagePicker) {
                 ImagePicker(image: $profileImage, viewModel: viewModel, firstName: viewModel.firstName ?? "Name haven't loaded")
-                    .environmentObject(viewModel)
             }
             Text(viewModel.firstName ?? "Not Loaded Name")
                 .customFont(size: 15, weight: .bold)
