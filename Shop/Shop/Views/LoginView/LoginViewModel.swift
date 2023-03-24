@@ -100,6 +100,7 @@ class LoginViewModel: ObservableObject {
             .sink { user in
                 if user != nil {
                     print("User logged in successfully")
+                    self.userRepository.firstName = user?.firstName
                     self.successfulLogin()
                 } else {
                     print("Invalid credentials")

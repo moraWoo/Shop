@@ -2,6 +2,8 @@ import CoreData
 import Combine
 
 class UserRepository: ObservableObject {
+    @Published var firstName: String?
+
     private let coreDataManger: CoreDataManager
     private var cancellables: Set<AnyCancellable> = []
 

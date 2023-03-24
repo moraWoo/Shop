@@ -9,6 +9,10 @@ class PersonInfoViewModel: ObservableObject {
     private let userRepository: UserRepository
     private var cancellableSet: Set<AnyCancellable> = []
 
+    var firstName: String? {
+        userRepository.firstName
+    }
+    
     init(
         coordinator: PersonInfoCoordinator,
         loginCoordinator: LoginCoordinator,
