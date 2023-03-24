@@ -16,7 +16,6 @@ class MainViewModel: ObservableObject {
         personInfoCoordinator: PersonInfoCoordinator,
         userRepository: UserRepository,
         networkManager: NetworkManager
-
     ) {
         self.coordinator = coordinator
         self.personInfoCoordinator = personInfoCoordinator
