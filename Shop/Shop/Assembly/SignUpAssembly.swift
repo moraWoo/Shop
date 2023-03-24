@@ -9,15 +9,21 @@ class SignUpAssembly {
     }
     
     func assemble(userRepository: UserRepository) -> some View {
+        guard let signUpCoordinator = dependencies.signUpCoordinator,
+              let loginCoordinator = dependencies.loginCoordinator,
+              let mainCoordinator = dependencies.mainCoordinator else {
+            fatalError("SignUpCoordinator, LoginCoordinator, or MainCoordinator is missing")
+        }
+        
         let viewModel = SignUpViewModel(
-            coordinator: dependencies.signUpCoordinator,
-            loginCoordinator: dependencies.loginCoordinator,
-            mainCoordinator: dependencies.mainCoordinator,
+            coordinator: signUpCoordinator,
+            loginCoordinator: loginCoordinator,
+            mainCoordinator: mainCoordinator,
             userRepository: dependencies.userRepository
         )
         let view = SignUpView(viewModel: viewModel)
-        dependencies.signUpCoordinator.view = AnyView(view)
-        
+        signUpCoordinator.view = AnyView(view)
+
         return AnyView(view)
     }
 }

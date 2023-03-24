@@ -6,6 +6,7 @@ class MainCoordinator: Coordinator {
     var parentCoordinator: Coordinator?
     var view: AnyView?
     let userRepository = UserRepository()
+    let networkManager = NetworkManager()
     
     func start() -> AnyView {
         let dependencies = AppDependencies(
@@ -14,7 +15,8 @@ class MainCoordinator: Coordinator {
             mainCoordinator: self,
             personInfoCoordinator: PersonInfoCoordinator(),
             detailCoordinator: DetailCoordinator(),
-            userRepository: userRepository
+            userRepository: userRepository,
+            networkManager: networkManager
         )
         let mainView = MainAssembly(dependencies: dependencies).assemble(userRepository: userRepository)
         view = AnyView(mainView)
@@ -43,14 +45,20 @@ class MainCoordinator: Coordinator {
     }
     
     func goToMainView() {
-        
         let personInfoCoordinator = PersonInfoCoordinator()
 
         DispatchQueue.main.async { [weak self] in
-            let mainView = MainView(viewModel: MainViewModel(coordinator: self!, personInfoCoordinator: personInfoCoordinator, userRepository: self!.userRepository))
-            self?.view = AnyView(mainView)
+            guard let self = self else { return }
+            
+            let mainView = MainView(
+                viewModel: MainViewModel(
+                    coordinator: self,
+                    personInfoCoordinator: personInfoCoordinator,
+                    userRepository: self.userRepository,
+                    networkManager: self.networkManager
+                )
+            )
+            self.view = AnyView(mainView)
         }
     }
-    
-    
 }

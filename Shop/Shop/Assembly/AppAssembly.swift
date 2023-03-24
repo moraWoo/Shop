@@ -5,6 +5,7 @@ class AppAssembly {
     static func assemble() -> some View {
         let coreDataManager = CoreDataManager.shared
         let userRepository = UserRepository(coreDataManager: coreDataManager)
+        let networkManager = NetworkManager()
         
         let dependencies = AppDependencies(
             signUpCoordinator: SignUpCoordinator(),
@@ -12,7 +13,8 @@ class AppAssembly {
             mainCoordinator: MainCoordinator(),
             personInfoCoordinator: PersonInfoCoordinator(),
             detailCoordinator: DetailCoordinator(),
-            userRepository: userRepository
+            userRepository: userRepository,
+            networkManager: networkManager
         )
         
         let appCoordinator = AppCoordinator()
@@ -23,16 +25,25 @@ class AppAssembly {
         let personInfoAssembly = PersonInfoAssembly(dependencies: dependencies)
         let detailAssembly = DetailAssembly(dependencies: dependencies)
 
-        appCoordinator.addChildCoordinator(signUpAssembly.dependencies.signUpCoordinator)
-        appCoordinator.addChildCoordinator(loginAssembly.dependencies.loginCoordinator)
-        appCoordinator.addChildCoordinator(mainAssembly.dependencies.mainCoordinator)
-        appCoordinator.addChildCoordinator(personInfoAssembly.dependencies.personInfoCoordinator)
-        appCoordinator.addChildCoordinator(detailAssembly.dependencies.detailCoordinator)
-
+        if let signUpCoordinator = signUpAssembly.dependencies.signUpCoordinator {
+            appCoordinator.addChildCoordinator(signUpCoordinator)
+        }
+        if let loginCoordinator = loginAssembly.dependencies.loginCoordinator {
+            appCoordinator.addChildCoordinator(loginCoordinator)
+        }
+        if let mainCoordinator = mainAssembly.dependencies.mainCoordinator {
+            appCoordinator.addChildCoordinator(mainCoordinator)
+        }
+        if let personInfoCoordinator = personInfoAssembly.dependencies.personInfoCoordinator {
+            appCoordinator.addChildCoordinator(personInfoCoordinator)
+        }
+        if let detailCoordinator = detailAssembly.dependencies.detailCoordinator {
+            appCoordinator.addChildCoordinator(detailCoordinator)
+        }
         
         print("AppCoordinator child coordinators:", appCoordinator.childCoordinators)
         print("AppCoordinator child coordinators:", appCoordinator.childCoordinators)
-        if let mainCoordinatorParentCoordinator = mainAssembly.dependencies.mainCoordinator.parentCoordinator {
+        if let mainCoordinatorParentCoordinator = mainAssembly.dependencies.mainCoordinator?.parentCoordinator {
             print("MainCoordinator parent coordinator:", mainCoordinatorParentCoordinator)
         } else {
             print("MainCoordinator parent coordinator is nil")

@@ -8,16 +8,20 @@ class MainViewModel: ObservableObject {
     var coordinator: MainCoordinator
     var personInfoCoordinator: PersonInfoCoordinator
     private let userRepository: UserRepository
+    private let networkManager: NetworkManager
     private var cancellableSet: Set<AnyCancellable> = []
     
     init(
         coordinator: MainCoordinator,
         personInfoCoordinator: PersonInfoCoordinator,
-        userRepository: UserRepository
+        userRepository: UserRepository,
+        networkManager: NetworkManager
+
     ) {
         self.coordinator = coordinator
         self.personInfoCoordinator = personInfoCoordinator
         self.userRepository = userRepository
+        self.networkManager = networkManager
         
         fetchLoggedInUser()
         if let currentUser = userRepository.currentUser,

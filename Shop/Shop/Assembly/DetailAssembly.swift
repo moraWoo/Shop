@@ -9,10 +9,17 @@ class DetailAssembly {
     }
     
     func assemble() -> some View {
-        let viewModel = DetailViewModel(coordinator: dependencies.detailCoordinator)
-        let view = DetailView(viewModel: viewModel)
-        dependencies.detailCoordinator.view = AnyView(view)
+        guard let detailCoordinator = dependencies.detailCoordinator else {
+            fatalError("DetailCoordinator is missing")
+        }
         
+        let viewModel = DetailViewModel(
+            coordinator: detailCoordinator,
+            networkManager: dependencies.networkManager
+        )
+        let view = DetailView(viewModel: viewModel)
+        detailCoordinator.view = AnyView(view)
+
         return AnyView(view)
     }
 }

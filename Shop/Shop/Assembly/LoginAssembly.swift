@@ -9,14 +9,19 @@ class LoginAssembly {
     }
     
     func assemble(userRepository: UserRepository) -> some View {
+        guard let loginCoordinator = dependencies.loginCoordinator,
+              let mainCoordinator = dependencies.mainCoordinator else {
+            fatalError("LoginCoordinator or MainCoordinator is missing")
+        }
+        
         let viewModel = LoginViewModel(
-            coordinator: dependencies.loginCoordinator,
-            mainCoordinator: dependencies.mainCoordinator,
+            coordinator: loginCoordinator,
+            mainCoordinator: mainCoordinator,
             userRepository: dependencies.userRepository
         )
         let view = LoginView(viewModel: viewModel)
-        dependencies.loginCoordinator.view = AnyView(view)
-        
+        loginCoordinator.view = AnyView(view)
+
         return AnyView(view)
     }
 }

@@ -9,14 +9,20 @@ class MainAssembly {
     
     func assemble(userRepository: UserRepository) -> some View {
         print("MainAssembly assemble()")
-        let viewModel = MainViewModel(
-            coordinator: dependencies.mainCoordinator,
-            personInfoCoordinator: dependencies.personInfoCoordinator,
-            userRepository: dependencies.userRepository
-        )
-        let view = MainView(viewModel: viewModel)
-        dependencies.mainCoordinator.view = AnyView(view)
+        if let mainCoordinator = dependencies.mainCoordinator,
+           let personInfoCoordinator = dependencies.personInfoCoordinator {
+            let viewModel = MainViewModel(
+                coordinator: mainCoordinator,
+                personInfoCoordinator: personInfoCoordinator,
+                userRepository: dependencies.userRepository,
+                networkManager: dependencies.networkManager
+            )
+            let view = MainView(viewModel: viewModel)
+            mainCoordinator.view = AnyView(view)
 
-        return AnyView(view)
+            return AnyView(view)
+        } else {
+            fatalError("MainCoordinator or PersonInfoCoordinator is missing")
+        }
     }
 }

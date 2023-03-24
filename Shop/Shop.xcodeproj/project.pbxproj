@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		63378B3929CE16DA00B17989 /* LatestProductsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63378B3829CE16DA00B17989 /* LatestProductsResponse.swift */; };
+		63378B3B29CE16FC00B17989 /* FlashSaleResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63378B3A29CE16FC00B17989 /* FlashSaleResponse.swift */; };
+		63378B3E29CE192F00B17989 /* ProductDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63378B3D29CE192F00B17989 /* ProductDetails.swift */; };
+		63378B4129CE1C2A00B17989 /* URLConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63378B4029CE1C2A00B17989 /* URLConstants.swift */; };
+		63378B4329CE1D4B00B17989 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63378B4229CE1D4B00B17989 /* NetworkManager.swift */; };
 		77627C3B29C8814700EA0E11 /* UserData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 77627C3929C8814700EA0E11 /* UserData.xcdatamodeld */; };
 		77627C3D29C885F500EA0E11 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77627C3C29C885F500EA0E11 /* UserRepository.swift */; };
 		776F645A29BF65ED00B6C808 /* ShopApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F645929BF65ED00B6C808 /* ShopApp.swift */; };
@@ -62,6 +67,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		63378B3829CE16DA00B17989 /* LatestProductsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestProductsResponse.swift; sourceTree = "<group>"; };
+		63378B3A29CE16FC00B17989 /* FlashSaleResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashSaleResponse.swift; sourceTree = "<group>"; };
+		63378B3D29CE192F00B17989 /* ProductDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetails.swift; sourceTree = "<group>"; };
+		63378B4029CE1C2A00B17989 /* URLConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConstants.swift; sourceTree = "<group>"; };
+		63378B4229CE1D4B00B17989 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		77627C3A29C8814700EA0E11 /* UserData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserData.xcdatamodel; sourceTree = "<group>"; };
 		77627C3C29C885F500EA0E11 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		776F645629BF65ED00B6C808 /* Shop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shop.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,6 +139,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		63378B3729CE16C300B17989 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				63378B3829CE16DA00B17989 /* LatestProductsResponse.swift */,
+				63378B3A29CE16FC00B17989 /* FlashSaleResponse.swift */,
+				63378B3D29CE192F00B17989 /* ProductDetails.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		63378B3F29CE1C0800B17989 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				63378B4029CE1C2A00B17989 /* URLConstants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		776F644D29BF65ED00B6C808 = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +176,8 @@
 		776F645829BF65ED00B6C808 /* Shop */ = {
 			isa = PBXGroup;
 			children = (
+				63378B3F29CE1C0800B17989 /* Constants */,
+				63378B3729CE16C300B17989 /* Models */,
 				77BEE53029C727AE0055EFB4 /* Enum */,
 				77BEE4FD29C7162E0055EFB4 /* Fonts */,
 				77BEE4FA29C712F20055EFB4 /* Managers */,
@@ -291,6 +321,7 @@
 			children = (
 				77BEE4FB29C715340055EFB4 /* DataManager.swift */,
 				77627C3C29C885F500EA0E11 /* UserRepository.swift */,
+				63378B4229CE1D4B00B17989 /* NetworkManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -444,6 +475,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63378B4329CE1D4B00B17989 /* NetworkManager.swift in Sources */,
 				776F64A129C0B59900B6C808 /* MainAssembly.swift in Sources */,
 				77BEE50D29C71A850055EFB4 /* ViewModifiers.swift in Sources */,
 				77BEE51F29C71CB20055EFB4 /* CustomTabBar.swift in Sources */,
@@ -451,14 +483,17 @@
 				776F648729BF6A8300B6C808 /* MainCoordinator.swift in Sources */,
 				776F647929BF69E500B6C808 /* SignUpViewModel.swift in Sources */,
 				77BEE52529C71D6B0055EFB4 /* SettingsList.swift in Sources */,
+				63378B3929CE16DA00B17989 /* LatestProductsResponse.swift in Sources */,
 				77BEE52329C71D500055EFB4 /* TopView.swift in Sources */,
 				77BEE51729C71C410055EFB4 /* CircleButtonView.swift in Sources */,
 				776F648929BF6A9400B6C808 /* DetailCoordinator.swift in Sources */,
+				63378B3B29CE16FC00B17989 /* FlashSaleResponse.swift in Sources */,
 				776F647D29BF6A1300B6C808 /* PersonInfoView.swift in Sources */,
 				776F647F29BF6A2000B6C808 /* LoginView.swift in Sources */,
 				77BEE52729C71DEA0055EFB4 /* MainImage.swift in Sources */,
 				77627C3B29C8814700EA0E11 /* UserData.xcdatamodeld in Sources */,
 				77BEE51929C71C570055EFB4 /* TabContents.swift in Sources */,
+				63378B4129CE1C2A00B17989 /* URLConstants.swift in Sources */,
 				77BEE51529C71C160055EFB4 /* SearchBarView.swift in Sources */,
 				776F649929BF82BC00B6C808 /* Coordinator.swift in Sources */,
 				77D2B30B29CB6F210013D3DF /* ImagePicker.swift in Sources */,
@@ -468,6 +503,7 @@
 				776F647329BF694400B6C808 /* MainView.swift in Sources */,
 				77FA557C29C73F8E009638F3 /* CustomTextField.swift in Sources */,
 				77BEE50629C719010055EFB4 /* SignUpAssembly.swift in Sources */,
+				63378B3E29CE192F00B17989 /* ProductDetails.swift in Sources */,
 				776F648329BF6A4B00B6C808 /* PersonInfoViewModel.swift in Sources */,
 				77BEE52929C71E110055EFB4 /* ZoomImagesView.swift in Sources */,
 				77BEE51329C71BE00055EFB4 /* TopBarView.swift in Sources */,
