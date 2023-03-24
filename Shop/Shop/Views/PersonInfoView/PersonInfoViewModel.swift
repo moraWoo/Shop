@@ -3,7 +3,6 @@ import Combine
 
 class PersonInfoViewModel: ObservableObject {
     @Published var profileImage: UIImage?
-    @Published var userFirstName = ""
     
     var coordinator: PersonInfoCoordinator
     var loginCoordinator: LoginCoordinator
