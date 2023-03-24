@@ -20,6 +20,10 @@ class MainViewModel: ObservableObject {
         self.userRepository = userRepository
         
         fetchLoggedInUser()
+        if let currentUser = userRepository.currentUser,
+           let avatarData = currentUser.avatar {
+            profileImage = UIImage(data: avatarData)
+        }
     }
     
     func goToMainView() {

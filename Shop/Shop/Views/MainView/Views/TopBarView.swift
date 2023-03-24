@@ -23,7 +23,7 @@ struct TopBarView: View {
                 .foregroundColor(Color(red: 78/255, green: 85/255, blue: 215/255))
             Spacer()
             VStack() {
-                if let uiImage = profileImage {
+                if let uiImage = viewModel.profileImage {
                     Image(uiImage: uiImage)
                         .resizable()
                         .frame(width: 25, height: 25)
