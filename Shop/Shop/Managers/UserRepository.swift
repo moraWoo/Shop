@@ -1,5 +1,6 @@
 import CoreData
 import Combine
+import UIKit
 
 class UserRepository: ObservableObject {
     @Published var firstName: String?
@@ -102,5 +103,13 @@ class UserRepository: ObservableObject {
             print("Error saving context: \(error)")
         }
     }
+    
+    func updateAvatar(user: User, avatar: UIImage) {
+        if let data = avatar.jpegData(compressionQuality: 1.0) {
+            user.avatar = data
+            saveContext()
+        }
+    }
+
 }
 

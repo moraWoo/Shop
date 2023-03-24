@@ -6,6 +6,8 @@ struct ImagePicker: UIViewControllerRepresentable {
     @Binding var image: UIImage?
     @ObservedObject var viewModel: PersonInfoViewModel
     let firstName: String
+    var onFinishPicking: (UIImage) -> Void // Добавьте эту строку
+
 
     func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
         let picker = UIImagePickerController()
@@ -17,27 +19,41 @@ struct ImagePicker: UIViewControllerRepresentable {
     }
     
     func makeCoordinator() -> Coordinator {
-        Coordinator(self)
+        Coordinator(self, imageBinding: $image, viewModel: viewModel)
     }
     
     class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
         let parent: ImagePicker
-        
-        init(_ parent: ImagePicker) {
+        let imageBinding: Binding<UIImage?>
+        let viewModel: PersonInfoViewModel
+
+        init(_ parent: ImagePicker, imageBinding: Binding<UIImage?>, viewModel: PersonInfoViewModel) {
             self.parent = parent
+            self.imageBinding = imageBinding
+            self.viewModel = viewModel
         }
-        
+
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-            if let uiImage = info[.originalImage] as? UIImage {
-                parent.image = uiImage
+            if let uiImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+                imageBinding.wrappedValue = uiImage
+                viewModel.updateAvatar(image: uiImage)
             }
-            print("imagePickerController")
-            parent.presentationMode.wrappedValue.dismiss()
+            picker.dismiss(animated: true)
         }
-        
+
         func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
             parent.presentationMode.wrappedValue.dismiss()
         }
     }
+
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let uiImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            image = uiImage
+            onFinishPicking(uiImage) // Добавьте эту строку
+        }
+        picker.dismiss(animated: true)
+    }
+
 }
 

@@ -32,7 +32,14 @@ struct TopView: View {
                     .foregroundColor(Color(red: 128/255, green: 128/255, blue: 128/255))
             }
             .sheet(isPresented: $showImagePicker) {
-                ImagePicker(image: $profileImage, viewModel: viewModel, firstName: viewModel.firstName ?? "Name haven't loaded")
+                ImagePicker(
+                    image: $profileImage,
+                    viewModel: viewModel,
+                    firstName: viewModel.firstName ?? "Name haven't loaded",
+                    onFinishPicking: { image in
+                        viewModel.updateAvatar(image: image)
+                    }
+                )
             }
 
             Text(viewModel.userRepository.currentUser?.firstName ?? "Not Loaded Name")

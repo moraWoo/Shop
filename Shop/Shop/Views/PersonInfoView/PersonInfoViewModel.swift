@@ -21,6 +21,11 @@ class PersonInfoViewModel: ObservableObject {
         self.coordinator = coordinator
         self.loginCoordinator = loginCoordinator
         self.userRepository = userRepository
+        
+        if let currentUser = userRepository.currentUser,
+           let avatarData = currentUser.avatar {
+            profileImage = UIImage(data: avatarData)
+        }
     }
     
     func logout() {
@@ -42,6 +47,13 @@ class PersonInfoViewModel: ObservableObject {
         DispatchQueue.main.async {
             let loginView = self.loginCoordinator.start()
             parentCoordinator.currentView = loginView
+        }
+    }
+    
+    func updateAvatar(image: UIImage) {
+        if let user = userRepository.currentUser {
+            userRepository.updateAvatar(user: user, avatar: image)
+            profileImage = image
         }
     }
 
