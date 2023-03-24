@@ -1,5 +1,6 @@
 import SwiftUI
 
+
 struct TopView: View {
     @EnvironmentObject var viewModel: PersonInfoViewModel
     @Binding var profileImage: UIImage?
