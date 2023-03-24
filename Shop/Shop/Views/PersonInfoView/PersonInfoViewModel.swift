@@ -18,20 +18,6 @@ class PersonInfoViewModel: ObservableObject {
         self.coordinator = coordinator
         self.loginCoordinator = loginCoordinator
         self.userRepository = userRepository
-        
-        // Set the user's first name when the currentUser is updated
-        userRepository.$currentUser
-            .compactMap { $0?.firstName }
-            .assign(to: \.userFirstName, on: self)
-            .store(in: &cancellableSet)
-        
-        // Load the user's avatar when the currentUser is updated
-        userRepository.$currentUser
-            .compactMap { $0?.firstName }
-            .sink { [weak self] firstName in
-                self?.loadAvatar(firstName: firstName)
-            }
-            .store(in: &cancellableSet)
     }
     
     func logout() {
@@ -45,23 +31,5 @@ class PersonInfoViewModel: ObservableObject {
                 parentCoordinator.currentView = loginView
             }
         }
-    }
-    
-    func saveAvatar(firstName: String, avatar: UIImage) {
-        userRepository.saveUserAvatar(firstName: firstName, avatar: avatar)
-            .sink { success in
-                print("Avatar save result: \(success)")
-            }
-            .store(in: &cancellableSet)
-    }
-
-    func loadAvatar(firstName: String) {
-        userRepository.loadUserAvatar(firstName: firstName)
-            .sink { avatar in
-                if let avatar = avatar {
-                    // Обработка загруженного аватара
-                }
-            }
-            .store(in: &cancellableSet)
     }
 }

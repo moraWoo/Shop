@@ -17,7 +17,6 @@ class UserRepository: ObservableObject {
         newUser.lastName = lastName
         newUser.email = email
         newUser.password = "123"
-
         do {
             try coreDataManger.persistentContainer.viewContext.save()
             return Just(true).eraseToAnyPublisher()
@@ -48,58 +47,6 @@ class UserRepository: ObservableObject {
 
         do {
             let result = try coreDataManger.persistentContainer.viewContext.fetch(fetchRequest)
-            return Just(result.first)
-                .handleEvents(receiveOutput: { [weak self] user in
-                    self?.currentUser = user
-                })
-                .eraseToAnyPublisher()
-        } catch {
-            print("Error fetching user: \(error)")
-            return Just(nil).eraseToAnyPublisher()
-        }
-    }
-
-    func saveUserAvatar(firstName: String, avatar: UIImage) -> AnyPublisher<Bool, Never> {
-        let context = coreDataManger.persistentContainer.viewContext
-        let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "firstName == %@", firstName)
-        
-        do {
-            let result = try coreDataManger.persistentContainer.viewContext.fetch(fetchRequest)
-            print("result: \(result)")
-            if let user = result.first, let avatarData = avatar.jpegData(compressionQuality: 1.0) {
-                user.avatar = avatarData
-                try coreDataManger.persistentContainer.viewContext.save()
-                return Just(true).eraseToAnyPublisher()
-            } else {
-                print("User not found or unable to convert avatar to data")
-                return Just(false).eraseToAnyPublisher()
-            }
-        } catch {
-            print("Error fetching user: \(error)")
-            return Just(false).eraseToAnyPublisher()
-        }
-    }
-
-
-    func loadUserAvatar(firstName: String) -> AnyPublisher<UIImage?, Never> {
-        let context = coreDataManger.persistentContainer.viewContext
-        let userPublisher = fetchUserByFirstName(firstName, context: context)
-
-        return userPublisher.map { user -> UIImage? in
-            if let avatarData = user?.avatar {
-                return UIImage(data: avatarData)
-            }
-            return nil
-        }.eraseToAnyPublisher()
-    }
-
-    private func fetchUserByFirstName(_ firstName: String, context: NSManagedObjectContext) -> AnyPublisher<User?, Never> {
-        let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "firstName == %@", firstName)
-
-        do {
-            let result = try context.fetch(fetchRequest)
             return Just(result.first).eraseToAnyPublisher()
         } catch {
             print("Error fetching user: \(error)")

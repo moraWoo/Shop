@@ -7,8 +7,6 @@ struct ImagePicker: UIViewControllerRepresentable {
     @EnvironmentObject var viewModel: PersonInfoViewModel
     let firstName: String
 
-
-    
     func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
         let picker = UIImagePickerController()
         picker.delegate = context.coordinator
@@ -32,7 +30,6 @@ struct ImagePicker: UIViewControllerRepresentable {
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
             if let uiImage = info[.originalImage] as? UIImage {
                 parent.image = uiImage
-                parent.viewModel.saveAvatar(firstName: parent.firstName, avatar: uiImage)
             }
             print("imagePickerController")
             parent.presentationMode.wrappedValue.dismiss()
