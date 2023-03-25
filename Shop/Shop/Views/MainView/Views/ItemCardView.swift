@@ -65,10 +65,12 @@ struct ItemCardView: View {
                     if row == 0 {
                         Button(action: {}) {
                             Image(systemName: "plus")
-                                .foregroundColor(.white)
-                                .padding(8)
-                                .background(Color.blue)
+                                .resizable()
+                                .padding(4)
+                                .background(Color(red: 229/255, green: 233/255, blue: 239/255))
+                                .foregroundColor(Color(red: 84/255, green: 85/255, blue: 137/255))
                                 .clipShape(Circle())
+                                .frame(width: 20, height: 20)
                         }
                         .padding(.trailing, 8)
                         .padding(.bottom, 8)
@@ -76,18 +78,22 @@ struct ItemCardView: View {
                         HStack(spacing: 4) {
                             Button(action: {}) {
                                 Image(systemName: "heart")
-                                    .foregroundColor(.white)
+                                    .resizable()
                                     .padding(8)
-                                    .background(Color.red)
+                                    .background(Color(red: 229/255, green: 233/255, blue: 239/255))
+                                    .foregroundColor(Color(red: 84/255, green: 85/255, blue: 137/255))
                                     .clipShape(Circle())
+                                    .frame(width: 28, height: 28)
                             }
 
                             Button(action: {}) {
                                 Image(systemName: "plus")
-                                    .foregroundColor(.white)
+                                    .resizable()
                                     .padding(8)
-                                    .background(Color.blue)
+                                    .background(Color(red: 229/255, green: 233/255, blue: 239/255))
+                                    .foregroundColor(Color(red: 84/255, green: 85/255, blue: 137/255))
                                     .clipShape(Circle())
+                                    .frame(width: 35, height: 35)
                             }
                         }
                         .padding(.trailing, 8)
