@@ -8,7 +8,8 @@ class MainCoordinator: Coordinator {
     var view: AnyView?
     let userRepository = UserRepository()
     let networkManager = NetworkManager()
-    
+    let navigationManager = NavigationManager()
+
     func start() -> AnyView {
         let dependencies = AppDependencies(
             signUpCoordinator: SignUpCoordinator(),
@@ -16,6 +17,7 @@ class MainCoordinator: Coordinator {
             mainCoordinator: self,
             personInfoCoordinator: PersonInfoCoordinator(),
             detailCoordinator: DetailCoordinator(),
+            navigationManager: navigationManager,
             userRepository: userRepository,
             networkManager: networkManager
         )
@@ -55,7 +57,8 @@ class MainCoordinator: Coordinator {
                     coordinator: self,
                     personInfoCoordinator: personInfoCoordinator,
                     userRepository: self.userRepository,
-                    networkManager: self.networkManager
+                    networkManager: self.networkManager,
+                    navigationManager: self.navigationManager
                 )
             )
             self.view = AnyView(mainView)

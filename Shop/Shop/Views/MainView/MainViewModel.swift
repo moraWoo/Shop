@@ -2,13 +2,16 @@ import SwiftUI
 import Combine
 
 class MainViewModel: ObservableObject {
-    
     @Published var profileImage: UIImage?
     @Published var firstName: String?
     @Published var items: [[Any]] = [[], [], []]
 
     var coordinator: MainCoordinator
     var personInfoCoordinator: PersonInfoCoordinator
+    var detailCoordinator: DetailCoordinator
+
+    let navigationManager: NavigationManager
+
     private let userRepository: UserRepository
     private let networkManager: NetworkManager
     private var cancellableSet: Set<AnyCancellable> = []
@@ -17,20 +20,22 @@ class MainViewModel: ObservableObject {
         coordinator: MainCoordinator,
         personInfoCoordinator: PersonInfoCoordinator,
         userRepository: UserRepository,
-        networkManager: NetworkManager
+        networkManager: NetworkManager,
+        navigationManager: NavigationManager
     ) {
         self.coordinator = coordinator
         self.personInfoCoordinator = personInfoCoordinator
         self.userRepository = userRepository
         self.networkManager = networkManager
-        
-        fetchLoggedInUser()
+        self.navigationManager = navigationManager
+
         if let currentUser = userRepository.currentUser,
            let avatarData = currentUser.avatar {
             profileImage = UIImage(data: avatarData)
         }
         
         fetchLatestAndFlashSaleProducts()
+        fetchLoggedInUser()
     }
     
     func goToMainView() {
@@ -90,6 +95,12 @@ class MainViewModel: ObservableObject {
                 }
             }
             .store(in: &cancellableSet)
+    }
+    
+    func showDetailView() {
+        let detailViewModel = DetailViewModel(coordinator: detailCoordinator, networkManager: networkManager)
+        let detailView = DetailView(viewModel: detailViewModel).environmentObject(navigationManager)
+        navigationManager.navigateTo(view: AnyView(detailView))
     }
 }
 

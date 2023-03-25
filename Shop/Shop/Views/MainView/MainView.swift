@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct MainView: View {
-    
+    @EnvironmentObject var appCoordinator: AppCoordinator
     @ObservedObject var viewModel: MainViewModel
     @State private var selectedTab = 0
     
@@ -12,7 +12,7 @@ struct MainView: View {
                     TopBarView(viewModel: viewModel, profileImage: $viewModel.profileImage)
                     SearchBarView()
                     CircleButtonView()
-                    ItemRowView(selectedTab: $selectedTab, items: viewModel.items)
+                    ItemRowView(viewModel: viewModel, selectedTab: $selectedTab, items: viewModel.items, navigationManager: viewModel.navigationManager)
                 }
                 VStack {
                     Spacer()

@@ -2,11 +2,14 @@ import SwiftUI
 import Combine
 
 struct ItemCardView: View {
-    
+
     @State private var uiImage: UIImage? = nil
     @State private var isLoading: Bool = true
+    
     let item: Any
     let row: Int
+    
+    var viewModel: MainViewModel
     
     private func loadImage() {
         if let latestProduct = item as? LatestProduct, let url = URL(string: latestProduct.imageURL) {
@@ -69,5 +72,8 @@ struct ItemCardView: View {
             }
         }
         .onAppear(perform: loadImage)
+        .onTapGesture {
+            viewModel.showDetailView()
+        }
     }
 }

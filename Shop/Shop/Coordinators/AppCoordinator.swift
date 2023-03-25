@@ -5,6 +5,8 @@ class AppCoordinator: ObservableObject, Coordinator {
     
     @Published var currentView: AnyView = AnyView(EmptyView())
     
+    let navigationManager = NavigationManager()
+    
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?
         
