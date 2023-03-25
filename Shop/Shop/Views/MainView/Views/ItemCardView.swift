@@ -6,7 +6,7 @@ struct ItemCardView: View {
     let row: Int
     @State private var uiImage: UIImage? = nil
     @State private var isLoading: Bool = true
-        
+    
     private func loadImage() {
         if let latestProduct = item as? LatestProduct, let url = URL(string: latestProduct.imageURL) {
             DispatchQueue.global().async {
@@ -28,14 +28,14 @@ struct ItemCardView: View {
             }
         }
     }
-
-
+    
+    
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
             let width: CGFloat = row == 1 ? 174 : 114
             let height: CGFloat = row == 1 ? 221 : 149
             let placeholder = RoundedRectangle(cornerRadius: 10).fill(Color.gray).opacity(0.1)
-
+            
             if isLoading {
                 ProgressView()
                     .frame(width: width, height: height)
@@ -53,27 +53,17 @@ struct ItemCardView: View {
                     .redacted(reason: .placeholder)
                     .cornerRadius(20)
             }
-
+            
             Text("qqq")
                 .foregroundColor(.white)
                 .padding()
-
+            
             VStack {
                 Spacer()
                 HStack {
                     Spacer()
                     if row == 0 {
-                        Button(action: {}) {
-                            Image(systemName: "plus")
-                                .resizable()
-                                .padding(4)
-                                .background(Color(red: 229/255, green: 233/255, blue: 239/255))
-                                .foregroundColor(Color(red: 84/255, green: 85/255, blue: 137/255))
-                                .clipShape(Circle())
-                                .frame(width: 20, height: 20)
-                        }
-                        .padding(.trailing, 8)
-                        .padding(.bottom, 8)
+                        LatestItem()
                     } else if row == 1 {
                         HStack(spacing: 4) {
                             Button(action: {}) {
@@ -85,7 +75,7 @@ struct ItemCardView: View {
                                     .clipShape(Circle())
                                     .frame(width: 28, height: 28)
                             }
-
+                            
                             Button(action: {}) {
                                 Image(systemName: "plus")
                                     .resizable()

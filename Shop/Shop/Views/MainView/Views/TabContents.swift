@@ -17,7 +17,7 @@ struct Tab1View: View {
                         rowContent(row: row)
                     }
                 }
-            }
+            }.padding(.bottom, 87)
         }
     }
     
