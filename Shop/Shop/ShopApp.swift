@@ -3,6 +3,7 @@ import Combine
 
 @main
 struct ShopApp: App {
+    
     let assembly: AppAssembly
 
     @StateObject var appCoordinator: AppCoordinator = {
@@ -14,6 +15,7 @@ struct ShopApp: App {
     }
 
     var body: some Scene {
+        
         let contentView = appCoordinator.start().environmentObject(appCoordinator)
         WindowGroup {
             contentView.environmentObject(appCoordinator)
