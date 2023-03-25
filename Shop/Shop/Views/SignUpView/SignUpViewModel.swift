@@ -152,10 +152,6 @@ class SignUpViewModel: ObservableObject {
             .store(in: &cancellableSet)
     }
 
-
-
-
-    
     func checkUser() {
         userRepository.checkUser(firstName: firstName)
             .sink { user in

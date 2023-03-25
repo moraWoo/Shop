@@ -2,10 +2,10 @@ import SwiftUI
 import Combine
 
 struct ItemCardView: View {
-    let item: Any
-    let row: Int
     @State private var uiImage: UIImage? = nil
     @State private var isLoading: Bool = true
+    let item: Any
+    let row: Int
     
     private func loadImage() {
         if let latestProduct = item as? LatestProduct, let url = URL(string: latestProduct.imageURL) {
@@ -70,7 +70,9 @@ struct ItemCardView: View {
         }
         .onAppear(perform: loadImage)
     }
+    
 }
+
 
 
 
