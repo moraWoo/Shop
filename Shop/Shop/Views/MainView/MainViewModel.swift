@@ -4,8 +4,8 @@ import Combine
 class MainViewModel: ObservableObject {
     @Published var profileImage: UIImage?
     @Published var firstName: String?
-    @Published var items: [[Any]] = [[], []]
-    
+    @Published var items: [[Any]] = [[], [], []]
+
     var coordinator: MainCoordinator
     var personInfoCoordinator: PersonInfoCoordinator
     private let userRepository: UserRepository
@@ -89,6 +89,7 @@ class MainViewModel: ObservableObject {
                 DispatchQueue.main.async {
                     self?.items[0] = latestProductsResponse.latest
                     self?.items[1] = flashSaleResponse.flashSale
+                    self?.items[2] = latestProductsResponse.latest + flashSaleResponse.flashSale
                 }
             }
             .store(in: &cancellableSet)

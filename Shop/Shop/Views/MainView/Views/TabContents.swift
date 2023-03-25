@@ -9,7 +9,7 @@ struct Tab1View: View {
     ]
 
     var body: some View {
-        ScrollView {
+        ScrollView(showsIndicators: false) {
             VStack {
                 ForEach(0..<items.count) { row in
                     VStack(alignment: .trailing) {
