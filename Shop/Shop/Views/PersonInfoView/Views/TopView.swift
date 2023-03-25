@@ -30,6 +30,7 @@ struct TopView: View {
                 Text("Change photo")
                     .customFont(size: 8, weight: .medium)
                     .foregroundColor(Color(red: 128/255, green: 128/255, blue: 128/255))
+                    .padding(.bottom, 10)
             }
             .sheet(isPresented: $showImagePicker) {
                 ImagePicker(

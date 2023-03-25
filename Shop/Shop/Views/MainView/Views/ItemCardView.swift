@@ -54,10 +54,6 @@ struct ItemCardView: View {
                     .cornerRadius(20)
             }
             
-            Text("qqq")
-                .foregroundColor(.white)
-                .padding()
-            
             VStack {
                 Spacer()
                 HStack {
