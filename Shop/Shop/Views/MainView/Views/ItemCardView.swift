@@ -62,12 +62,12 @@ struct ItemCardView: View {
                 Spacer()
                 HStack {
                     Spacer()
-                    if row == 0 {
-                        LatestItem()
-                    } else if row == 1 {
-                        FlashSaleItem()
-                    } else {
-                        LatestItem()
+                    if let latestProduct = item as? LatestProduct, row == 0 {
+                        LatestItem(latestProduct: latestProduct)
+                    } else if let flashSaleProduct = item as? FlashSaleProduct, row == 1 {
+                        FlashSaleItem(flashSaleProduct: flashSaleProduct)
+                    } else if let latestProduct = item as? LatestProduct, row == 2 {
+                        LatestItem(latestProduct: latestProduct)
                     }
                 }
             }

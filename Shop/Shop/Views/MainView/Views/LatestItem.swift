@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct LatestItem: View {
+    let latestProduct: LatestProduct
+
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
@@ -16,15 +18,15 @@ struct LatestItem: View {
                     .frame(width: 35, height: 12)
                     .cornerRadius(5)
                     .overlay(
-                        Text("Phones")
+                        Text(latestProduct.category)
                             .foregroundColor(Color(red: 7/255, green: 6/255, blue: 4/255))
                             .customFont(size: 6, weight: .semibold)
                     )
-                Text("Text 1")
+                Text(latestProduct.name)
                     .customFont(size: 9, weight: .semibold)
                     .foregroundColor(.white)
                     .frame(height: 26)
-                Text("Text 2")
+                Text("$ \(latestProduct.price)")
                     .customFont(size: 7, weight: .semibold)
                     .foregroundColor(.white)
             }
@@ -45,10 +47,4 @@ struct LatestItem: View {
                 .padding(.bottom, 10)
                 .padding(.trailing, 10)
                 , alignment: .bottomTrailing)    }
-}
-
-struct LatestItem_Previews: PreviewProvider {
-    static var previews: some View {
-        LatestItem()
-    }
 }

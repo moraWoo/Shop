@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct FlashSaleItem: View {
+    let flashSaleProduct: FlashSaleProduct
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
@@ -16,17 +17,17 @@ struct FlashSaleItem: View {
                     .frame(width: 50, height: 17)
                     .cornerRadius(8)
                     .overlay(
-                        Text("Phones")
+                        Text(flashSaleProduct.category)
                             .foregroundColor(Color(red: 7/255, green: 6/255, blue: 4/255))
                             .customFont(size: 9, weight: .semibold)
                     )
                 VStack(alignment: .leading) {
-                    Text("New balance sneakers")
+                    Text(flashSaleProduct.name)
                         .customFont(size: 16, weight: .semibold)
                         .foregroundColor(.white)
                         .frame(width: 80)
                         .padding(.bottom, 10)
-                    Text("$ 33,00")
+                    Text("$ \(flashSaleProduct.price)")
                         .customFont(size: 13, weight: .semibold)
                         .foregroundColor(.white)
                 }
@@ -70,11 +71,5 @@ struct FlashSaleItem: View {
                 .padding(.bottom, 8)
                 .padding(.top, 8)
         }
-    }
-}
-
-struct FlashSaleItem_Previews: PreviewProvider {
-    static var previews: some View {
-        FlashSaleItem()
     }
 }
