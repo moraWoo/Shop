@@ -23,6 +23,7 @@ struct LatestItem: View {
                 Text("Text 1")
                     .customFont(size: 9, weight: .semibold)
                     .foregroundColor(.white)
+                    .frame(height: 26)
                 Text("Text 2")
                     .customFont(size: 7, weight: .semibold)
                     .foregroundColor(.white)

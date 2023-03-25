@@ -65,29 +65,9 @@ struct ItemCardView: View {
                     if row == 0 {
                         LatestItem()
                     } else if row == 1 {
-                        HStack(spacing: 4) {
-                            Button(action: {}) {
-                                Image(systemName: "heart")
-                                    .resizable()
-                                    .padding(8)
-                                    .background(Color(red: 229/255, green: 233/255, blue: 239/255))
-                                    .foregroundColor(Color(red: 84/255, green: 85/255, blue: 137/255))
-                                    .clipShape(Circle())
-                                    .frame(width: 28, height: 28)
-                            }
-                            
-                            Button(action: {}) {
-                                Image(systemName: "plus")
-                                    .resizable()
-                                    .padding(8)
-                                    .background(Color(red: 229/255, green: 233/255, blue: 239/255))
-                                    .foregroundColor(Color(red: 84/255, green: 85/255, blue: 137/255))
-                                    .clipShape(Circle())
-                                    .frame(width: 35, height: 35)
-                            }
-                        }
-                        .padding(.trailing, 8)
-                        .padding(.bottom, 8)
+                        FlashSaleItem()
+                    } else {
+                        LatestItem()
                     }
                 }
             }
