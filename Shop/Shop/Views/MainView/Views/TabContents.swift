@@ -1,7 +1,9 @@
 import SwiftUI
 
+import SwiftUI
+
 struct Tab1View: View {
-    let items: [[String]]
+    let items: [[Any]]
     let title = [
         "Latest", "Flash Sale", "Brands"
     ]
@@ -11,36 +13,49 @@ struct Tab1View: View {
             VStack {
                 ForEach(0..<items.count) { row in
                     VStack(alignment: .trailing) {
-                        HStack(alignment: .bottomText) {
-                            Text(title[row])
-                                .customFont(size: 15, weight: .medium)
-                                .foregroundColor(Color(red: 4/255, green: 4/255, blue: 2/255))
-                                .alignmentGuide(.bottomText) { d in d[.bottom] }
-                            Spacer()
-                            Button(action: {}) {
-                                Text("View all")
-                                    .customFont(size: 9, weight: .medium)
-                                    .foregroundColor(Color(red: 128/255, green: 128/255, blue: 128/255))
-                                    .alignmentGuide(.bottomText) { d in d[.bottom]
-                                    
-                                    }
-                            }
-                        }
-                        .padding(.horizontal, 11)
-                            
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            HStack(spacing: 12) {
-                                ForEach(items[row], id: \.self) { item in
-                                    ItemCardView(item: item as? String ?? "", row: row)
-                                }
-                            }
-                            .padding(.horizontal, 11) // Добавляем отступы слева и справа по 11 для элементов
-                        }
+                        rowTitle(row: row)
+                        rowContent(row: row)
                     }
                 }
             }
         }
     }
+    
+    private func rowTitle(row: Int) -> some View {
+        HStack(alignment: .bottomText) {
+            Text(title[row])
+                .customFont(size: 15, weight: .medium)
+                .foregroundColor(Color(red: 4/255, green: 4/255, blue: 2/255))
+                .alignmentGuide(.bottomText) { d in d[.bottom] }
+            Spacer()
+            Button(action: {}) {
+                Text("View all")
+                    .customFont(size: 9, weight: .medium)
+                    .foregroundColor(Color(red: 128/255, green: 128/255, blue: 128/255))
+                    .alignmentGuide(.bottomText) { d in d[.bottom]
+                    
+                    }
+            }
+        }
+        .padding(.horizontal, 11)
+    }
+    
+    private func rowContent(row: Int) -> some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 12) {
+                ForEach(0..<items[row].count, id: \.self) { index in
+                    let item = items[row][index]
+                    if let latestProduct = item as? LatestProduct {
+                        ItemCardView(item: latestProduct.name, row: row)
+                    } else if let flashSaleProduct = item as? FlashSaleProduct {
+                        ItemCardView(item: flashSaleProduct.name, row: row)
+                    }
+                }
+            }
+            .padding(.horizontal, 11)
+        }
+    }
+
 }
 
 

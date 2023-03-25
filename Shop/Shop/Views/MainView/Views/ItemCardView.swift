@@ -1,8 +1,5 @@
 import SwiftUI
-
-import SwiftUI
 import Combine
-import Foundation
 
 class ImageLoader: ObservableObject {
     @Published var image: UIImage?
@@ -66,9 +63,10 @@ struct ItemCardView: View {
                 placeholder.frame(width: width, height: height)
             }
 
-            Text("qqq")//displayedText(for: item))
+            Text("qqq")
                 .foregroundColor(.white)
-
+                .padding()
+            
             VStack {
                 Spacer()
                 HStack {

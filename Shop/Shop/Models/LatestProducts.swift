@@ -1,6 +1,11 @@
 import Foundation
 
-struct LatestProduct: Codable {
+struct LatestProductsResponse: Codable {
+    let latest: [LatestProduct]
+}
+
+struct LatestProduct: Codable, Identifiable {
+    let id = UUID()
     let category: String
     let name: String
     let price: Int
@@ -12,8 +17,4 @@ struct LatestProduct: Codable {
         case price
         case imageURL = "image_url"
     }
-}
-
-struct LatestProductsResponse: Codable {
-    let latest: [LatestProduct]
 }

@@ -1,9 +1,9 @@
 import SwiftUI
 
 struct ItemRowView: View {
-    let items: [[String]]
-
     @Binding var selectedTab: Int
+    
+    let items: [[Any]]
 
     var body: some View {
         VStack(spacing: 0) {

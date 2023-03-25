@@ -2,8 +2,6 @@ import SwiftUI
 
 struct MainView: View {
     @ObservedObject var viewModel: MainViewModel
-
-    @State private var items: [[String]] = [[], [], []]
     @State private var selectedTab = 0
     
     var body: some View {
@@ -13,7 +11,7 @@ struct MainView: View {
                     TopBarView(viewModel: viewModel, profileImage: $viewModel.profileImage)
                     SearchBarView()
                     CircleButtonView()
-                    ItemRowView(items: items, selectedTab: $selectedTab)
+                    ItemRowView(selectedTab: $selectedTab, items: viewModel.items)
                 }
                 VStack {
                     Spacer()
@@ -28,7 +26,7 @@ struct MainView: View {
                 }
             })
             .onAppear {
-                self.items = viewModel.mainViewItems.map { $0.compactMap { $0 as? String } }
+                self.viewModel.fetchLatestAndFlashSaleProducts()
             }
         }
     }
