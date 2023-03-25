@@ -35,7 +35,6 @@ class MainViewModel: ObservableObject {
     
     func goToMainView() {
         coordinator.goToMainView()
-        print("After goToMainView()")
         coordinator.parentCoordinator?.addChildCoordinator(coordinator)
     }
     
@@ -49,8 +48,6 @@ class MainViewModel: ObservableObject {
             print("Parent coordinator is nil")
             return
         }
-        print("Parent coordinator type:", type(of: parentCoordinator))
-        print("Child coordinators:", parentCoordinator.childCoordinators)
         
         parentCoordinator.removeChildCoordinator(personInfoCoordinator)
         personInfoCoordinator.parentCoordinator = parentCoordinator

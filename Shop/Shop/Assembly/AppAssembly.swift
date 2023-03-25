@@ -42,8 +42,6 @@ class AppAssembly {
             appCoordinator.addChildCoordinator(detailCoordinator)
         }
         
-        print("AppCoordinator child coordinators:", appCoordinator.childCoordinators)
-        print("AppCoordinator child coordinators:", appCoordinator.childCoordinators)
         if let mainCoordinatorParentCoordinator = mainAssembly.dependencies.mainCoordinator?.parentCoordinator {
             print("MainCoordinator parent coordinator:", mainCoordinatorParentCoordinator)
         } else {

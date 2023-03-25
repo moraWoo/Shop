@@ -20,7 +20,6 @@ struct LoginView: View, SecuredTextFieldParentProtocol {
             
             VStack {
                 Button {
-                    print("Login...")
                     performHideKeyboard()
                     viewModel.login()
                 } label: {

@@ -72,7 +72,6 @@ class LoginViewModel: ObservableObject {
     
     func successfulLogin() {
         goToMainView()
-        print("successfulLogin \(self.firstName)")
     }
     
     func goToMainView() {
@@ -80,8 +79,6 @@ class LoginViewModel: ObservableObject {
             print("Parent coordinator is nil")
             return
         }
-        print("Parent coordinator type:", type(of: parentCoordinator))
-        print("Child coordinators:", parentCoordinator.childCoordinators)
         
         parentCoordinator.removeChildCoordinator(mainCoordinator)
         mainCoordinator.parentCoordinator = parentCoordinator
@@ -101,7 +98,6 @@ class LoginViewModel: ObservableObject {
         userRepository.checkUser(firstName: firstName, password: password)
             .sink { user in
                 if let user = user {
-                    print("User logged in successfully")
                     self.userRepository.setIsLogged(user: user, isLogged: true) // добавьте эту строку
                     self.successfulLogin()
                 } else {

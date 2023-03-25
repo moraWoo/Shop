@@ -23,7 +23,6 @@ struct SignUpView: View {
                         if viewModel.firstName.isEmpty || viewModel.lastName.isEmpty || viewModel.email.isEmpty {
                             showingAlertTextFieldsIsEmpty = true
                         } else {
-                            print("Sign in...")
                             showPasswordInput = true
                         }
                     } label: {

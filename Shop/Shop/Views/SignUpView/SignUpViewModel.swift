@@ -102,8 +102,6 @@ class SignUpViewModel: ObservableObject {
             print("Parent coordinator is nil")
             return
         }
-        print("Parent coordinator type:", type(of: parentCoordinator))
-        print("Child coordinators:", parentCoordinator.childCoordinators)
         
         parentCoordinator.removeChildCoordinator(loginCoordinator)
         loginCoordinator.parentCoordinator = parentCoordinator
@@ -118,8 +116,6 @@ class SignUpViewModel: ObservableObject {
             print("Parent coordinator is nil")
             return
         }
-        print("Parent coordinator type:", type(of: parentCoordinator))
-        print("Child coordinators:", parentCoordinator.childCoordinators)
         
         parentCoordinator.removeChildCoordinator(mainCoordinator)
         mainCoordinator.parentCoordinator = parentCoordinator
@@ -132,9 +128,7 @@ class SignUpViewModel: ObservableObject {
     func signUp() {
         userRepository.createUser(firstName: firstName, lastName: lastName, email: email, password: password)
             .sink { success in
-                if success {
-                    print("User created successfully")
-                    
+                if success {                    
                     self.userRepository.checkUser(firstName: self.firstName)
                         .sink { user in
                             if let user = user {

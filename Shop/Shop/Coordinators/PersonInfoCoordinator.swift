@@ -19,7 +19,6 @@ class PersonInfoCoordinator: Coordinator {
         )
         let personInfoView = PersonInfoAssembly(dependencies: dependencies).assemble(userRepository: userRepository)
         view = AnyView(personInfoView)
-        print("View from PersonInfoCoordinator \(String(describing: view))")
         if let view = view {
             return view
         } else {

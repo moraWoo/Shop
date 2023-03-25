@@ -10,7 +10,6 @@ class MainAssembly {
     
     func assemble(userRepository: UserRepository) -> some View {
         
-        print("MainAssembly assemble()")
         if let mainCoordinator = dependencies.mainCoordinator,
            let personInfoCoordinator = dependencies.personInfoCoordinator {
             let viewModel = MainViewModel(

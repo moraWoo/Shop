@@ -70,7 +70,6 @@ class UserRepository: ObservableObject {
             if let user = result.first {
                 DispatchQueue.main.async {
                     self.firstName = user.firstName
-                    print("FirstName from UserRepository: \(String(describing: self.firstName))")
                 }
             }
             return Just(result.first).eraseToAnyPublisher()
