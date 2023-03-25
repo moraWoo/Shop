@@ -1,13 +1,7 @@
-//
-//  MainImage.swift
-//  Shop
-//
-//  Created by Ильдар on 19.03.2023.
-//
-
 import SwiftUI
 
 struct MainImage: View {
+    
     var body: some View {
         HStack(alignment: .top) {
             Image("detailImage")
@@ -17,11 +11,5 @@ struct MainImage: View {
                 .clipShape(RoundedCornersShape(corners: [.topRight, .bottomRight], radius: 9))
             Spacer()
         }
-    }
-}
-
-struct MainImage_Previews: PreviewProvider {
-    static var previews: some View {
-        MainImage()
     }
 }

@@ -1,14 +1,8 @@
-//
-//  ZoomImagesView.swift
-//  Shop
-//
-//  Created by Ильдар on 19.03.2023.
-//
-
 import SwiftUI
 
 struct ZoomImagesView: View {
-    @State private var selectedImage: Int? = 1 // Set the initial selected image index to 1
+    
+    @State private var selectedImage: Int? = 1
     
     let images = ["miniImage1", "miniImage2", "miniImage3"]
     
@@ -28,11 +22,5 @@ struct ZoomImagesView: View {
                     }
             }
         }
-    }
-}
-
-struct ZoomImagesView_Previews: PreviewProvider {
-    static var previews: some View {
-        ZoomImagesView()
     }
 }

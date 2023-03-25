@@ -2,6 +2,7 @@ import SwiftUI
 import Combine
 
 class MainCoordinator: Coordinator {
+    
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?
     var view: AnyView?
@@ -45,6 +46,7 @@ class MainCoordinator: Coordinator {
     }
     
     func goToMainView() {
+        
         let personInfoCoordinator = PersonInfoCoordinator()
 
         DispatchQueue.main.async { [weak self] in

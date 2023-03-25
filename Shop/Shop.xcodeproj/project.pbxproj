@@ -193,7 +193,6 @@
 				776F646729BF679000B6C808 /* Views */,
 				776F645929BF65ED00B6C808 /* ShopApp.swift */,
 				776F645D29BF65EF00B6C808 /* Assets.xcassets */,
-				776F646A29BF67C600B6C808 /* Tests */,
 				776F645F29BF65EF00B6C808 /* Preview Content */,
 				77BEE53D29C72E290055EFB4 /* Info.plist */,
 				77627C3929C8814700EA0E11 /* UserData.xcdatamodeld */,
@@ -233,13 +232,6 @@
 				776F648829BF6A9400B6C808 /* DetailCoordinator.swift */,
 			);
 			path = Coordinators;
-			sourceTree = "<group>";
-		};
-		776F646A29BF67C600B6C808 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Tests;
 			sourceTree = "<group>";
 		};
 		776F646B29BF67F100B6C808 /* SignUpView */ = {

@@ -2,11 +2,13 @@ import CoreData
 import Combine
 
 class CoreDataManager {
+    
     static let shared = CoreDataManager()
 
     private init() {}
 
     lazy var persistentContainer: NSPersistentContainer = {
+        
         let container = NSPersistentContainer(name: "UserData")
         container.loadPersistentStores(completionHandler: { (_, error) in
             if let error = error as NSError? {
@@ -17,7 +19,9 @@ class CoreDataManager {
     }()
     
     func saveContext() {
+        
         let context = persistentContainer.viewContext
+        
         if context.hasChanges {
             do {
                 try context.save()

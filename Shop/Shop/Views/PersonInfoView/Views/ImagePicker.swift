@@ -5,9 +5,9 @@ struct ImagePicker: UIViewControllerRepresentable {
     @Environment(\.presentationMode) var presentationMode
     @Binding var image: UIImage?
     @ObservedObject var viewModel: PersonInfoViewModel
+    
     let firstName: String
     var onFinishPicking: (UIImage) -> Void // Добавьте эту строку
-
 
     func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
         let picker = UIImagePickerController()
@@ -46,7 +46,6 @@ struct ImagePicker: UIViewControllerRepresentable {
         }
     }
 
-    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let uiImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             image = uiImage
@@ -54,6 +53,5 @@ struct ImagePicker: UIViewControllerRepresentable {
         }
         picker.dismiss(animated: true)
     }
-
 }
 

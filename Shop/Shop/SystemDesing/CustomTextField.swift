@@ -8,6 +8,7 @@ struct CustomTextField: View {
     private var isSecure: Bool
 
     init(title: String, text: Binding<String>, prompt: String? = nil, isSecure: Bool = false) {
+        
         self.title = title
         self.text = text
         self.prompt = prompt
@@ -15,6 +16,7 @@ struct CustomTextField: View {
     }
 
     var body: some View {
+        
             if isSecure {
                 //
             } else  {

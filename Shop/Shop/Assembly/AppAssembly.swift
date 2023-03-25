@@ -3,6 +3,7 @@ import SwiftUI
 class AppAssembly {
     
     static func assemble() -> some View {
+        
         let coreDataManager = CoreDataManager.shared
         let userRepository = UserRepository(coreDataManager: coreDataManager)
         let networkManager = NetworkManager()

@@ -2,6 +2,7 @@ import SwiftUI
 import Combine
 
 class LoginCoordinator: Coordinator {
+    
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?
     var view: AnyView?

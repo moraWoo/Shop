@@ -1,10 +1,12 @@
 import SwiftUI
 
 struct PickerLocation: View {
+    
     @State private var selectedLocation = 0
     let locations = ["Нью-Йорк", "Лос-Анджелес", "Сан-Франциско", "Москва", "Сидней"]
     
     var body: some View {
+        
         VStack {
             Menu {
                 ForEach(0 ..< locations.count) { index in
@@ -28,11 +30,5 @@ struct PickerLocation: View {
                 }
             }
         }
-    }
-}
-
-struct PickerLocation_Previews: PreviewProvider {
-    static var previews: some View {
-        PickerLocation()
     }
 }

@@ -1,6 +1,7 @@
 import Foundation
 
 struct ProductDetails: Codable {
+    
     let name: String
     let description: String
     let rating: Double
@@ -10,6 +11,7 @@ struct ProductDetails: Codable {
     let imageUrls: [String]
 
     enum CodingKeys: String, CodingKey {
+        
         case name
         case description
         case rating

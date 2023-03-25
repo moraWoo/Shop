@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct SearchBarView: View {
+    
     @State private var searchText = ""
     
     var body: some View {

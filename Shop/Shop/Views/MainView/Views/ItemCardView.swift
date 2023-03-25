@@ -2,6 +2,7 @@ import SwiftUI
 import Combine
 
 struct ItemCardView: View {
+    
     @State private var uiImage: UIImage? = nil
     @State private var isLoading: Bool = true
     let item: Any
@@ -28,7 +29,6 @@ struct ItemCardView: View {
             }
         }
     }
-    
     
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
@@ -70,11 +70,4 @@ struct ItemCardView: View {
         }
         .onAppear(perform: loadImage)
     }
-    
 }
-
-
-
-
-
-

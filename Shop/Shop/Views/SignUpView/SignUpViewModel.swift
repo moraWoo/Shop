@@ -2,6 +2,7 @@ import Foundation
 import Combine
 
 class SignUpViewModel: ObservableObject {
+    
     @Published var firstName = ""
     @Published var lastName = ""
     @Published var email = ""

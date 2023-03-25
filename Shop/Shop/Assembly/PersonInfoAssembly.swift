@@ -9,6 +9,7 @@ class PersonInfoAssembly {
     }
     
     func assemble(userRepository: UserRepository) -> some View {
+        
         guard let personInfoCoordinator = dependencies.personInfoCoordinator,
               let loginCoordinator = dependencies.loginCoordinator else {
             fatalError("PersonInfoCoordinator or LoginCoordinator is missing")

@@ -1,9 +1,11 @@
 import SwiftUI
 
 struct LatestItem: View {
+    
     let latestProduct: LatestProduct
 
     var body: some View {
+        
         HStack {
             VStack(alignment: .leading) {
                 Image("forMiniItems")
@@ -45,6 +47,7 @@ struct LatestItem: View {
                         .frame(width: 20, height: 20)
                 }
                 .padding(.bottom, 10)
-                .padding(.trailing, 10)
-                , alignment: .bottomTrailing)    }
+                .padding(.trailing, 10),
+                alignment: .bottomTrailing)
+    }
 }

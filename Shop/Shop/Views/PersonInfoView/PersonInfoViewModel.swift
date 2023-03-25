@@ -2,6 +2,7 @@ import SwiftUI
 import Combine
 
 class PersonInfoViewModel: ObservableObject {
+    
     @Published var profileImage: UIImage?
     
     var coordinator: PersonInfoCoordinator
@@ -56,5 +57,4 @@ class PersonInfoViewModel: ObservableObject {
             profileImage = image
         }
     }
-
 }

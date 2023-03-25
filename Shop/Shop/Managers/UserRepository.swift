@@ -3,12 +3,14 @@ import Combine
 import UIKit
 
 class UserRepository: ObservableObject {
+    
     @Published var firstName: String?
     
     private let coreDataManger: CoreDataManager
     private var cancellables: Set<AnyCancellable> = []
     
     var currentUser: User? {
+        
         let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "isLogged == %@", NSNumber(value: true))
         do {
@@ -21,10 +23,12 @@ class UserRepository: ObservableObject {
     }
     
     init(coreDataManager: CoreDataManager = CoreDataManager.shared) {
+        
         self.coreDataManger = coreDataManager
     }
     
     func createUser(firstName: String, lastName: String, email: String, password: String) -> AnyPublisher<Bool, Never> {
+        
         let newUser = User(context: coreDataManger.persistentContainer.viewContext)
         newUser.firstName = firstName
         newUser.lastName = lastName
@@ -42,6 +46,7 @@ class UserRepository: ObservableObject {
     }
     
     func checkUser(firstName: String, lastName: String? = nil, email: String? = nil, password: String? = nil) -> AnyPublisher<User?, Never> {
+        
         let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
         
         var predicates: [NSPredicate] = [NSPredicate(format: "firstName == %@", firstName)]
@@ -76,6 +81,7 @@ class UserRepository: ObservableObject {
     }
     
     func setIsLogged(user: User, isLogged: Bool) {
+        
         user.isLogged = isLogged
         do {
             try coreDataManger.persistentContainer.viewContext.save()
@@ -85,6 +91,7 @@ class UserRepository: ObservableObject {
     }
     
     func fetchLoggedInUser() -> AnyPublisher<User?, Never> {
+        
         let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "isLogged == true")
         do {
@@ -97,6 +104,7 @@ class UserRepository: ObservableObject {
     }
     
     func saveContext() {
+        
         do {
             try coreDataManger.persistentContainer.viewContext.save()
         } catch {
@@ -105,6 +113,7 @@ class UserRepository: ObservableObject {
     }
     
     func updateAvatar(user: User, avatar: UIImage) {
+        
         if let data = avatar.jpegData(compressionQuality: 1.0) {
             user.avatar = data
             saveContext()
@@ -112,6 +121,7 @@ class UserRepository: ObservableObject {
     }
     
     func fetchAvatar() -> AnyPublisher<UIImage?, Never> {
+        
         guard let currentUser = currentUser else {
             return Just(nil).eraseToAnyPublisher()
         }

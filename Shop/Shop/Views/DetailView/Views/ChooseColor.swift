@@ -1,10 +1,3 @@
-//
-//  ChooseColor.swift
-//  Shop
-//
-//  Created by Ильдар on 19.03.2023.
-//
-
 import SwiftUI
 
 struct ChooseColor: View {
@@ -21,11 +14,5 @@ struct ChooseColor: View {
                 Spacer()
             }.padding(.leading, 24)
         }
-    }
-}
-
-struct ChooseColor_Previews: PreviewProvider {
-    static var previews: some View {
-        ChooseColor()
     }
 }

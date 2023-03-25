@@ -1,8 +1,7 @@
 import SwiftUI
 
-import SwiftUI
-
 struct Tab1View: View {
+    
     let items: [[Any]]
     let title = [
         "Latest", "Flash Sale", "Brands"
@@ -33,7 +32,6 @@ struct Tab1View: View {
                     .customFont(size: 9, weight: .medium)
                     .foregroundColor(Color(red: 128/255, green: 128/255, blue: 128/255))
                     .alignmentGuide(.bottomText) { d in d[.bottom]
-                    
                     }
             }
         }
@@ -56,8 +54,6 @@ struct Tab1View: View {
         }
     }
 }
-
-
 
 // Tab 2 Content
 struct Tab2View: View {

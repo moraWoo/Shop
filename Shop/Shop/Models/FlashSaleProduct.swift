@@ -1,6 +1,7 @@
 import Foundation
 
 struct FlashSaleProduct: Codable, Identifiable {
+    
     let id = UUID()
     let category: String
     let name: String
@@ -9,6 +10,7 @@ struct FlashSaleProduct: Codable, Identifiable {
     let imageURL: String
 
     enum CodingKeys: String, CodingKey {
+        
         case category
         case name
         case price
@@ -18,9 +20,11 @@ struct FlashSaleProduct: Codable, Identifiable {
 }
 
 struct FlashSaleResponse: Codable {
+    
     let flashSale: [FlashSaleProduct]
     
     enum CodingKeys: String, CodingKey {
+        
         case flashSale = "flash_sale"
     }
 }

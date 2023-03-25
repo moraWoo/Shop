@@ -1,6 +1,7 @@
 import SwiftUI
 
 class MainAssembly {
+    
     let dependencies: AppDependencies
     
     init(dependencies: AppDependencies) {
@@ -8,6 +9,7 @@ class MainAssembly {
     }
     
     func assemble(userRepository: UserRepository) -> some View {
+        
         print("MainAssembly assemble()")
         if let mainCoordinator = dependencies.mainCoordinator,
            let personInfoCoordinator = dependencies.personInfoCoordinator {

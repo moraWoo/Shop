@@ -2,16 +2,19 @@ import SwiftUI
 import Combine
 
 struct SignUpView: View {
+    
     @ObservedObject var viewModel: SignUpViewModel
     
     @State private var showingAlertTextFieldsIsEmpty = false
     @State private var showPasswordInput = false
     
     var body: some View {
+        
         VStack(spacing: 70) {
             Text("Sign in")
                 .customFont(size: 26, weight: .semibold)
             VStack(spacing: 15) {
+                
                 VStack(spacing: 35) {
                     CustomTextField(title: "First name", text: $viewModel.firstName, prompt: viewModel.firstNamePrompt)
                     CustomTextField(title: "Last name", text: $viewModel.lastName, prompt: viewModel.lastNamePrompt)
@@ -36,6 +39,7 @@ struct SignUpView: View {
                               dismissButton: .default(Text("OK")))
                     }
                 }
+                
                 HStack() {
                     Text("Already have an account?")
                         .customFont(size: 10, weight: .medium)
@@ -73,6 +77,7 @@ struct SignUpView: View {
         .padding(.leading, 43)
         .padding(.trailing, 43)
         .sheet(isPresented: $showPasswordInput) {
+            
             VStack {
                 Text("Enter your password")
                     .font(.headline)

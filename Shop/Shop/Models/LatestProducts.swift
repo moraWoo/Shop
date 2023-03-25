@@ -1,10 +1,12 @@
 import Foundation
 
 struct LatestProductsResponse: Codable {
+    
     let latest: [LatestProduct]
 }
 
 struct LatestProduct: Codable, Identifiable {
+    
     let id = UUID()
     let category: String
     let name: String

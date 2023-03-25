@@ -2,6 +2,7 @@ import SwiftUI
 import Combine
 
 class AppCoordinator: ObservableObject, Coordinator {
+    
     @Published var currentView: AnyView = AnyView(EmptyView())
     
     var childCoordinators: [Coordinator] = []
@@ -26,7 +27,6 @@ class AppCoordinator: ObservableObject, Coordinator {
     }
     
     func removeChildCoordinator(_ coordinator: Coordinator) {
-
         if let index = childCoordinators.firstIndex(where: { $0 === coordinator }) {
             print("Removing child coordinator in AppCoordinator: \(coordinator)")
             childCoordinators.remove(at: index)

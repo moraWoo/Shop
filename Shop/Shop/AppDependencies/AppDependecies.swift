@@ -1,6 +1,7 @@
 import Foundation
 
 class AppDependencies {
+    
     let signUpCoordinator: SignUpCoordinator?
     let loginCoordinator: LoginCoordinator?
     let mainCoordinator: MainCoordinator?

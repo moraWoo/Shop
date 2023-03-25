@@ -2,7 +2,9 @@ import Foundation
 import Combine
 
 class NetworkManager: ObservableObject {
+    
     func fetchLatestAndFlashSale() -> AnyPublisher<(LatestProductsResponse, FlashSaleResponse), Error> {
+        
         guard let latestProductsURL = latestProductsURL, let flashSaleURL = flashSaleURL else {
             return Fail(error: URLError(.badURL)).eraseToAnyPublisher()
         }
@@ -20,6 +22,7 @@ class NetworkManager: ObservableObject {
     }
 
     func fetchProducts() -> AnyPublisher<[ProductDetails], Error> {
+        
         guard let productsURL = productsURL else {
             return Fail(error: URLError(.badURL)).eraseToAnyPublisher()
         }

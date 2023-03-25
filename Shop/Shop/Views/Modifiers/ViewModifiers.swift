@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct TextFieldInputDataModifier: ViewModifier {
+    
     func body(content: Content) -> some View {
         content
             .padding(8)
@@ -19,6 +20,7 @@ struct TextFieldInputDataModifier: ViewModifier {
 }
 
 struct SecureTextFieldInputDataModifier: ViewModifier {
+    
     func body(content: Content) -> some View {
         content
             .textInputAutocapitalization(.never)
@@ -38,6 +40,7 @@ struct SecureTextFieldInputDataModifier: ViewModifier {
 }
 
 struct PrimaryButtonStyle: ButtonStyle {
+    
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .padding()
@@ -53,6 +56,7 @@ struct PrimaryButtonStyle: ButtonStyle {
 }
 
 struct AppleGoogleButtonStyle: ButtonStyle {
+    
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .foregroundColor(.black)
@@ -62,6 +66,7 @@ struct AppleGoogleButtonStyle: ButtonStyle {
 }
 
 extension Text {
+    
     func customFont(size: CGFloat, weight: Font.Weight) -> Text {
         self.font(.custom("Montserrat-Regular", size: size))
             .fontWeight(weight)
@@ -69,18 +74,21 @@ extension Text {
 }
 
 extension TextField {
+    
     func textFieldInputData() -> some View {
         modifier(TextFieldInputDataModifier())
     }
 }
 
 extension SecureField {
+    
     func textFieldInputData() -> some View {
         modifier(TextFieldInputDataModifier())
     }
 }
 
 struct TopRoundedRectangle: Shape {
+    
     var cornerRadius: CGFloat
 
     func path(in rect: CGRect) -> Path {
@@ -99,6 +107,7 @@ struct TopRoundedRectangle: Shape {
 }
 
 struct RoundedCornersShape: Shape {
+    
     var corners: UIRectCorner
     var radius: CGFloat
 
@@ -111,6 +120,7 @@ struct RoundedCornersShape: Shape {
 }
 
 extension VerticalAlignment {
+    
     private enum BottomTextAlignment: AlignmentID {
         static func defaultValue(in d: ViewDimensions) -> CGFloat {
             d[.bottom]

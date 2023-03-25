@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct SettingsList: View {
+    
     @ObservedObject var viewModel: PersonInfoViewModel
 
     let labels = [
@@ -83,6 +84,6 @@ struct SettingsList: View {
             }
             .background(Color.white)
         }
-        .accentColor(.black) // Set the accent color to black
+        .accentColor(.black)
     }
 }

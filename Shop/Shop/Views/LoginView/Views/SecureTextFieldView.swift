@@ -1,6 +1,7 @@
 import SwiftUI
 
 enum Field: Hashable {
+    
     case showPasswordField
     case hidePasswordField
 }

@@ -1,8 +1,11 @@
 import SwiftUI
 
 struct FlashSaleItem: View {
+    
     let flashSaleProduct: FlashSaleProduct
+    
     var body: some View {
+        
         HStack {
             VStack(alignment: .leading) {
                 Image("forBigItems")

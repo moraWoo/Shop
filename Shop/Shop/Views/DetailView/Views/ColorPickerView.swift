@@ -1,14 +1,7 @@
-//
-//  ColorPickerView.swift
-//  Shop
-//
-//  Created by Ильдар on 19.03.2023.
-//
-
 import SwiftUI
 
 struct ColorPickerView: View {
-    @State private var selectedColor: Int = 0 // Set initial selected color to the first one
+    @State private var selectedColor: Int = 0
     
     let colors: [Color] = [.white, .gray, .black]
     
@@ -29,11 +22,5 @@ struct ColorPickerView: View {
                     }
             }
         }
-    }
-}
-
-struct ColorPickerView_Previews: PreviewProvider {
-    static var previews: some View {
-        ColorPickerView()
     }
 }

@@ -9,6 +9,7 @@ class DetailAssembly {
     }
     
     func assemble() -> some View {
+        
         guard let detailCoordinator = dependencies.detailCoordinator else {
             fatalError("DetailCoordinator is missing")
         }

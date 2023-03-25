@@ -2,6 +2,7 @@ import SwiftUI
 import Combine
 
 class MainViewModel: ObservableObject {
+    
     @Published var profileImage: UIImage?
     @Published var firstName: String?
     @Published var items: [[Any]] = [[], [], []]

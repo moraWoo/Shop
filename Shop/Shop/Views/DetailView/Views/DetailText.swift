@@ -1,10 +1,3 @@
-//
-//  DetailText.swift
-//  Shop
-//
-//  Created by Ильдар on 19.03.2023.
-//
-
 import SwiftUI
 
 struct DetailText: View {
@@ -40,11 +33,5 @@ struct DetailText: View {
             }
             
         }
-    }
-}
-
-struct DetailText_Previews: PreviewProvider {
-    static var previews: some View {
-        DetailText()
     }
 }

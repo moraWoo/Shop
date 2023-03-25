@@ -2,6 +2,7 @@ import SwiftUI
 import Combine
 
 struct TopBarView: View {
+    
     @Binding var profileImage: UIImage?
     var viewModel: MainViewModel
     

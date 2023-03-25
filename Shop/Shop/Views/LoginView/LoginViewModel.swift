@@ -2,6 +2,7 @@ import Foundation
 import Combine
 
 class LoginViewModel: ObservableObject {
+    
     @Published var firstName = ""
     @Published var password = ""
     

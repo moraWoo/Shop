@@ -10,7 +10,6 @@ struct CircleButtonView: View {
         "phones", "headphones", "games", "cars", "furniture", "kids"
     ]
     
-    
     var body: some View {
         GeometryReader { geometry in
             let buttonWidth = (geometry.size.width - CGFloat(tags.count - 1) * 21) / CGFloat(tags.count)

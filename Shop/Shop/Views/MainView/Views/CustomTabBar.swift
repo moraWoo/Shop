@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct CustomTabBar: View {
+    
     @Binding var selectedTab: Int
 
     private let tabBarItems = [
@@ -12,6 +13,7 @@ struct CustomTabBar: View {
     ]
 
     var body: some View {
+        
         HStack() {
             ForEach(0..<tabBarItems.count) { index in
                 Button(action: {

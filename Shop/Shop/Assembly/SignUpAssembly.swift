@@ -9,6 +9,7 @@ class SignUpAssembly {
     }
     
     func assemble(userRepository: UserRepository) -> some View {
+        
         guard let signUpCoordinator = dependencies.signUpCoordinator,
               let loginCoordinator = dependencies.loginCoordinator,
               let mainCoordinator = dependencies.mainCoordinator else {
