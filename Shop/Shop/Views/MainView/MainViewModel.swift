@@ -40,7 +40,6 @@ class MainViewModel: ObservableObject {
     
     func personInfo() {
         goToPersonInfoView()
-        print("personInfo \(String(describing: userRepository.currentUser))")
     }
     
     func goToPersonInfoView() {

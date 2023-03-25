@@ -14,7 +14,7 @@ struct ItemCardView: View {
                 if let data = try? Data(contentsOf: url), let image = UIImage(data: data) {
                     DispatchQueue.main.async {
                         self.uiImage = image
-                        self.isLoading = false // установите isLoading в false
+                        self.isLoading = false
                     }
                 }
             }
@@ -23,7 +23,7 @@ struct ItemCardView: View {
                 if let data = try? Data(contentsOf: url), let image = UIImage(data: data) {
                     DispatchQueue.main.async {
                         self.uiImage = image
-                        self.isLoading = false // установите isLoading в false
+                        self.isLoading = false
                     }
                 }
             }

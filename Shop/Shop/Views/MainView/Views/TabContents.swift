@@ -44,9 +44,9 @@ struct Tab1View: View {
                 ForEach(0..<items[row].count, id: \.self) { index in
                     let item = items[row][index]
                     if let latestProduct = item as? LatestProduct {
-                        ItemCardView(item: latestProduct, row: row) // передайте весь объект latestProduct
+                        ItemCardView(item: latestProduct, row: row)
                     } else if let flashSaleProduct = item as? FlashSaleProduct {
-                        ItemCardView(item: flashSaleProduct, row: row) // передайте весь объект flashSaleProduct
+                        ItemCardView(item: flashSaleProduct, row: row)
                     }
                 }
             }
@@ -55,28 +55,24 @@ struct Tab1View: View {
     }
 }
 
-// Tab 2 Content
 struct Tab2View: View {
     var body: some View {
         Text("Tab 2 Content")
     }
 }
 
-// Tab 3 Content
 struct Tab3View: View {
     var body: some View {
         Text("Tab 3 Content")
     }
 }
 
-// Tab 4 Content
 struct Tab4View: View {
     var body: some View {
         Text("Tab 4 Content")
     }
 }
 
-// Tab 5 Content
 struct Tab5View: View {
     var body: some View {
         Text("Tab 5 Content")

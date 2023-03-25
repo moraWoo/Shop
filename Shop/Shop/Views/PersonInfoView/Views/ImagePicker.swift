@@ -2,12 +2,13 @@ import SwiftUI
 import UIKit
 
 struct ImagePicker: UIViewControllerRepresentable {
+    
     @Environment(\.presentationMode) var presentationMode
     @Binding var image: UIImage?
     @ObservedObject var viewModel: PersonInfoViewModel
     
     let firstName: String
-    var onFinishPicking: (UIImage) -> Void // Добавьте эту строку
+    var onFinishPicking: (UIImage) -> Void
 
     func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
         let picker = UIImagePickerController()
@@ -23,6 +24,7 @@ struct ImagePicker: UIViewControllerRepresentable {
     }
     
     class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+        
         let parent: ImagePicker
         let imageBinding: Binding<UIImage?>
         let viewModel: PersonInfoViewModel
@@ -49,7 +51,7 @@ struct ImagePicker: UIViewControllerRepresentable {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let uiImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             image = uiImage
-            onFinishPicking(uiImage) // Добавьте эту строку
+            onFinishPicking(uiImage)
         }
         picker.dismiss(animated: true)
     }
