@@ -46,17 +46,17 @@ struct Tab1View: View {
                 ForEach(0..<items[row].count, id: \.self) { index in
                     let item = items[row][index]
                     if let latestProduct = item as? LatestProduct {
-                        ItemCardView(item: latestProduct.name, row: row)
+                        ItemCardView(item: latestProduct, row: row) // передайте весь объект latestProduct
                     } else if let flashSaleProduct = item as? FlashSaleProduct {
-                        ItemCardView(item: flashSaleProduct.name, row: row)
+                        ItemCardView(item: flashSaleProduct, row: row) // передайте весь объект flashSaleProduct
                     }
                 }
             }
             .padding(.horizontal, 11)
         }
     }
-
 }
+
 
 
 // Tab 2 Content

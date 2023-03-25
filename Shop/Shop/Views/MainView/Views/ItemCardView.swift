@@ -1,8 +1,30 @@
 import SwiftUI
+import Combine
 
 struct ItemCardView: View {
     let item: Any
     let row: Int
+    @State private var uiImage: UIImage? = nil
+
+    private func loadImage() {
+        if let latestProduct = item as? LatestProduct, let url = URL(string: latestProduct.imageURL) {
+            DispatchQueue.global().async {
+                if let data = try? Data(contentsOf: url), let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self.uiImage = image
+                    }
+                }
+            }
+        } else if let flashSaleProduct = item as? FlashSaleProduct, let url = URL(string: flashSaleProduct.imageURL) {
+            DispatchQueue.global().async {
+                if let data = try? Data(contentsOf: url), let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self.uiImage = image
+                    }
+                }
+            }
+        }
+    }
 
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
@@ -10,9 +32,13 @@ struct ItemCardView: View {
             let height: CGFloat = row == 1 ? 221 : 149
             let placeholder = RoundedRectangle(cornerRadius: 10).fill(Color.gray).opacity(0.1)
 
-            Image("appleLogo")
-                .resizable()
-                .frame(width: width, height: height)
+            if let uiImage = uiImage {
+                Image(uiImage: uiImage)
+                    .resizable()
+                    .frame(width: width, height: height)
+            } else {
+                placeholder.frame(width: width, height: height)
+            }
 
             Text("qqq")
                 .foregroundColor(.white)
@@ -56,5 +82,11 @@ struct ItemCardView: View {
                 }
             }
         }
+        .onAppear(perform: loadImage)
     }
 }
+
+
+
+
+
