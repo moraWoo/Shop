@@ -13,9 +13,16 @@ class SignUpViewModel: ObservableObject {
     @Published private var isValidFirstName = false
     @Published private var isValidLastName = false
     @Published private var isValidEmail = false
-    
+
     @Published var showErrorAlert = false
+
+    @Published var showPasswordInput = false
+    @Published var userExists = false
     
+    
+    
+    var cancellableSet: Set<AnyCancellable> = []
+
     var firstNamePrompt: String? {
         if isValidFirstName == true || firstName.isEmpty {
             return nil
@@ -33,14 +40,15 @@ class SignUpViewModel: ObservableObject {
     }
     
     var emailPrompt: String? {
-        if isValidEmail == true || email.isEmpty {
+        if userExists {
+            return "User with this email already exists"
+        } else if isValidEmail == true || email.isEmpty {
             return nil
         } else {
             return "Enter valid Email. Example: test@test.com"
         }
     }
     
-    private var cancellableSet: Set<AnyCancellable> = []
     private let emailPredicate = NSPredicate(format: "SELF MATCHES %@", Regex.email.rawValue)
     private let namePredicate = NSPredicate(format: "SELF MATCHES %@", Regex.name.rawValue)
     private let userRepository: UserRepository
@@ -125,38 +133,56 @@ class SignUpViewModel: ObservableObject {
         parentCoordinator.currentView = mainView
     }
     
-    func signUp() {
-        userRepository.createUser(firstName: firstName, lastName: lastName, email: email, password: password)
+    func checkExistingUser() -> AnyPublisher<Bool, Never> {
+        userRepository.checkUser(firstName: firstName, lastName: lastName, email: email)
+            .map { $0 != nil }
+            .eraseToAnyPublisher()
+            .receive(on: RunLoop.main)
+            .handleEvents(receiveOutput: { [weak self] userExists in
+                if let self = self {
+                    self.showPasswordInput = !userExists
+                }
+            })
+            .eraseToAnyPublisher()
+    }
+
+
+    func createUser() {
+        userRepository.createUser(firstName: self.firstName, lastName: self.lastName, email: self.email, password: self.password)
             .sink { success in
-                if success {                    
-                    self.userRepository.checkUser(firstName: self.firstName)
-                        .sink { user in
-                            if let user = user {
-                                self.userRepository.setIsLogged(user: user, isLogged: true)
-                                self.userRepository.saveContext()
-                                self.goToMainView()
-                            } else {
-                                print("Error retrieving created user")
-                            }
-                        }
-                        .store(in: &self.cancellableSet)
+                if success {
+                    self.setUserStatus()
                 } else {
                     print("Error creating user")
+                }
+            }
+            .store(in: &self.cancellableSet)
+    }
+
+    func setUserStatus() {
+        userRepository.checkUser(firstName: self.firstName)
+            .sink { user in
+                if let user = user {
+                    self.userRepository.setIsLogged(user: user, isLogged: true)
+                    self.userRepository.saveContext()
+                    self.goToMainView()
+                } else {
+                    print("Error retrieving created user")
+                }
+            }
+            .store(in: &self.cancellableSet)
+    }
+
+    func signUp() {
+        userRepository.checkUser(firstName: firstName, lastName: lastName, email: email)
+            .sink { existingUser in
+                if let _ = existingUser {
+                    self.userExists = true
+                } else {
+                    self.checkExistingUser()
                 }
             }
             .store(in: &cancellableSet)
     }
 
-    func checkUser() {
-        userRepository.checkUser(firstName: firstName)
-            .sink { user in
-                if user != nil {
-                    print("User already exists")
-                    self.showErrorAlert = true
-                } else {
-                    self.signUp()
-                }
-            }
-            .store(in: &cancellableSet)
-    }
 }

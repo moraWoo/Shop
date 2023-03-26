@@ -1,12 +1,30 @@
 import SwiftUI
 import Combine
 
+enum AlertType: Identifiable {
+    case fieldsEmpty, userExists
+    
+    var id: Int {
+        switch self {
+            case .fieldsEmpty: return 1
+            case .userExists: return 2
+        }
+    }
+}
+
 struct SignUpView: View {
     
     @ObservedObject var viewModel: SignUpViewModel
     
     @State private var showingAlertTextFieldsIsEmpty = false
     @State private var showPasswordInput = false
+    @State private var activeAlert: AlertType?
+    
+    private var cancellableSet: Set<AnyCancellable> = []
+
+    public init(viewModel: SignUpViewModel) {
+        self.viewModel = viewModel
+    }
     
     var body: some View {
         
@@ -21,22 +39,22 @@ struct SignUpView: View {
                     CustomTextField(title: "Email", text: $viewModel.email, prompt: viewModel.emailPrompt)
                     Button {
                         if viewModel.firstName.isEmpty || viewModel.lastName.isEmpty || viewModel.email.isEmpty {
-                            showingAlertTextFieldsIsEmpty = true
+                            activeAlert = .fieldsEmpty
                         } else {
-                            showPasswordInput = true
+                            let cancellable = viewModel.checkExistingUser()
+                                .sink(receiveValue: { userExists in
+                                    if userExists {
+                                        activeAlert = .some(.userExists)
+                                    } else {
+                                        showPasswordInput = true
+                                    }
+                                })
+                            viewModel.cancellableSet.insert(cancellable)
                         }
                     } label: {
                         Text("Sign in")
                     }
                     .buttonStyle(PrimaryButtonStyle())
-                    .alert("Fields are not filled", isPresented: $showingAlertTextFieldsIsEmpty) {
-                        Button("OK", role: .cancel) { }
-                    }
-                    .alert(isPresented: $viewModel.showErrorAlert) {
-                        Alert(title: Text("User exist"),
-                              message: Text("Choose another name"),
-                              dismissButton: .default(Text("OK")))
-                    }
                 }
                 
                 HStack() {
@@ -62,7 +80,6 @@ struct SignUpView: View {
                         .customFont(size: 12, weight: .medium)
                         .foregroundColor(.black)
                 }
-                
                 Button {
                     viewModel.login()
                 } label: {
@@ -80,12 +97,30 @@ struct SignUpView: View {
             VStack {
                 Text("Enter your password")
                     .font(.headline)
+                    .padding(.bottom, 20)
                 SecureField("Password", text: $viewModel.password)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
+                    .padding(.bottom, 20)
                 Button("Submit") {
-                    viewModel.signUp()
+                    viewModel.createUser()
                 }
+                .buttonStyle(PrimaryButtonStyle())
+                
+            }.padding(.leading, 43)
+                .padding(.trailing, 43)
+                .frame(width: 300, height: 300)
+            
+        }
+        .alert(item: $activeAlert) { alertType in
+            switch alertType {
+                case .fieldsEmpty:
+                    return Alert(title: Text("Fields are not filled"),
+                                 message: Text("Please fill in all the fields."),
+                                 dismissButton: .default(Text("OK")))
+                case .userExists:
+                    return Alert(title: Text("User exists"),
+                                 message: Text("A user with this email already exists."),
+                                 dismissButton: .default(Text("OK")))
             }
         }
     }
