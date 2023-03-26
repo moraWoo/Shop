@@ -18,7 +18,8 @@ class PersonInfoAssembly {
         let viewModel = PersonInfoViewModel(
             coordinator: personInfoCoordinator,
             loginCoordinator: loginCoordinator,
-            userRepository: dependencies.userRepository
+            userRepository: dependencies.userRepository,
+            networkManager: dependencies.networkManager
         )
         let view = PersonInfoView(viewModel: viewModel)
         personInfoCoordinator.view = AnyView(view)

@@ -8,6 +8,8 @@ class PersonInfoViewModel: ObservableObject {
     var coordinator: PersonInfoCoordinator
     var loginCoordinator: LoginCoordinator
     let userRepository: UserRepository
+    let networkManager: NetworkManager
+
     private var cancellableSet: Set<AnyCancellable> = []
 
     var firstName: String? {
@@ -17,12 +19,14 @@ class PersonInfoViewModel: ObservableObject {
     init(
         coordinator: PersonInfoCoordinator,
         loginCoordinator: LoginCoordinator,
-        userRepository: UserRepository
+        userRepository: UserRepository,
+        networkManager: NetworkManager
     ) {
         self.coordinator = coordinator
         self.loginCoordinator = loginCoordinator
         self.userRepository = userRepository
-        
+        self.networkManager = networkManager
+
         if let currentUser = userRepository.currentUser,
            let avatarData = currentUser.avatar {
             profileImage = UIImage(data: avatarData)
