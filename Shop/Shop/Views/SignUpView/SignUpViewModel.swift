@@ -146,7 +146,6 @@ class SignUpViewModel: ObservableObject {
             .eraseToAnyPublisher()
     }
 
-
     func createUser() {
         userRepository.createUser(firstName: self.firstName, lastName: self.lastName, email: self.email, password: self.password)
             .sink { success in
