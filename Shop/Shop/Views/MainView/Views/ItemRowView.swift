@@ -28,7 +28,6 @@ struct ItemRowView: View {
             } else if selectedTab == 4 {
                 Tab5View()
             }
-            
             Spacer()
         }
     }

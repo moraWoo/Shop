@@ -94,6 +94,8 @@ struct Tab5View: View {
 }
 
 struct ItemRowComponent: View {
+    @State private var showDetailView: Bool = false
+
     let item: Any
     let navigationManager: NavigationManager
     let viewModel: MainViewModel
@@ -105,11 +107,13 @@ struct ItemRowComponent: View {
     
     private func itemCardView() -> some View {
         if let latestProduct = item as? LatestProduct {
-            return AnyView(ItemCardView(item: latestProduct, row: row, viewModel: viewModel)
-                .environmentObject(navigationManager))
+            return AnyView(ItemCardView(showDetailView: $showDetailView, item: latestProduct, row: row)
+                .environmentObject(navigationManager)
+                .environmentObject(viewModel))
         } else if let flashSaleProduct = item as? FlashSaleProduct {
-            return AnyView(ItemCardView(item: flashSaleProduct, row: row, viewModel: viewModel)
-                .environmentObject(navigationManager))
+            return AnyView(ItemCardView(showDetailView: $showDetailView, item: flashSaleProduct, row: row)
+                .environmentObject(navigationManager)
+                .environmentObject(viewModel))
         } else {
             return AnyView(EmptyView())
         }

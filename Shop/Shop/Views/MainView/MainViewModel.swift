@@ -5,15 +5,16 @@ class MainViewModel: ObservableObject {
     @Published var profileImage: UIImage?
     @Published var firstName: String?
     @Published var items: [[Any]] = [[], [], []]
+    @Published var showDetailView: Bool = false
 
     var coordinator: MainCoordinator
     var personInfoCoordinator: PersonInfoCoordinator
     var detailCoordinator: DetailCoordinator
 
     let navigationManager: NavigationManager
+    let networkManager: NetworkManager
 
     private let userRepository: UserRepository
-    private let networkManager: NetworkManager
     private var cancellableSet: Set<AnyCancellable> = []
     
     init(
@@ -29,13 +30,15 @@ class MainViewModel: ObservableObject {
         self.networkManager = networkManager
         self.navigationManager = navigationManager
 
+        detailCoordinator = DetailCoordinator()
+
         if let currentUser = userRepository.currentUser,
            let avatarData = currentUser.avatar {
             profileImage = UIImage(data: avatarData)
         }
         
-        fetchLatestAndFlashSaleProducts()
         fetchLoggedInUser()
+        fetchLatestAndFlashSaleProducts()
     }
     
     func goToMainView() {
@@ -97,7 +100,7 @@ class MainViewModel: ObservableObject {
             .store(in: &cancellableSet)
     }
     
-    func showDetailView() {
+    func presentDetailView() {
         let detailViewModel = DetailViewModel(coordinator: detailCoordinator, networkManager: networkManager)
         let detailView = DetailView(viewModel: detailViewModel).environmentObject(navigationManager)
         navigationManager.navigateTo(view: AnyView(detailView))
