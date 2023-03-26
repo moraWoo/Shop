@@ -20,8 +20,6 @@ struct SignUpView: View {
     @State private var showPasswordInput = false
     @State private var activeAlert: AlertType?
     
-    private var cancellableSet: Set<AnyCancellable> = []
-
     public init(viewModel: SignUpViewModel) {
         self.viewModel = viewModel
     }
