@@ -54,9 +54,10 @@ class PersonInfoViewModel: ObservableObject {
         
         DispatchQueue.main.async {
             let loginView = self.loginCoordinator.start()
-            parentCoordinator.currentView = loginView
+            parentCoordinator.navigationManager.navigateTo(view: loginView)
         }
     }
+
     
     func updateAvatar(image: UIImage) {
         if let user = userRepository.currentUser {

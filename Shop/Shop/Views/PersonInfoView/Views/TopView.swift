@@ -7,9 +7,6 @@ struct TopView: View {
     
     var body: some View {
         VStack {
-            Text("Profile")
-                .customFont(size: 15, weight: .bold)
-                .padding(.top, 19)
             if let uiImage = profileImage {
                 Image(uiImage: uiImage)
                     .resizable()

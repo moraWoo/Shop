@@ -6,9 +6,10 @@ class MainViewModel: ObservableObject {
     @Published var firstName: String?
     @Published var items: [[Any]] = [[], [], []]
     @Published var showDetailView: Bool = false
+    @Published var showPersonInfoView: Bool = false
 
     var coordinator: MainCoordinator
-    var personInfoCoordinator: PersonInfoCoordinator
+    let personInfoCoordinator: PersonInfoCoordinator
     var detailCoordinator: DetailCoordinator
 
     let navigationManager: NavigationManager
@@ -29,7 +30,6 @@ class MainViewModel: ObservableObject {
         self.userRepository = userRepository
         self.networkManager = networkManager
         self.navigationManager = navigationManager
-
         detailCoordinator = DetailCoordinator()
 
         if let currentUser = userRepository.currentUser,

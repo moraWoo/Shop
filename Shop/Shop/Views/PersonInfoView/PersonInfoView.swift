@@ -8,6 +8,6 @@ struct PersonInfoView: View {
         VStack() {
             SettingsList(viewModel: viewModel)
         }
-        .navigationBarTitle("Person Info", displayMode: .inline)
+        .navigationBarTitle("Profile", displayMode: .inline)
     }
 }
