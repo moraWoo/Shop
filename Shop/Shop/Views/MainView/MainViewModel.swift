@@ -51,18 +51,8 @@ class MainViewModel: ObservableObject {
     }
     
     func goToPersonInfoView() {
-        guard let parentCoordinator = coordinator.parentCoordinator as? AppCoordinator else {
-            print("Parent coordinator is nil")
-            return
-        }
-        
-        parentCoordinator.removeChildCoordinator(personInfoCoordinator)
-        personInfoCoordinator.parentCoordinator = parentCoordinator
-        parentCoordinator.addChildCoordinator(personInfoCoordinator)
-        
         let personInfoView = personInfoCoordinator.start()
-        
-        parentCoordinator.currentView = personInfoView
+        navigationManager.navigateTo(view: AnyView(personInfoView))
     }
     
     func fetchLoggedInUser() {

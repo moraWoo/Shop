@@ -8,6 +8,7 @@ class PersonInfoCoordinator: Coordinator {
     var view: AnyView?
     let userRepository = UserRepository()
     let networkManager = NetworkManager()
+    let navigationManager = NavigationManager()
 
     func start() -> AnyView {
         let dependencies = AppDependencies(
@@ -16,6 +17,7 @@ class PersonInfoCoordinator: Coordinator {
             mainCoordinator: MainCoordinator(),
             personInfoCoordinator: self,
             detailCoordinator: DetailCoordinator(),
+            navigationManager: navigationManager,
             userRepository: userRepository,
             networkManager: networkManager
         )

@@ -9,6 +9,7 @@ class PersonInfoViewModel: ObservableObject {
     var loginCoordinator: LoginCoordinator
     let userRepository: UserRepository
     let networkManager: NetworkManager
+    let navigationManager: NavigationManager
 
     private var cancellableSet: Set<AnyCancellable> = []
 
@@ -20,13 +21,15 @@ class PersonInfoViewModel: ObservableObject {
         coordinator: PersonInfoCoordinator,
         loginCoordinator: LoginCoordinator,
         userRepository: UserRepository,
-        networkManager: NetworkManager
+        networkManager: NetworkManager,
+        navigationManager: NavigationManager
     ) {
         self.coordinator = coordinator
         self.loginCoordinator = loginCoordinator
         self.userRepository = userRepository
         self.networkManager = networkManager
-
+        self.navigationManager = navigationManager
+        
         if let currentUser = userRepository.currentUser,
            let avatarData = currentUser.avatar {
             profileImage = UIImage(data: avatarData)
@@ -61,4 +64,9 @@ class PersonInfoViewModel: ObservableObject {
             profileImage = image
         }
     }
+    
+    func goBackToMainView() {
+        coordinator.navigationManager.navigateBack()
+    }
+
 }

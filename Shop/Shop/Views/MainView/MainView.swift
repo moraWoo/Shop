@@ -19,6 +19,11 @@ struct MainView: View {
                     CustomTabBar(selectedTab: $selectedTab)
                         .padding(.bottom, -10)
                 }
+                if let currentView = viewModel.navigationManager.currentView {
+                    currentView
+                        .transition(.opacity)
+                        .zIndex(1)
+                }
             }
             .background(Color.clear.edgesIgnoringSafeArea(.all))
             .onChange(of: selectedTab, perform: { value in
