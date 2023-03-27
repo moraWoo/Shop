@@ -13,10 +13,14 @@ struct DetailView: View {
         ZStack {
             VStack {
                 MainImage()
+                    .padding(.bottom, 10)
                 ZoomImagesView()
+                    .padding(.bottom, 22)
                 DetailText()
+                    .padding(.bottom, 11)
                 ChooseColor()
-                Spacer()
+                    .padding(.bottom, 20)
+                ButtonCartBlock()
             }
             VStack {
                 Spacer()
@@ -26,5 +30,17 @@ struct DetailView: View {
                 }
             }
         }
+    }
+}
+
+struct DetailView_Previews: PreviewProvider {
+    let detailViewCoordinator = DetailCoordinator()
+    let networkManager = NetworkManager()
+    let navigationManager = NavigationManager()
+    
+    static var previews: some View {
+        let viewModel = DetailViewModel(coordinator: DetailCoordinator(), networkManager: NetworkManager(), navigationManager: NavigationManager())
+        let navigationManager = NavigationManager()
+        DetailView(viewModel: viewModel, navigationManager: navigationManager)
     }
 }
