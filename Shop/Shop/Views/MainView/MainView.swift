@@ -39,6 +39,7 @@ struct MainView: View {
             })
             .onAppear {
                 self.viewModel.fetchLatestAndFlashSaleProducts()
+                viewModel.navigationManager.customTabBar = AnyView(CustomTabBar(selectedTab: $selectedTab))
             }
         }
     }

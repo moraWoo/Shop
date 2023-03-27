@@ -36,7 +36,7 @@ struct ItemCardView: View {
     }
     
     var body: some View {
-        NavigationLink(destination: DetailView(viewModel: DetailViewModel(coordinator: viewModel.detailCoordinator, networkManager: viewModel.networkManager)).environmentObject(navigationManager), isActive: $showDetailView) {
+        NavigationLink(destination: DetailView(viewModel: DetailViewModel(coordinator: viewModel.detailCoordinator, networkManager: viewModel.networkManager, navigationManager: navigationManager), navigationManager: navigationManager).environmentObject(navigationManager), isActive: $showDetailView) {
             
             ZStack(alignment: .bottomTrailing) {
                 let width: CGFloat = row == 1 ? 174 : 114

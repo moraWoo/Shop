@@ -2,7 +2,8 @@ import SwiftUI
 import Combine
 
 class MainViewModel: ObservableObject {
-    
+    @Published var isDetailViewShowing: Bool = false
+
     @Published var profileImage: UIImage?
     @Published var firstName: String?
     @Published var items: [[Any]] = [[], [], []]
@@ -93,10 +94,11 @@ class MainViewModel: ObservableObject {
     }
     
     func presentDetailView() {
-        let detailViewModel = DetailViewModel(coordinator: detailCoordinator, networkManager: networkManager)
-        let detailView = DetailView(viewModel: detailViewModel).environmentObject(navigationManager)
+        let detailViewModel = DetailViewModel(coordinator: detailCoordinator, networkManager: networkManager, navigationManager: navigationManager)
+        let detailView = DetailView(viewModel: detailViewModel, navigationManager: navigationManager).environmentObject(navigationManager)
         navigationManager.navigateTo(view: AnyView(detailView))
     }
+
 }
 
 

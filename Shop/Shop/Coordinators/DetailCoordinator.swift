@@ -8,7 +8,8 @@ class DetailCoordinator: Coordinator {
     var view: AnyView?
     let userRepository = UserRepository()
     let networkManager = NetworkManager()
-
+    let navigationManager = NavigationManager()
+    
     func start() -> AnyView {
         let dependencies = AppDependencies(
             signUpCoordinator: SignUpCoordinator(),
@@ -17,7 +18,8 @@ class DetailCoordinator: Coordinator {
             personInfoCoordinator: PersonInfoCoordinator(),
             detailCoordinator: self,
             userRepository: userRepository,
-            networkManager: networkManager
+            networkManager: networkManager,
+            navigationManager: navigationManager
         )
         let detailView = DetailAssembly(dependencies: dependencies).assemble()
         view = AnyView(detailView)
