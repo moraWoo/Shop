@@ -7,6 +7,7 @@ class AppAssembly {
         let coreDataManager = CoreDataManager.shared
         let userRepository = UserRepository(coreDataManager: coreDataManager)
         let networkManager = NetworkManager()
+        let navigationManager = NavigationManager()
         
         let dependencies = AppDependencies(
             signUpCoordinator: SignUpCoordinator(),
@@ -15,7 +16,8 @@ class AppAssembly {
             personInfoCoordinator: PersonInfoCoordinator(),
             detailCoordinator: DetailCoordinator(),
             userRepository: userRepository,
-            networkManager: networkManager
+            networkManager: networkManager,
+            navigationManager: navigationManager
         )
         
         let appCoordinator = AppCoordinator()

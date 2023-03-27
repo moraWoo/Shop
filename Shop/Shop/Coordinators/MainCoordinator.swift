@@ -8,7 +8,8 @@ class MainCoordinator: Coordinator {
     var view: AnyView?
     let userRepository = UserRepository()
     let networkManager = NetworkManager()
-    
+    let navigationManager = NavigationManager()
+
     func start() -> AnyView {
         let dependencies = AppDependencies(
             signUpCoordinator: SignUpCoordinator(),
@@ -17,7 +18,8 @@ class MainCoordinator: Coordinator {
             personInfoCoordinator: PersonInfoCoordinator(),
             detailCoordinator: DetailCoordinator(),
             userRepository: userRepository,
-            networkManager: networkManager
+            networkManager: networkManager,
+            navigationManager: navigationManager
         )
         let mainView = MainAssembly(dependencies: dependencies).assemble(userRepository: userRepository)
         view = AnyView(mainView)
@@ -46,6 +48,7 @@ class MainCoordinator: Coordinator {
     func goToMainView() {
         
         let personInfoCoordinator = PersonInfoCoordinator()
+        let detailCoordinator = DetailCoordinator()
 
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
@@ -54,8 +57,10 @@ class MainCoordinator: Coordinator {
                 viewModel: MainViewModel(
                     coordinator: self,
                     personInfoCoordinator: personInfoCoordinator,
+                    detailCoordinator: detailCoordinator,
                     userRepository: self.userRepository,
-                    networkManager: self.networkManager
+                    networkManager: self.networkManager,
+                    navigationManager: self.navigationManager
                 )
             )
             self.view = AnyView(mainView)

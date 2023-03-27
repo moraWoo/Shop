@@ -6,30 +6,40 @@ class MainViewModel: ObservableObject {
     @Published var profileImage: UIImage?
     @Published var firstName: String?
     @Published var items: [[Any]] = [[], [], []]
+    @Published var showDetailView: Bool = false
+    @Published var showPersonInfoView: Bool = false
 
     var coordinator: MainCoordinator
     var personInfoCoordinator: PersonInfoCoordinator
+    var detailCoordinator: DetailCoordinator
+
+    let navigationManager: NavigationManager
+    let networkManager: NetworkManager
+
     private let userRepository: UserRepository
-    private let networkManager: NetworkManager
     private var cancellableSet: Set<AnyCancellable> = []
     
     init(
         coordinator: MainCoordinator,
         personInfoCoordinator: PersonInfoCoordinator,
+        detailCoordinator: DetailCoordinator,
         userRepository: UserRepository,
-        networkManager: NetworkManager
+        networkManager: NetworkManager,
+        navigationManager: NavigationManager
     ) {
         self.coordinator = coordinator
         self.personInfoCoordinator = personInfoCoordinator
+        self.detailCoordinator = detailCoordinator
         self.userRepository = userRepository
         self.networkManager = networkManager
-        
-        fetchLoggedInUser()
+        self.navigationManager = navigationManager
+
         if let currentUser = userRepository.currentUser,
            let avatarData = currentUser.avatar {
             profileImage = UIImage(data: avatarData)
         }
         
+        fetchLoggedInUser()
         fetchLatestAndFlashSaleProducts()
     }
     
@@ -43,18 +53,8 @@ class MainViewModel: ObservableObject {
     }
     
     func goToPersonInfoView() {
-        guard let parentCoordinator = coordinator.parentCoordinator as? AppCoordinator else {
-            print("Parent coordinator is nil")
-            return
-        }
-        
-        parentCoordinator.removeChildCoordinator(personInfoCoordinator)
-        personInfoCoordinator.parentCoordinator = parentCoordinator
-        parentCoordinator.addChildCoordinator(personInfoCoordinator)
-        
         let personInfoView = personInfoCoordinator.start()
-        
-        parentCoordinator.currentView = personInfoView
+        navigationManager.navigateTo(view: AnyView(personInfoView))
     }
     
     func fetchLoggedInUser() {
@@ -91,5 +91,12 @@ class MainViewModel: ObservableObject {
             }
             .store(in: &cancellableSet)
     }
+    
+    func presentDetailView() {
+        let detailViewModel = DetailViewModel(coordinator: detailCoordinator, networkManager: networkManager)
+        let detailView = DetailView(viewModel: detailViewModel).environmentObject(navigationManager)
+        navigationManager.navigateTo(view: AnyView(detailView))
+    }
 }
+
 

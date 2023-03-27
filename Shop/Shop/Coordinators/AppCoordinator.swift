@@ -7,7 +7,9 @@ class AppCoordinator: ObservableObject, Coordinator {
     
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?
-        
+    
+    let navigationManager = NavigationManager()
+    
     func start() -> AnyView {
             if childCoordinators.isEmpty {
                 let signUpCoordinator = SignUpCoordinator()

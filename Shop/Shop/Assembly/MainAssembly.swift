@@ -11,12 +11,16 @@ class MainAssembly {
     func assemble(userRepository: UserRepository) -> some View {
         
         if let mainCoordinator = dependencies.mainCoordinator,
-           let personInfoCoordinator = dependencies.personInfoCoordinator {
+           let personInfoCoordinator = dependencies.personInfoCoordinator,
+           let detailCoordinator = dependencies.detailCoordinator,
+           let navigationManager = dependencies.navigationManager {
             let viewModel = MainViewModel(
                 coordinator: mainCoordinator,
                 personInfoCoordinator: personInfoCoordinator,
+                detailCoordinator: detailCoordinator,
                 userRepository: dependencies.userRepository,
-                networkManager: dependencies.networkManager
+                networkManager: dependencies.networkManager,
+                navigationManager: navigationManager
             )
             let view = MainView(viewModel: viewModel)
             mainCoordinator.view = AnyView(view)
