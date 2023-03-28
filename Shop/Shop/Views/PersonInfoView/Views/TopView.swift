@@ -57,7 +57,6 @@ struct TopView: View {
                     Text("Upload Item")
                 }
                 .buttonStyle(PrimaryButtonStyle())
-                .padding(.bottom, 10)
                 
                 Image("share")
                     .frame(height: 15.0, alignment: Alignment.leading)
@@ -66,6 +65,7 @@ struct TopView: View {
             }
             .padding(.leading, 43)
             .padding(.trailing, 43)
+            .padding(.bottom, 10)
         }
     }
 }

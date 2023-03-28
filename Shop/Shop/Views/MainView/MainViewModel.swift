@@ -8,7 +8,7 @@ class MainViewModel: ObservableObject {
     @Published var profileImage: UIImage?
     @Published var firstName: String?
     @Published var items: [[Any]] = [[], [], []]
-    @Published var showDetailView: Bool = false
+    @Published var showDetailView: Binding<Bool>?
     @Published var showPersonInfoView: Binding<Bool>?
 
     var coordinator: MainCoordinator
