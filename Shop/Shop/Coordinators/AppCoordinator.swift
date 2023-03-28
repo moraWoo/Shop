@@ -8,18 +8,21 @@ class AppCoordinator: ObservableObject, Coordinator {
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?
     
+    let name: String = "App Coordinator"
     let navigationManager = NavigationManager()
     
     func start() -> AnyView {
-            if childCoordinators.isEmpty {
-                let signUpCoordinator = SignUpCoordinator()
-                addChildCoordinator(signUpCoordinator)
-                DispatchQueue.main.async {
-                    self.currentView = signUpCoordinator.start()
-                }
+        if childCoordinators.isEmpty {
+            let signUpCoordinator = SignUpCoordinator()
+            addChildCoordinator(signUpCoordinator)
+            DispatchQueue.main.async {
+                self.currentView = signUpCoordinator.start()
             }
-            return currentView
         }
+        printChildCoordinators()
+        
+        return currentView
+    }
     
     func addChildCoordinator(_ coordinator: Coordinator) {
         childCoordinators.append(coordinator)
@@ -30,6 +33,14 @@ class AppCoordinator: ObservableObject, Coordinator {
         if let index = childCoordinators.firstIndex(where: { $0 === coordinator }) {
             childCoordinators.remove(at: index)
             coordinator.parentCoordinator = nil
+        }
+    }
+    
+    func printChildCoordinators(indentationLevel: Int = 0) {
+        let indentation = String(repeating: " ", count: indentationLevel)
+        print("\(indentation)\(name)")
+        for child in childCoordinators {
+            child.printChildCoordinators(indentationLevel: indentationLevel + 2)
         }
     }
 }

@@ -7,6 +7,7 @@ class LoginCoordinator: Coordinator {
     var parentCoordinator: Coordinator?
     var view: AnyView?
     let userRepository = UserRepository()
+    let name: String = "Login Coordinator"
 
     func start() -> AnyView {
         let dependencies = AppDependencies(

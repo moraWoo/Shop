@@ -8,6 +8,7 @@ class PersonInfoCoordinator: Coordinator {
     var view: AnyView?
     let userRepository = UserRepository()
     let navigationManager = NavigationManager()
+    let name: String = "PersonInfo Coordinator"
 
     func start() -> AnyView {
         let dependencies = AppDependencies(

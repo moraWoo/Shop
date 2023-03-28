@@ -7,7 +7,8 @@ class SignUpCoordinator: Coordinator {
     var parentCoordinator: Coordinator?
     var view: AnyView?
     let userRepository = UserRepository()
-    
+    let name: String = "Sign Up Coordinator"
+
     func start() -> AnyView {
 
         let dependencies = AppDependencies(

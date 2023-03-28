@@ -9,7 +9,8 @@ class DetailCoordinator: Coordinator {
     let userRepository = UserRepository()
     let networkManager = NetworkManager()
     let navigationManager = NavigationManager()
-    
+    let name: String = "Detail Coordinator"
+
     func start() -> AnyView {
         let dependencies = AppDependencies(
             signUpCoordinator: SignUpCoordinator(),

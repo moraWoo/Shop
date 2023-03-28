@@ -9,6 +9,7 @@ class MainCoordinator: Coordinator {
     let userRepository = UserRepository()
     let networkManager = NetworkManager()
     let navigationManager = NavigationManager()
+    let name: String = "Main Coordinator"
 
     func start() -> AnyView {
         let dependencies = AppDependencies(
