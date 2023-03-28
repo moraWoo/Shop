@@ -1,11 +1,13 @@
 import SwiftUI
 
 struct TopView: View {
+    
     @ObservedObject var viewModel: PersonInfoViewModel
-    @Binding var profileImage: UIImage?
     @State private var showImagePicker = false
+    @Binding var profileImage: UIImage?
     
     var body: some View {
+        
         VStack {
             Text("Profile")
                 .customFont(size: 15, weight: .bold)
@@ -24,6 +26,7 @@ struct TopView: View {
                     .aspectRatio(contentMode: .fit)
                     .scaledToFit()
             }
+            
             Button {
                 showImagePicker.toggle()
             } label: {
@@ -34,8 +37,7 @@ struct TopView: View {
             }
             .sheet(isPresented: $showImagePicker) {
                 ImagePicker(
-                    image: $profileImage,
-                    viewModel: viewModel,
+                    viewModel: viewModel, image: $profileImage,
                     firstName: viewModel.firstName ?? "Name haven't loaded",
                     onFinishPicking: { image in
                         viewModel.updateAvatar(image: image)
@@ -53,7 +55,10 @@ struct TopView: View {
                     print("Login...")
                 } label: {
                     Text("Upload Item")
-                }.buttonStyle(PrimaryButtonStyle())
+                }
+                .buttonStyle(PrimaryButtonStyle())
+                .padding(.bottom, 10)
+                
                 Image("share")
                     .frame(height: 15.0, alignment: Alignment.leading)
                     .padding(.leading, 50)

@@ -1,22 +1,30 @@
 import SwiftUI
 
 struct MainView: View {
+    
     @EnvironmentObject var appCoordinator: AppCoordinator
     @ObservedObject var viewModel: MainViewModel
     @State private var selectedTab = 0
     @State private var hideMainComponents = false
+    @State private var showPersonInfoView: Bool = false
     
     var body: some View {
         NavigationView {
             ZStack {
-                if !hideMainComponents {
+                switch selectedTab {
+                case 0, 1, 2, 3:
                     VStack {
                         TopBarView(viewModel: viewModel, profileImage: $viewModel.profileImage)
                         SearchBarView()
                         CircleButtonView()
                         ItemRowView(viewModel: viewModel, selectedTab: $selectedTab, items: viewModel.items, navigationManager: viewModel.navigationManager)
                     }
+                case 4:
+                    PersonInfoView(viewModel: PersonInfoViewModel(coordinator: viewModel.personInfoCoordinator, loginCoordinator: viewModel.loginCoordinator, userRepository: viewModel.userRepository, navigationManager: viewModel.navigationManager), navigationManager: viewModel.navigationManager).environmentObject(viewModel.navigationManager)
+                default:
+                    EmptyView()
                 }
+
                 VStack {
                     Spacer()
                     CustomTabBar(selectedTab: $selectedTab)
@@ -29,17 +37,10 @@ struct MainView: View {
                 }
             }
             .background(Color.clear.edgesIgnoringSafeArea(.all))
-            .onChange(of: selectedTab, perform: { value in
-                if value == 4 {
-                    viewModel.personInfo()
-                    hideMainComponents = true
-                } else {
-                    hideMainComponents = false
-                }
-            })
             .onAppear {
                 self.viewModel.fetchLatestAndFlashSaleProducts()
                 viewModel.navigationManager.customTabBar = AnyView(CustomTabBar(selectedTab: $selectedTab))
+                viewModel.showPersonInfoView = $showPersonInfoView
             }
         }
     }

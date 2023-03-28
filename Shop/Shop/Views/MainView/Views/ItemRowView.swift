@@ -2,11 +2,11 @@ import SwiftUI
 
 struct ItemRowView: View {
     
-    var viewModel: MainViewModel
     @Binding var selectedTab: Int
     
+    var viewModel: MainViewModel
+    
     let items: [[Any]]
-
     let navigationManager: NavigationManager
 
     init(viewModel: MainViewModel, selectedTab: Binding<Int>, items: [[Any]], navigationManager: NavigationManager) {
@@ -28,6 +28,7 @@ struct ItemRowView: View {
                 Tab4View()
             } else if selectedTab == 4 {
                 Tab5View()
+                    .background(Tab5View().opacity((viewModel.showPersonInfoView != nil) ? 0 : 1))
             }
             Spacer()
         }

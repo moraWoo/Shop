@@ -2,6 +2,7 @@ import SwiftUI
 import Combine
 
 struct ItemCardView: View {
+    
     @EnvironmentObject var navigationManager: NavigationManager
     @EnvironmentObject var viewModel: MainViewModel
 
@@ -36,6 +37,7 @@ struct ItemCardView: View {
     }
     
     var body: some View {
+        
         NavigationLink(destination: DetailView(viewModel: DetailViewModel(coordinator: viewModel.detailCoordinator, networkManager: viewModel.networkManager, navigationManager: navigationManager), navigationManager: navigationManager).environmentObject(navigationManager), isActive: $showDetailView) {
             
             

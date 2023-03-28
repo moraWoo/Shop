@@ -11,16 +11,18 @@ class PersonInfoAssembly {
     func assemble(userRepository: UserRepository) -> some View {
         
         guard let personInfoCoordinator = dependencies.personInfoCoordinator,
-              let loginCoordinator = dependencies.loginCoordinator else {
+              let loginCoordinator = dependencies.loginCoordinator,
+              let navigationManager = dependencies.navigationManager else {
             fatalError("PersonInfoCoordinator or LoginCoordinator is missing")
         }
         
         let viewModel = PersonInfoViewModel(
             coordinator: personInfoCoordinator,
             loginCoordinator: loginCoordinator,
-            userRepository: dependencies.userRepository
+            userRepository: dependencies.userRepository,
+            navigationManager: navigationManager
         )
-        let view = PersonInfoView(viewModel: viewModel)
+        let view = PersonInfoView(viewModel: viewModel, navigationManager: navigationManager)
         personInfoCoordinator.view = AnyView(view)
 
         return AnyView(view)

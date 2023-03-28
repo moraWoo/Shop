@@ -4,8 +4,8 @@ import UIKit
 struct ImagePicker: UIViewControllerRepresentable {
     
     @Environment(\.presentationMode) var presentationMode
-    @Binding var image: UIImage?
     @ObservedObject var viewModel: PersonInfoViewModel
+    @Binding var image: UIImage?
     
     let firstName: String
     var onFinishPicking: (UIImage) -> Void

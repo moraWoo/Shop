@@ -8,6 +8,8 @@ class PersonInfoViewModel: ObservableObject {
     var coordinator: PersonInfoCoordinator
     var loginCoordinator: LoginCoordinator
     let userRepository: UserRepository
+    let navigationManager: NavigationManager
+    
     private var cancellableSet: Set<AnyCancellable> = []
 
     var firstName: String? {
@@ -17,12 +19,14 @@ class PersonInfoViewModel: ObservableObject {
     init(
         coordinator: PersonInfoCoordinator,
         loginCoordinator: LoginCoordinator,
-        userRepository: UserRepository
+        userRepository: UserRepository,
+        navigationManager: NavigationManager
     ) {
         self.coordinator = coordinator
         self.loginCoordinator = loginCoordinator
         self.userRepository = userRepository
-        
+        self.navigationManager = navigationManager
+
         if let currentUser = userRepository.currentUser,
            let avatarData = currentUser.avatar {
             profileImage = UIImage(data: avatarData)
@@ -30,6 +34,7 @@ class PersonInfoViewModel: ObservableObject {
     }
     
     func logout() {
+        
         if let currentUser = userRepository.currentUser {
             userRepository.setIsLogged(user: currentUser, isLogged: false)
             userRepository.saveContext()
@@ -52,6 +57,7 @@ class PersonInfoViewModel: ObservableObject {
     }
     
     func updateAvatar(image: UIImage) {
+        
         if let user = userRepository.currentUser {
             userRepository.updateAvatar(user: user, avatar: image)
             profileImage = image

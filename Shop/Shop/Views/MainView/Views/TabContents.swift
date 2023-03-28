@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct Tab1View: View {
-    var viewModel: MainViewModel
     
+    var viewModel: MainViewModel
     let navigationManager: NavigationManager
     
     let items: [[Any]]
@@ -88,12 +88,24 @@ struct Tab4View: View {
 }
 
 struct Tab5View: View {
+    
+    @EnvironmentObject var viewModel: MainViewModel
+    
     var body: some View {
-        Text("Tab 5 Content")
+        Button(action: {
+            viewModel.showPersonInfoView?.wrappedValue = true
+        }) {
+            Text("Show Person Info")
+                .foregroundColor(.white)
+                .padding()
+                .background(Color.blue)
+                .cornerRadius(10)
+        }
     }
 }
 
 struct ItemRowComponent: View {
+    
     @State private var showDetailView: Bool = false
 
     let item: Any

@@ -13,11 +13,13 @@ class MainAssembly {
         if let mainCoordinator = dependencies.mainCoordinator,
            let personInfoCoordinator = dependencies.personInfoCoordinator,
            let detailCoordinator = dependencies.detailCoordinator,
+           let loginCoordinator = dependencies.loginCoordinator,
            let navigationManager = dependencies.navigationManager {
             let viewModel = MainViewModel(
                 coordinator: mainCoordinator,
                 personInfoCoordinator: personInfoCoordinator,
                 detailCoordinator: detailCoordinator,
+                loginCoordinator: loginCoordinator,
                 userRepository: dependencies.userRepository,
                 networkManager: dependencies.networkManager,
                 navigationManager: navigationManager

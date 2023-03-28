@@ -1,7 +1,9 @@
 import SwiftUI
 
 struct DetailText: View {
+    
     var body: some View {
+        
         VStack(alignment: .leading) {
             HStack {
                 Text("New balance Sneakers")
@@ -18,6 +20,7 @@ struct DetailText: View {
                 .foregroundColor(Color(red: 128/255, green: 128/255, blue: 128/255))
                 .frame(width: 231)
                 .padding(.bottom, 11)
+            
             HStack {
                 Image("detailStar")
                 Text("3.9")

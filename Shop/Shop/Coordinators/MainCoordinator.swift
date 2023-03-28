@@ -49,6 +49,7 @@ class MainCoordinator: Coordinator {
         
         let personInfoCoordinator = PersonInfoCoordinator()
         let detailCoordinator = DetailCoordinator()
+        let loginCoordinator = LoginCoordinator()
 
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
@@ -58,6 +59,7 @@ class MainCoordinator: Coordinator {
                     coordinator: self,
                     personInfoCoordinator: personInfoCoordinator,
                     detailCoordinator: detailCoordinator,
+                    loginCoordinator: loginCoordinator,
                     userRepository: self.userRepository,
                     networkManager: self.networkManager,
                     navigationManager: self.navigationManager

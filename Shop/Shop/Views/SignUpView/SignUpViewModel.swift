@@ -19,8 +19,6 @@ class SignUpViewModel: ObservableObject {
     @Published var showPasswordInput = false
     @Published var userExists = false
     
-    
-    
     var cancellableSet: Set<AnyCancellable> = []
 
     var firstNamePrompt: String? {

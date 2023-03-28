@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct DetailView: View {
+    
     @ObservedObject var viewModel: DetailViewModel
     @ObservedObject var navigationManager: NavigationManager
     
@@ -10,6 +11,7 @@ struct DetailView: View {
     }
     
     var body: some View {
+        
         ZStack {
             VStack {
                 MainImage()

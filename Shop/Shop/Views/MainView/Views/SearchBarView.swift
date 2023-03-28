@@ -5,6 +5,7 @@ struct SearchBarView: View {
     @State private var searchText = ""
     
     var body: some View {
+        
         ZStack(alignment: .trailing) {
             TextField("What are you looking for ?", text: $searchText)
                 .modifier(TextFieldInputDataModifier())

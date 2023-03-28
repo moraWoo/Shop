@@ -2,6 +2,7 @@ import SwiftUI
 import Combine
 
 enum AlertType: Identifiable {
+    
     case fieldsEmpty, userExists
     
     var id: Int {

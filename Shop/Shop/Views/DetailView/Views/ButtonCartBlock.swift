@@ -1,13 +1,16 @@
 import SwiftUI
 
 struct ButtonCartBlock: View {
+    
     var body: some View {
+        
         ZStack {
             GeometryReader { geo in
                 Rectangle()
                     .frame(width: geo.size.width, height: geo.size.height - geo.safeAreaInsets.bottom)
                     .background(Color.black)
                     .clipShape(TopRoundedRectangle(cornerRadius: 27))            }
+            
             VStack {
                 HStack {
                     VStack(alignment: .leading) {

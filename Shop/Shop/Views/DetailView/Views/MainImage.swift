@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct MainImage: View {
+    
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
             Image("detailImage")

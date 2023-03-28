@@ -7,6 +7,7 @@ class PersonInfoCoordinator: Coordinator {
     var parentCoordinator: Coordinator?
     var view: AnyView?
     let userRepository = UserRepository()
+    let navigationManager = NavigationManager()
 
     func start() -> AnyView {
         let dependencies = AppDependencies(
@@ -15,7 +16,8 @@ class PersonInfoCoordinator: Coordinator {
             mainCoordinator: MainCoordinator(),
             personInfoCoordinator: self,
             detailCoordinator: DetailCoordinator(),
-            userRepository: userRepository
+            userRepository: userRepository,
+            navigationManager: navigationManager
         )
         let personInfoView = PersonInfoAssembly(dependencies: dependencies).assemble(userRepository: userRepository)
         view = AnyView(personInfoView)

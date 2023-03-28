@@ -37,6 +37,7 @@ struct SettingsList: View {
                     .customFont(size: 14, weight: .medium)
                     .foregroundColor(.black)
             }
+            
             Spacer()
             if showChevron {
                 Image(systemName: "chevron.right")

@@ -1,7 +1,9 @@
 import Combine
 
 class DetailViewModel: ObservableObject {
+    
     @Published var coordinator: DetailCoordinator?
+    
     let networkManager: NetworkManager
     let navigationManager: NavigationManager
 
