@@ -28,7 +28,7 @@ struct DetailView: View {
                 Spacer()
                 if let tabBar = navigationManager.customTabBar {
                     tabBar
-                        .padding(.bottom, -10)
+                        .padding(.bottom, -40)
                 }
             }
         }
@@ -41,8 +41,15 @@ struct DetailView_Previews: PreviewProvider {
     let navigationManager = NavigationManager()
     
     static var previews: some View {
-        let viewModel = DetailViewModel(coordinator: DetailCoordinator(), networkManager: NetworkManager(), navigationManager: NavigationManager())
+        let viewModel = DetailViewModel(
+            coordinator: DetailCoordinator(),
+            networkManager: NetworkManager(),
+            navigationManager: NavigationManager()
+        )
         let navigationManager = NavigationManager()
-        DetailView(viewModel: viewModel, navigationManager: navigationManager)
+        DetailView(
+            viewModel: viewModel,
+            navigationManager: navigationManager
+        )
     }
 }

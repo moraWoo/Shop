@@ -9,7 +9,8 @@ struct ButtonCartBlock: View {
                 Rectangle()
                     .frame(width: geo.size.width, height: geo.size.height - geo.safeAreaInsets.bottom)
                     .background(Color.black)
-                    .clipShape(TopRoundedRectangle(cornerRadius: 27))            }
+                    .clipShape(TopRoundedRectangle(cornerRadius: 27))
+            }
             
             VStack {
                 HStack {

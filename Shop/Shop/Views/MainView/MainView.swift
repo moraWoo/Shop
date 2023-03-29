@@ -9,20 +9,62 @@ struct MainView: View {
     @State private var showPersonInfoView: Bool = false
     @State private var showDetailView: Bool = false
     
+    let navigationManager: NavigationManager
     
     var body: some View {
         NavigationView {
             ZStack {
                 switch selectedTab {
-                    case 0, 1, 2, 3:
+                    case 0:
                         VStack {
                             TopBarView(viewModel: viewModel, profileImage: $viewModel.profileImage)
                             SearchBarView()
                             CircleButtonView()
-                            ItemRowView(viewModel: viewModel, selectedTab: $selectedTab, items: viewModel.items, navigationManager: viewModel.navigationManager)
+                            
+                            Tab1View(viewModel: viewModel, items: viewModel.items, navigationManager: viewModel.navigationManager)
+                        }
+                    case 1:
+                        VStack {
+                            TopBarView(viewModel: viewModel, profileImage: $viewModel.profileImage)
+                            SearchBarView()
+                            CircleButtonView()
+                            Tab2View()
+                            Spacer()
+                        }
+                    case 2:
+                        VStack {
+                            TopBarView(
+                                viewModel: viewModel,
+                                profileImage:
+                                    $viewModel.profileImage
+                            )
+                            SearchBarView()
+                            CircleButtonView()
+                            Tab3View()
+                            Spacer()
+                        }
+                    case 3:
+                        VStack {
+                            TopBarView(
+                                viewModel: viewModel,
+                                profileImage: $viewModel.profileImage
+                            )
+                            SearchBarView()
+                            CircleButtonView()
+                            Tab4View()
+                            Spacer()
                         }
                     case 4:
-                        PersonInfoView(viewModel: PersonInfoViewModel(coordinator: viewModel.personInfoCoordinator, loginCoordinator: viewModel.loginCoordinator, userRepository: viewModel.userRepository, navigationManager: viewModel.navigationManager), navigationManager: viewModel.navigationManager).environmentObject(viewModel.navigationManager)
+                        PersonInfoView(
+                            viewModel: PersonInfoViewModel(
+                                coordinator: viewModel.personInfoCoordinator,
+                                loginCoordinator: viewModel.loginCoordinator,
+                                userRepository: viewModel.userRepository,
+                                navigationManager: viewModel.navigationManager
+                            ), navigationManager: viewModel.navigationManager
+                        )
+                        .environmentObject(viewModel.navigationManager
+                        )
                     default:
                         EmptyView()
                 }
@@ -30,7 +72,7 @@ struct MainView: View {
                 VStack {
                     Spacer()
                     CustomTabBar(selectedTab: $selectedTab)
-                        .padding(.bottom, -10)
+                        .padding(.bottom, -40)
                 }
                 if let currentView = viewModel.navigationManager.currentView {
                     currentView

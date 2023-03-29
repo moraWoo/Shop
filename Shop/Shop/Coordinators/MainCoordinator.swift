@@ -64,7 +64,7 @@ class MainCoordinator: Coordinator {
                     userRepository: self.userRepository,
                     networkManager: self.networkManager,
                     navigationManager: self.navigationManager
-                )
+                ), navigationManager: self.navigationManager
             )
             self.view = AnyView(mainView)
         }

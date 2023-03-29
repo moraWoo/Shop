@@ -41,14 +41,14 @@ struct CustomTabBar: View {
                             .frame(width: 20, height: 20)
                     }
                 }.frame(maxWidth: .infinity)
-
+                
             }
         }
         .padding(.vertical, 8)
-        .frame(height: 87)
-        .background(Color.white)
-        .background(.clear)
-        .clipShape(RoundedRectangle(cornerRadius: 27, style: .continuous))
+        .padding(.bottom, 20)
+        .frame(height: 110)
+        .background(.white)
+        .clipShape(TopRoundedRectangle(cornerRadius: 27))
         .edgesIgnoringSafeArea(.bottom)
     }
 }

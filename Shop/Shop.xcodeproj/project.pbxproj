@@ -55,7 +55,6 @@
 		77BEE51729C71C410055EFB4 /* CircleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BEE51629C71C410055EFB4 /* CircleButtonView.swift */; };
 		77BEE51929C71C570055EFB4 /* TabContents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BEE51829C71C570055EFB4 /* TabContents.swift */; };
 		77BEE51B29C71C7D0055EFB4 /* ItemCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BEE51A29C71C7D0055EFB4 /* ItemCardView.swift */; };
-		77BEE51D29C71C990055EFB4 /* ItemRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BEE51C29C71C990055EFB4 /* ItemRowView.swift */; };
 		77BEE51F29C71CB20055EFB4 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BEE51E29C71CB20055EFB4 /* CustomTabBar.swift */; };
 		77BEE52129C71CCE0055EFB4 /* PickerLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BEE52029C71CCE0055EFB4 /* PickerLocation.swift */; };
 		77BEE52329C71D500055EFB4 /* TopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BEE52229C71D500055EFB4 /* TopView.swift */; };
@@ -120,7 +119,6 @@
 		77BEE51629C71C410055EFB4 /* CircleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButtonView.swift; sourceTree = "<group>"; };
 		77BEE51829C71C570055EFB4 /* TabContents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabContents.swift; sourceTree = "<group>"; };
 		77BEE51A29C71C7D0055EFB4 /* ItemCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCardView.swift; sourceTree = "<group>"; };
-		77BEE51C29C71C990055EFB4 /* ItemRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRowView.swift; sourceTree = "<group>"; };
 		77BEE51E29C71CB20055EFB4 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		77BEE52029C71CCE0055EFB4 /* PickerLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerLocation.swift; sourceTree = "<group>"; };
 		77BEE52229C71D500055EFB4 /* TopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopView.swift; sourceTree = "<group>"; };
@@ -362,7 +360,6 @@
 				77BEE51629C71C410055EFB4 /* CircleButtonView.swift */,
 				77BEE51829C71C570055EFB4 /* TabContents.swift */,
 				77BEE51A29C71C7D0055EFB4 /* ItemCardView.swift */,
-				77BEE51C29C71C990055EFB4 /* ItemRowView.swift */,
 				77BEE51E29C71CB20055EFB4 /* CustomTabBar.swift */,
 				77BEE52029C71CCE0055EFB4 /* PickerLocation.swift */,
 				631AE50B29CF26A8008B4472 /* LatestItem.swift */,
@@ -516,7 +513,6 @@
 				77BEE51329C71BE00055EFB4 /* TopBarView.swift in Sources */,
 				776F648D29BF6ABF00B6C808 /* LoginCoordinator.swift in Sources */,
 				776F649C29BFB58300B6C808 /* AppAssembly.swift in Sources */,
-				77BEE51D29C71C990055EFB4 /* ItemRowView.swift in Sources */,
 				776F648529BF6A5A00B6C808 /* LoginViewModel.swift in Sources */,
 				77627C3D29C885F500EA0E11 /* UserRepository.swift in Sources */,
 				776F64A329C0B6A900B6C808 /* LoginAssembly.swift in Sources */,

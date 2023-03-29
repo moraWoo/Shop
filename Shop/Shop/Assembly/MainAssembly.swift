@@ -24,7 +24,7 @@ class MainAssembly {
                 networkManager: dependencies.networkManager,
                 navigationManager: navigationManager
             )
-            let view = MainView(viewModel: viewModel)
+            let view = MainView(viewModel: viewModel, navigationManager: navigationManager)
             mainCoordinator.view = AnyView(view)
 
             return AnyView(view)

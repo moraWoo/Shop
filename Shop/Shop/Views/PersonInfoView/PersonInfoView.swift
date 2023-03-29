@@ -20,7 +20,7 @@ struct PersonInfoView: View {
                 Spacer()
                 if let tabBar = navigationManager.customTabBar {
                     tabBar
-                        .padding(.bottom, -10)
+                        .padding(.bottom, -40)
                 }
             }
         }
