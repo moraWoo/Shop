@@ -11,13 +11,14 @@ class DetailAssembly {
     func assemble() -> some View {
         
         guard let detailCoordinator = dependencies.detailCoordinator,
-              let navigationManager = dependencies.navigationManager else {
+              let navigationManager = dependencies.navigationManager,
+              let networkManager = dependencies.networkManager else {
             fatalError("DetailCoordinator or NavigationManager is missing")
         }
         
         let viewModel = DetailViewModel(
             coordinator: detailCoordinator,
-            networkManager: dependencies.networkManager,
+            networkManager: networkManager,
             navigationManager: navigationManager
         )
         let view = DetailView(viewModel: viewModel, navigationManager: navigationManager)

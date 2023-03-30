@@ -7,18 +7,19 @@ class AppDependencies {
     let mainCoordinator: MainCoordinator?
     let personInfoCoordinator: PersonInfoCoordinator?
     let detailCoordinator: DetailCoordinator?
-    let userRepository: UserRepository
-    let networkManager: NetworkManager
+    let userRepository: UserRepository?
+    let networkManager: NetworkManager?
     let navigationManager: NavigationManager?
+    
     init(
         signUpCoordinator: SignUpCoordinator? = nil,
         loginCoordinator: LoginCoordinator? = nil,
         mainCoordinator: MainCoordinator? = nil,
         personInfoCoordinator: PersonInfoCoordinator? = nil,
         detailCoordinator: DetailCoordinator? = nil,
-        userRepository: UserRepository = UserRepository(),
-        networkManager: NetworkManager = NetworkManager(),
-        navigationManager: NavigationManager = NavigationManager()
+        userRepository: UserRepository? = nil,
+        networkManager: NetworkManager? = nil,
+        navigationManager: NavigationManager? = nil
     ) {
         self.loginCoordinator = loginCoordinator
         self.signUpCoordinator = signUpCoordinator

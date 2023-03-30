@@ -27,7 +27,7 @@ class AppAssembly {
         let mainAssembly = MainAssembly(dependencies: dependencies)
         let personInfoAssembly = PersonInfoAssembly(dependencies: dependencies)
         let detailAssembly = DetailAssembly(dependencies: dependencies)
-
+        
         if let signUpCoordinator = signUpAssembly.dependencies.signUpCoordinator {
             appCoordinator.addChildCoordinator(signUpCoordinator)
         }

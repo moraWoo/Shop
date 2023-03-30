@@ -14,14 +14,16 @@ class MainAssembly {
            let personInfoCoordinator = dependencies.personInfoCoordinator,
            let detailCoordinator = dependencies.detailCoordinator,
            let loginCoordinator = dependencies.loginCoordinator,
-           let navigationManager = dependencies.navigationManager {
+           let navigationManager = dependencies.navigationManager,
+           let networkManager = dependencies.networkManager
+        {
             let viewModel = MainViewModel(
                 coordinator: mainCoordinator,
                 personInfoCoordinator: personInfoCoordinator,
                 detailCoordinator: detailCoordinator,
                 loginCoordinator: loginCoordinator,
-                userRepository: dependencies.userRepository,
-                networkManager: dependencies.networkManager,
+                userRepository: userRepository,
+                networkManager: networkManager,
                 navigationManager: navigationManager
             )
             let view = MainView(viewModel: viewModel, navigationManager: navigationManager)

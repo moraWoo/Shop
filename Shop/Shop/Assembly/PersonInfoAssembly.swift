@@ -12,14 +12,15 @@ class PersonInfoAssembly {
         
         guard let personInfoCoordinator = dependencies.personInfoCoordinator,
               let loginCoordinator = dependencies.loginCoordinator,
-              let navigationManager = dependencies.navigationManager else {
+              let navigationManager = dependencies.navigationManager,
+              let userRepository = dependencies.userRepository else {
             fatalError("PersonInfoCoordinator or LoginCoordinator is missing")
         }
         
         let viewModel = PersonInfoViewModel(
             coordinator: personInfoCoordinator,
             loginCoordinator: loginCoordinator,
-            userRepository: dependencies.userRepository,
+            userRepository: userRepository,
             navigationManager: navigationManager
         )
         let view = PersonInfoView(viewModel: viewModel, navigationManager: navigationManager)
