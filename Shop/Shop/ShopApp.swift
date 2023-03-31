@@ -16,18 +16,8 @@ struct ShopApp: App {
 
     var body: some Scene {
         
-        let contentView = appCoordinator.start().environmentObject(appCoordinator)
         WindowGroup {
-            contentView.environmentObject(appCoordinator)
+            AppAssembly.assemble().environmentObject(appCoordinator)
         }
     }
 }
-
-
-
-
-
-
-
-
-

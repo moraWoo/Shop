@@ -1,7 +1,8 @@
 import SwiftUI
 
 struct LoginView: View, SecuredTextFieldParentProtocol {
-    
+    @EnvironmentObject var appCoordinator: AppCoordinator
+
     @ObservedObject var viewModel: LoginViewModel
     
     @State var hideKeyboard: (() -> Void)?

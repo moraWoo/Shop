@@ -1,7 +1,7 @@
 import Foundation
 import Combine
 
-class NetworkManager: ObservableObject {
+class NetworkManager: ObservableObject, NetworkManagerProtocol {
     
     func fetchLatestAndFlashSale() -> AnyPublisher<(LatestProductsResponse, FlashSaleResponse), Error> {
         

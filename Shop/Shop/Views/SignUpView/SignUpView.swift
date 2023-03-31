@@ -14,16 +14,12 @@ enum AlertType: Identifiable {
 }
 
 struct SignUpView: View {
-    
+    @EnvironmentObject var appCoordinator: AppCoordinator
     @ObservedObject var viewModel: SignUpViewModel
     
     @State private var showingAlertTextFieldsIsEmpty = false
     @State private var showPasswordInput = false
     @State private var activeAlert: AlertType?
-    
-    public init(viewModel: SignUpViewModel) {
-        self.viewModel = viewModel
-    }
     
     var body: some View {
         
@@ -40,15 +36,15 @@ struct SignUpView: View {
                         if viewModel.firstName.isEmpty || viewModel.lastName.isEmpty || viewModel.email.isEmpty {
                             activeAlert = .fieldsEmpty
                         } else {
-                            let cancellable = viewModel.checkExistingUser()
+                            viewModel.checkExistingUser()
                                 .sink(receiveValue: { userExists in
                                     if userExists {
-                                        activeAlert = .some(.userExists)
+                                        activeAlert = .userExists
                                     } else {
                                         showPasswordInput = true
                                     }
                                 })
-                            viewModel.cancellableSet.insert(cancellable)
+                                .store(in: &viewModel.cancellableSet)
                         }
                     } label: {
                         Text("Sign in")
@@ -61,7 +57,7 @@ struct SignUpView: View {
                         .customFont(size: 10, weight: .medium)
                         .foregroundColor(Color(red: 128/255, green: 128/255, blue: 128/255))
                     Button {
-                        viewModel.login()
+                        viewModel.goToLoginView()
                     } label: {
                         Text("Log in")
                             .customFont(size: 10, weight: .medium)
@@ -72,7 +68,7 @@ struct SignUpView: View {
             
             VStack(spacing: 38) {
                 Button {
-                    viewModel.login()
+                    viewModel.goToLoginView()
                 } label: {
                     Image("googleLogo")
                     Text("Sign in with Google")
@@ -80,7 +76,7 @@ struct SignUpView: View {
                         .foregroundColor(.black)
                 }
                 Button {
-                    viewModel.login()
+                    viewModel.goToLoginView()
                 } label: {
                     Image("appleLogo")
                     Text("Sign in with Apple")

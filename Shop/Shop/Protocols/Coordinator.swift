@@ -1,20 +1,17 @@
 import SwiftUI
+import Combine
 
 protocol Coordinator: AnyObject {
-    
-    var name: String { get }
     var childCoordinators: [Coordinator] { get set }
     var parentCoordinator: Coordinator? { get set }
+    var name: String { get }
     
-    func start() -> AnyView
+    func start() -> AnyPublisher<AnyView, Never>
     func addChildCoordinator(_ coordinator: Coordinator)
     func removeChildCoordinator(_ coordinator: Coordinator)
-    
-    func printChildCoordinators(indentationLevel: Int)
 }
 
 extension Coordinator {
-    
     func addChildCoordinator(_ coordinator: Coordinator) {
         childCoordinators.append(coordinator)
         coordinator.parentCoordinator = self
@@ -23,6 +20,7 @@ extension Coordinator {
     func removeChildCoordinator(_ coordinator: Coordinator) {
         if let index = childCoordinators.firstIndex(where: { $0 === coordinator }) {
             childCoordinators.remove(at: index)
+            coordinator.parentCoordinator = nil
         }
     }
     

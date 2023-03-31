@@ -9,7 +9,6 @@ struct MainView: View {
     @State private var showPersonInfoView: Bool = false
     @State private var showDetailView: Bool = false
     
-    let navigationManager: NavigationManager
     
     var body: some View {
         NavigationView {
@@ -21,7 +20,7 @@ struct MainView: View {
                             SearchBarView()
                             CircleButtonView()
                             
-                            Tab1View(viewModel: viewModel, items: viewModel.items, navigationManager: viewModel.navigationManager)
+                            Tab1View(viewModel: viewModel, items: viewModel.items)
                         }
                     case 1:
                         VStack {
@@ -55,16 +54,17 @@ struct MainView: View {
                             Spacer()
                         }
                     case 4:
-                        PersonInfoView(
-                            viewModel: PersonInfoViewModel(
-                                coordinator: viewModel.personInfoCoordinator,
-                                loginCoordinator: viewModel.loginCoordinator,
-                                userRepository: viewModel.userRepository,
-                                navigationManager: viewModel.navigationManager
-                            ), navigationManager: viewModel.navigationManager
-                        )
-                        .environmentObject(viewModel.navigationManager
-                        )
+                        Text("case 4")
+//                        PersonInfoView(
+//                            viewModel: PersonInfoViewModel(
+//                                coordinator: viewModel.personInfoCoordinator,
+//                                loginCoordinator: viewModel.loginCoordinator,
+//                                userRepository: viewModel.userRepository,
+//                                navigationManager: viewModel.navigationManager
+//                            ), navigationManager: viewModel.navigationManager
+//                        )
+//                        .environmentObject(viewModel.navigationManager
+//                        )
                     default:
                         EmptyView()
                 }
@@ -83,7 +83,7 @@ struct MainView: View {
             .background(Color.clear.edgesIgnoringSafeArea(.all))
             .onAppear {
                 self.viewModel.fetchLatestAndFlashSaleProducts()
-                viewModel.navigationManager.customTabBar = AnyView(CustomTabBar(selectedTab: $selectedTab))
+//                viewModel.navigationManager.customTabBar = AnyView(CustomTabBar(selectedTab: $selectedTab))
                 viewModel.showPersonInfoView = $showPersonInfoView
                 
             }

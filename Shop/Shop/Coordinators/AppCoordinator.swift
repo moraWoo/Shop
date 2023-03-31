@@ -2,37 +2,23 @@ import SwiftUI
 import Combine
 
 class AppCoordinator: ObservableObject, Coordinator {
-    
     @Published var currentView: AnyView = AnyView(EmptyView())
     
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?
-    
+    var dependencies: AppDependencies?
+
     let name: String = "App Coordinator"
-    let navigationManager = NavigationManager()
+
     
-    func start() -> AnyView {
+    func start() -> AnyPublisher<AnyView, Never> {
         if childCoordinators.isEmpty {
             let signUpCoordinator = SignUpCoordinator()
+            signUpCoordinator.parentCoordinator = self
             addChildCoordinator(signUpCoordinator)
-            DispatchQueue.main.async {
-                self.currentView = signUpCoordinator.start()
-            }
-        }
-        printChildCoordinators()
-        
-        return currentView
-    }
-    
-    func addChildCoordinator(_ coordinator: Coordinator) {
-        childCoordinators.append(coordinator)
-        coordinator.parentCoordinator = self
-    }
-    
-    func removeChildCoordinator(_ coordinator: Coordinator) {
-        if let index = childCoordinators.firstIndex(where: { $0 === coordinator }) {
-            childCoordinators.remove(at: index)
-            coordinator.parentCoordinator = nil
+            return signUpCoordinator.start().map { AnyView($0) }.eraseToAnyPublisher()
+        } else {
+            return Just(currentView).eraseToAnyPublisher()
         }
     }
     
@@ -43,4 +29,28 @@ class AppCoordinator: ObservableObject, Coordinator {
             child.printChildCoordinators(indentationLevel: indentationLevel + 2)
         }
     }
+    
+    func navigateToLogin() {
+        let loginCoordinator = LoginCoordinator()
+        addChildCoordinator(loginCoordinator)
+        loginCoordinator.start()
+            .map { AnyView($0) }
+            .sink { [weak self] view in
+                self?.currentView = view
+            }
+            .store(in: &subscriptions)
+    }
+    
+    func navigateToMain() {
+        let mainCoordinator = MainCoordinator()
+        addChildCoordinator(mainCoordinator)
+        mainCoordinator.start()
+            .map { AnyView($0) }
+            .sink { [weak self] view in
+                self?.currentView = view
+            }
+            .store(in: &subscriptions)
+    }
+    
+    private var subscriptions = Set<AnyCancellable>()
 }

@@ -11,30 +11,20 @@ class MainViewModel: ObservableObject {
     @Published var showDetailView: Binding<Bool>?
     @Published var showPersonInfoView: Binding<Bool>?
 
-    var coordinator: MainCoordinator
-    var personInfoCoordinator: PersonInfoCoordinator
-    var loginCoordinator: LoginCoordinator
-    var detailCoordinator: DetailCoordinator
-    
+    let coordinator: MainCoordinator
     let navigationManager: NavigationManager
     let networkManager: NetworkManager
-    
     let userRepository: UserRepository
+    
     private var cancellableSet: Set<AnyCancellable> = []
     
     init(
         coordinator: MainCoordinator,
-        personInfoCoordinator: PersonInfoCoordinator,
-        detailCoordinator: DetailCoordinator,
-        loginCoordinator: LoginCoordinator,
         userRepository: UserRepository,
         networkManager: NetworkManager,
         navigationManager: NavigationManager
     ) {
         self.coordinator = coordinator
-        self.personInfoCoordinator = personInfoCoordinator
-        self.detailCoordinator = detailCoordinator
-        self.loginCoordinator = loginCoordinator
         self.userRepository = userRepository
         self.networkManager = networkManager
         self.navigationManager = navigationManager
@@ -46,12 +36,6 @@ class MainViewModel: ObservableObject {
         
         fetchLoggedInUser()
         fetchLatestAndFlashSaleProducts()
-    }
-    
-    func goToMainView() {
-        
-        coordinator.goToMainView()
-        coordinator.parentCoordinator?.addChildCoordinator(coordinator)
     }
     
     func fetchLoggedInUser() {
@@ -98,19 +82,16 @@ class MainViewModel: ObservableObject {
     
     func goToPersonInfoView() {
         
-        let personInfoViewModel = PersonInfoViewModel(coordinator: personInfoCoordinator, loginCoordinator: loginCoordinator, userRepository: userRepository, navigationManager: navigationManager)
-        let personInfoView = PersonInfoView(viewModel: personInfoViewModel, navigationManager: navigationManager).environmentObject(navigationManager)
-        navigationManager.navigateTo(view: AnyView(personInfoView))
+//        let personInfoViewModel = PersonInfoViewModel(coordinator: personInfoCoordinator, loginCoordinator: loginCoordinator, userRepository: userRepository, navigationManager: navigationManager)
+//        let personInfoView = PersonInfoView(viewModel: personInfoViewModel, navigationManager: navigationManager).environmentObject(navigationManager)
+//        navigationManager.navigateTo(view: AnyView(personInfoView))
         
     }
     
     func presentDetailView() {
         
-        let detailViewModel = DetailViewModel(coordinator: detailCoordinator, networkManager: networkManager, navigationManager: navigationManager)
-        let detailView = DetailView(viewModel: detailViewModel, navigationManager: navigationManager).environmentObject(navigationManager)
-        navigationManager.navigateTo(view: AnyView(detailView))
+//        let detailViewModel = DetailViewModel(coordinator: detailCoordinator, networkManager: networkManager, navigationManager: navigationManager)
+//        let detailView = DetailView(viewModel: detailViewModel, navigationManager: navigationManager).environmentObject(navigationManager)
+//        navigationManager.navigateTo(view: AnyView(detailView))
     }
-    
 }
-
-

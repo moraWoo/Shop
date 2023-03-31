@@ -2,7 +2,7 @@ import CoreData
 import Combine
 import UIKit
 
-class UserRepository: ObservableObject {
+class UserRepository: ObservableObject, UserRepositoryProtocol {
     
     @Published var firstName: String?
     

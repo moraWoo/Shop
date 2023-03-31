@@ -5,8 +5,7 @@ class PersonInfoViewModel: ObservableObject {
     
     @Published var profileImage: UIImage?
     
-    var coordinator: PersonInfoCoordinator
-    var loginCoordinator: LoginCoordinator
+    let coordinator: PersonInfoCoordinator
     let userRepository: UserRepository
     let navigationManager: NavigationManager
     
@@ -18,12 +17,10 @@ class PersonInfoViewModel: ObservableObject {
     
     init(
         coordinator: PersonInfoCoordinator,
-        loginCoordinator: LoginCoordinator,
         userRepository: UserRepository,
         navigationManager: NavigationManager
     ) {
         self.coordinator = coordinator
-        self.loginCoordinator = loginCoordinator
         self.userRepository = userRepository
         self.navigationManager = navigationManager
 
@@ -40,20 +37,23 @@ class PersonInfoViewModel: ObservableObject {
             userRepository.saveContext()
         }
         
-        guard let parentCoordinator = coordinator.parentCoordinator as? AppCoordinator else { return }
-        parentCoordinator.removeChildCoordinator(coordinator)
-        
-        if let loginCoordinator = parentCoordinator.childCoordinators.first(where: { $0 is LoginCoordinator }) {
-            parentCoordinator.removeChildCoordinator(loginCoordinator)
-        }
-        
-        loginCoordinator.parentCoordinator = parentCoordinator
-        parentCoordinator.addChildCoordinator(loginCoordinator)
-        
-        DispatchQueue.main.async {
-            let loginView = self.loginCoordinator.start()
-            parentCoordinator.currentView = loginView
-        }
+//        guard let parentCoordinator = coordinator.parentCoordinator as? AppCoordinator else { return }
+//        parentCoordinator.removeChildCoordinator(coordinator)
+//        
+//        if let loginCoordinator = parentCoordinator.childCoordinators.first(where: { $0 is LoginCoordinator }) {
+//            parentCoordinator.removeChildCoordinator(loginCoordinator)
+//        }
+//        
+//        loginCoordinator.parentCoordinator = parentCoordinator
+//        parentCoordinator.addChildCoordinator(loginCoordinator)
+//        
+//        DispatchQueue.main.async {
+//            self.loginCoordinator.start()
+//                .sink(receiveValue: { loginView in
+//                    parentCoordinator.currentView = loginView
+//                })
+//                .store(in: &self.cancellableSet)
+//        }
     }
     
     func updateAvatar(image: UIImage) {

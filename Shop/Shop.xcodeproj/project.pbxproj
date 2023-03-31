@@ -45,7 +45,7 @@
 		776F64A129C0B59900B6C808 /* MainAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F64A029C0B59900B6C808 /* MainAssembly.swift */; };
 		776F64A329C0B6A900B6C808 /* LoginAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F64A229C0B6A900B6C808 /* LoginAssembly.swift */; };
 		776F64A629C0BD0C00B6C808 /* AppDependecies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F64A529C0BD0C00B6C808 /* AppDependecies.swift */; };
-		77BEE4FC29C715340055EFB4 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BEE4FB29C715340055EFB4 /* DataManager.swift */; };
+		77BEE4FC29C715340055EFB4 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BEE4FB29C715340055EFB4 /* CoreDataManager.swift */; };
 		77BEE4FF29C716470055EFB4 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 77BEE4FE29C716470055EFB4 /* Montserrat-Regular.ttf */; };
 		77BEE50629C719010055EFB4 /* SignUpAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BEE50529C719010055EFB4 /* SignUpAssembly.swift */; };
 		77BEE50829C719240055EFB4 /* PersonInfoAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BEE50729C719240055EFB4 /* PersonInfoAssembly.swift */; };
@@ -112,7 +112,7 @@
 		776F64A029C0B59900B6C808 /* MainAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAssembly.swift; sourceTree = "<group>"; };
 		776F64A229C0B6A900B6C808 /* LoginAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAssembly.swift; sourceTree = "<group>"; };
 		776F64A529C0BD0C00B6C808 /* AppDependecies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependecies.swift; sourceTree = "<group>"; };
-		77BEE4FB29C715340055EFB4 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		77BEE4FB29C715340055EFB4 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		77BEE4FE29C716470055EFB4 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		77BEE50529C719010055EFB4 /* SignUpAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpAssembly.swift; sourceTree = "<group>"; };
 		77BEE50729C719240055EFB4 /* PersonInfoAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonInfoAssembly.swift; sourceTree = "<group>"; };
@@ -326,7 +326,7 @@
 		77BEE4FA29C712F20055EFB4 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				77BEE4FB29C715340055EFB4 /* DataManager.swift */,
+				77BEE4FB29C715340055EFB4 /* CoreDataManager.swift */,
 				77627C3C29C885F500EA0E11 /* UserRepository.swift */,
 				63378B4229CE1D4B00B17989 /* NetworkManager.swift */,
 				63680DAE29D1AF910079CDF1 /* NavigationManager.swift */,
@@ -537,7 +537,7 @@
 				77BEE50829C719240055EFB4 /* PersonInfoAssembly.swift in Sources */,
 				77BEE52F29C71E600055EFB4 /* ColorPickerView.swift in Sources */,
 				77BEE50F29C71AD70055EFB4 /* SecureTextFieldParentProtocol.swift in Sources */,
-				77BEE4FC29C715340055EFB4 /* DataManager.swift in Sources */,
+				77BEE4FC29C715340055EFB4 /* CoreDataManager.swift in Sources */,
 				776F647729BF69CB00B6C808 /* SignUpView.swift in Sources */,
 				77BEE52B29C71E300055EFB4 /* DetailText.swift in Sources */,
 				776F645A29BF65ED00B6C808 /* ShopApp.swift in Sources */,

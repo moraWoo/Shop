@@ -3,7 +3,6 @@ import SwiftUI
 struct Tab1View: View {
     
     var viewModel: MainViewModel
-    let navigationManager: NavigationManager
     
     let items: [[Any]]
     let title = [
@@ -20,10 +19,9 @@ struct Tab1View: View {
         }
     }
     
-    init(viewModel: MainViewModel, items: [[Any]], navigationManager: NavigationManager) {
+    init(viewModel: MainViewModel, items: [[Any]]) {
         self.viewModel = viewModel
         self.items = items
-        self.navigationManager = navigationManager
     }
     
     private func rowContentContainer(row: Int) -> some View {
@@ -63,7 +61,7 @@ struct Tab1View: View {
     private func rowItems(row: Int) -> some View {
         ForEach(items[row].indices, id: \.self) { index in
             let item = items[row][index]
-            ItemRowComponent(item: item, navigationManager: navigationManager, viewModel: viewModel, row: row)
+            ItemRowComponent(item: item, viewModel: viewModel, row: row)
         }
     }
 }
@@ -109,7 +107,6 @@ struct ItemRowComponent: View {
     @State private var showDetailView: Bool = false
 
     let item: Any
-    let navigationManager: NavigationManager
     let viewModel: MainViewModel
     let row: Int
     
@@ -120,11 +117,9 @@ struct ItemRowComponent: View {
     private func itemCardView() -> some View {
         if let latestProduct = item as? LatestProduct {
             return AnyView(ItemCardView(showDetailView: $showDetailView, item: latestProduct, row: row)
-                .environmentObject(navigationManager)
                 .environmentObject(viewModel))
         } else if let flashSaleProduct = item as? FlashSaleProduct {
             return AnyView(ItemCardView(showDetailView: $showDetailView, item: flashSaleProduct, row: row)
-                .environmentObject(navigationManager)
                 .environmentObject(viewModel))
         } else {
             return AnyView(EmptyView())

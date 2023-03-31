@@ -2,43 +2,17 @@ import SwiftUI
 import Combine
 
 class PersonInfoCoordinator: Coordinator {
-    
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?
-    var view: AnyView?
-    let userRepository = UserRepository()
-    let navigationManager = NavigationManager()
     let name: String = "PersonInfo Coordinator"
 
-    func start() -> AnyView {
-        let dependencies = AppDependencies(
-            signUpCoordinator: SignUpCoordinator(),
-            loginCoordinator: LoginCoordinator(),
-            mainCoordinator: MainCoordinator(),
-            personInfoCoordinator: self,
-            detailCoordinator: DetailCoordinator(),
-            userRepository: userRepository,
-            navigationManager: navigationManager
-        )
-        let personInfoView = PersonInfoAssembly(dependencies: dependencies).assemble(userRepository: userRepository)
-        view = AnyView(personInfoView)
-        if let view = view {
-            return view
-        } else {
-            return AnyView(EmptyView())
+    func start() -> AnyPublisher<AnyView, Never> {
+        guard let parent = parentCoordinator as? AppCoordinator,
+              let dependencies = parent.dependencies else {
+            fatalError("Parent coordinator is not set or dependencies not found.")
         }
-    }
-    
-    func addChildCoordinator(_ coordinator: Coordinator) {
-        childCoordinators.append(coordinator)
-        coordinator.parentCoordinator = self
-    }
-    
-    func removeChildCoordinator(_ coordinator: Coordinator) {
-        if let index = childCoordinators.firstIndex(where: { $0 === coordinator }) {
-            childCoordinators.remove(at: index)
-            coordinator.parentCoordinator = nil
-            view = nil
-        }
+
+        let personInfoAssembly = PersonInfoAssembly(dependencies: dependencies)
+        return Just(personInfoAssembly.assemble(appCoordinator: parent)).eraseToAnyPublisher()
     }
 }

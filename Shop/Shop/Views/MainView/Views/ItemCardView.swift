@@ -3,7 +3,6 @@ import Combine
 
 struct ItemCardView: View {
     
-    @EnvironmentObject var navigationManager: NavigationManager
     @EnvironmentObject var viewModel: MainViewModel
     @State private var selectedTab = 0
 
@@ -38,18 +37,18 @@ struct ItemCardView: View {
     }
     
     var body: some View {
-        
-        NavigationLink(
-            destination: DetailView(
-                viewModel: DetailViewModel(
-                    coordinator: viewModel.detailCoordinator,
-                    networkManager: viewModel.networkManager,
-                    navigationManager: navigationManager
-                ),
-                navigationManager: navigationManager
-            )
-            .environmentObject(navigationManager),
-            isActive: $showDetailView) {
+        ZStack {
+//        NavigationLink(
+//            destination: DetailView(
+//                viewModel: DetailViewModel(
+//                    coordinator: viewModel.detailCoordinator,
+//                    networkManager: viewModel.networkManager,
+//                    navigationManager: navigationManager
+//                ),
+//                navigationManager: navigationManager
+//            )
+//            .environmentObject(navigationManager),
+//            isActive: $showDetailView) {
             
             ZStack(alignment: .bottomTrailing) {
                 let width: CGFloat = row == 1 ? 174 : 114
@@ -91,7 +90,7 @@ struct ItemCardView: View {
         }
         .onAppear(perform: loadImage)
         .onTapGesture {
-            viewModel.navigationManager.customTabBar = AnyView(CustomTabBar(selectedTab: $selectedTab))
+//            viewModel.navigationManager.customTabBar = AnyView(CustomTabBar(selectedTab: $selectedTab))
             viewModel.showDetailView = $showDetailView
         }
     }

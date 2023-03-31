@@ -13,9 +13,9 @@ class LoginViewModel: ObservableObject {
     
     @Published var showErrorAlert = false
     
-    var coordinator: Coordinator
-    var mainCoordinator: MainCoordinator
-    
+    let coordinator: LoginCoordinator
+    let userRepository: UserRepository
+
     var firstNamePrompt: String? {
         if isValidFirstName == true || firstName.isEmpty {
             return nil
@@ -25,21 +25,15 @@ class LoginViewModel: ObservableObject {
     }
     
     private var cancellableSet: Set<AnyCancellable> = []
-    
     private let namePredicate = NSPredicate(format: "SELF MATCHES %@", Regex.name.rawValue)
     private let passwordPredicate = NSPredicate(format: "SELF MATCHES %@", Regex.password.rawValue)
     
-    private let userRepository: UserRepository
-    
     init(
-        coordinator: Coordinator,
-        mainCoordinator: MainCoordinator,
+        coordinator: LoginCoordinator,
         userRepository: UserRepository
     ) {
         self.coordinator = coordinator
-        self.mainCoordinator = mainCoordinator
         self.userRepository = userRepository
-        
         $firstName
             .debounce(for: 0.5, scheduler: RunLoop.main)
             .map { name in
@@ -71,23 +65,9 @@ class LoginViewModel: ObservableObject {
     }
     
     func successfulLogin() {
-        goToMainView()
+//        goToMainView()
     }
-    
-    func goToMainView() {
-        guard let parentCoordinator = coordinator.parentCoordinator as? AppCoordinator else {
-            print("Parent coordinator is nil")
-            return
-        }
-        
-        parentCoordinator.removeChildCoordinator(mainCoordinator)
-        mainCoordinator.parentCoordinator = parentCoordinator
-        parentCoordinator.addChildCoordinator(mainCoordinator)
-        
-        let mainView = mainCoordinator.start()
-        parentCoordinator.currentView = mainView
-    }
-    
+
     func login() {
         if firstName.isEmpty || password.isEmpty {
             print("Fields cannot be empty")
