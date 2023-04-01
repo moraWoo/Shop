@@ -9,7 +9,6 @@ class AppCoordinator: ObservableObject, Coordinator {
     var dependencies: AppDependencies?
 
     let name: String = "App Coordinator"
-
     
     func start() -> AnyPublisher<AnyView, Never> {
         if childCoordinators.isEmpty {
@@ -22,24 +21,22 @@ class AppCoordinator: ObservableObject, Coordinator {
         }
     }
     
-    func printChildCoordinators(indentationLevel: Int = 0) {
-        let indentation = String(repeating: " ", count: indentationLevel)
-        print("\(indentation)\(name)")
-        for child in childCoordinators {
-            child.printChildCoordinators(indentationLevel: indentationLevel + 2)
-        }
-    }
-    
     func navigateToLogin() {
         let loginCoordinator = LoginCoordinator()
         addChildCoordinator(loginCoordinator)
         loginCoordinator.start()
             .map { AnyView($0) }
             .sink { [weak self] view in
-                self?.currentView = view
+                // Pass loginCoordinator to LoginAssembly
+                guard let strongSelf = self, let dependencies = strongSelf.dependencies else { return }
+                let view = LoginAssembly(dependencies: dependencies)
+                    .assemble(appCoordinator: strongSelf, loginCoordinator: loginCoordinator)
+                strongSelf.currentView = view
             }
             .store(in: &subscriptions)
     }
+
+    
     
     func navigateToMain() {
         let mainCoordinator = MainCoordinator()

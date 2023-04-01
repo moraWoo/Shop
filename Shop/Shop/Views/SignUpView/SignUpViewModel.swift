@@ -151,10 +151,12 @@ class SignUpViewModel: ObservableObject {
     }
     
     func goToLoginView() {
+        print("from signUpViewModel to goToLoginView")
         appCoordinator.navigateToLogin()
     }
     
     func goToMainView() {
+        print("from signUpViewModel to goToMainView")
         appCoordinator.navigateToMain()
     }
 }

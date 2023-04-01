@@ -12,12 +12,14 @@ struct ShopApp: App {
 
     init() {
         assembly = AppAssembly()
+        
     }
 
     var body: some Scene {
         
         WindowGroup {
-            AppAssembly.assemble().environmentObject(appCoordinator)
+            AppAssembly.assemble()
+                .environmentObject(appCoordinator)
         }
     }
 }

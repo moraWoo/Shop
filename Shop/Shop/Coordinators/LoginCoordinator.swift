@@ -11,8 +11,9 @@ class LoginCoordinator: Coordinator {
               let dependencies = parent.dependencies else {
             fatalError("Parent coordinator is not set or dependencies not found.")
         }
+        let loginCoordinator = LoginCoordinator()
 
         let loginAssembly = LoginAssembly(dependencies: dependencies)
-        return Just(loginAssembly.assemble(appCoordinator: parent)).eraseToAnyPublisher()
+        return Just(loginAssembly.assemble(appCoordinator: parent, loginCoordinator: loginCoordinator)).eraseToAnyPublisher()
     }
 }

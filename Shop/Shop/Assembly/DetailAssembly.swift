@@ -18,6 +18,7 @@ class DetailAssembly {
         )
 
         let view = DetailView(viewModel: viewModel)
+            .environmentObject(appCoordinator)
         return AnyView(view)
     }
 }

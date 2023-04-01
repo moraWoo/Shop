@@ -13,11 +13,13 @@ protocol Coordinator: AnyObject {
 
 extension Coordinator {
     func addChildCoordinator(_ coordinator: Coordinator) {
+        print("addChildCoordinator \(coordinator)")
         childCoordinators.append(coordinator)
         coordinator.parentCoordinator = self
     }
     
     func removeChildCoordinator(_ coordinator: Coordinator) {
+        print("removeChildCoordinator \(coordinator)")
         if let index = childCoordinators.firstIndex(where: { $0 === coordinator }) {
             childCoordinators.remove(at: index)
             coordinator.parentCoordinator = nil

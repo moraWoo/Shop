@@ -19,6 +19,7 @@ class MainAssembly {
         )
 
         let view = MainView(viewModel: viewModel)
+            .environmentObject(appCoordinator)
         return AnyView(view)
     }
 }

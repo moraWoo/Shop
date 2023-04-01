@@ -18,6 +18,7 @@ class PersonInfoAssembly {
         )
 
         let view = PersonInfoView(viewModel: viewModel)
+            .environmentObject(appCoordinator)
         return AnyView(view)
     }
 }

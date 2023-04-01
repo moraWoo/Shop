@@ -17,7 +17,7 @@ class SignUpAssembly {
         )
         
         let view = SignUpView(viewModel: viewModel)
+            .environmentObject(appCoordinator)
         return AnyView(view)
     }
 }
-

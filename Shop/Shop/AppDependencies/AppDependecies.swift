@@ -6,4 +6,6 @@ class AppDependencies {
     lazy var userRepository: UserRepository = UserRepository()
     lazy var networkManager: NetworkManager = NetworkManager()
     lazy var navigationManager: NavigationManager = NavigationManager()
+    
+    
 }
