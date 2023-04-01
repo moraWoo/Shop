@@ -6,12 +6,15 @@ struct ShopApp: App {
     
     let assembly: AppAssembly
 
-    @StateObject var appCoordinator: AppCoordinator = {
-        return AppCoordinator()
+    @ObservedObject var appCoordinator: AppCoordinator = {
+        let dependencies = AppDependencies()
+        return AppAssembly.assemble(dependencies: dependencies)
     }()
-
+    
     init() {
+        let dependencies = AppDependencies()
         assembly = AppAssembly()
+        appCoordinator = AppAssembly.assemble(dependencies: dependencies)
     }
 
     var body: some Scene {
@@ -22,12 +25,3 @@ struct ShopApp: App {
         }
     }
 }
-
-
-
-
-
-
-
-
-

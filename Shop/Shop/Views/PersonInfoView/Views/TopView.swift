@@ -45,7 +45,7 @@ struct TopView: View {
                 )
             }
 
-            Text(viewModel.userRepository.currentUser?.firstName ?? "Not Loaded Name")
+            Text(viewModel.appCoordinator.dependencies.userRepository.currentUser?.firstName ?? "Not Loaded Name")
                 .customFont(size: 15, weight: .bold)
                 .foregroundColor(Color(red: 63/255, green: 63/255, blue: 63/255))
                 .padding(.bottom, 36)

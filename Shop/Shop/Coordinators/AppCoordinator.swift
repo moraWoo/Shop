@@ -26,36 +26,46 @@ extension AppCoordinator {
     func showSignUp() {
         let signUpCoordinator = SignUpCoordinator(dependencies: dependencies)
         addChildCoordinator(signUpCoordinator)
-        let signUpView = SignUpAssembly(dependencies: dependencies, signUpCoordinator: signUpCoordinator).assemble()
-        currentView = AnyView(signUpView)
+//        DispatchQueue.main.async {
+            let signUpView = SignUpAssembly(dependencies: self.dependencies, signUpCoordinator: signUpCoordinator).assemble()
+            self.currentView = signUpCoordinator.start()
+//        }
     }
-    
+
     func showLogin() {
         let loginCoordinator = LoginCoordinator(dependencies: dependencies)
         addChildCoordinator(loginCoordinator)
-        let loginView = LoginAssembly(dependencies: dependencies, loginCoordinator: loginCoordinator).assemble()
-        currentView = AnyView(loginView)
+        DispatchQueue.main.async {
+            let loginView = LoginAssembly(dependencies: self.dependencies, loginCoordinator: loginCoordinator).assemble()
+            self.currentView = AnyView(loginView)
+        }
     }
     
     func showMain() {
         let mainCoordinator = MainCoordinator(dependencies: dependencies)
         addChildCoordinator(mainCoordinator)
-        let mainView = MainAssembly(dependencies: dependencies, mainCoordinator: mainCoordinator).assemble()
-        currentView = AnyView(mainView)
+        DispatchQueue.main.async {
+            let mainView = MainAssembly(dependencies: self.dependencies, mainCoordinator: mainCoordinator).assemble()
+            self.currentView = AnyView(mainView)
+        }
     }
     
     func showPersonInfo() {
         let personInfoCoordinator = PersonInfoCoordinator(dependencies: dependencies)
         addChildCoordinator(personInfoCoordinator)
-        let personInfoView = PersonInfoAssembly(dependencies: dependencies, personInfoCoordinator: personInfoCoordinator).assemble()
-        currentView = AnyView(personInfoView)
+        DispatchQueue.main.async {
+            let personInfoView = PersonInfoAssembly(dependencies: self.dependencies, personInfoCoordinator: personInfoCoordinator).assemble()
+            self.currentView = AnyView(personInfoView)
+        }
     }
     
     func showDetail() {
         let detailCoordinator = DetailCoordinator(dependencies: dependencies)
         addChildCoordinator(detailCoordinator)
-        let detailView = DetailAssembly(dependencies: dependencies, detailCoordinator: detailCoordinator).assemble()
-        currentView = AnyView(detailView)
+        DispatchQueue.main.async {
+            let detailView = DetailAssembly(dependencies: self.dependencies, detailCoordinator: detailCoordinator).assemble()
+            self.currentView = AnyView(detailView)
+        }
     }
 }
 

@@ -2,10 +2,9 @@ import SwiftUI
 
 class AppAssembly {
     
-    static func assemble() -> AppCoordinator {
+    static func assemble(dependencies: AppDependencies) -> AppCoordinator {
         
-        let dependencies = AppDependencies()
-        var appCoordinator = AppCoordinator(dependencies: dependencies)
+        let appCoordinator = AppCoordinator(dependencies: dependencies)
         
         let signUpCoordinator = SignUpCoordinator(dependencies: dependencies)
         appCoordinator.addChildCoordinator(signUpCoordinator)
