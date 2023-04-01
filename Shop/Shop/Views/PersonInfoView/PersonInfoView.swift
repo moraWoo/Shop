@@ -3,12 +3,6 @@ import SwiftUI
 struct PersonInfoView: View {
     
     @ObservedObject var viewModel: PersonInfoViewModel
-    @ObservedObject var navigationManager: NavigationManager
-    
-    init(viewModel: PersonInfoViewModel, navigationManager: NavigationManager) {
-        self.viewModel = viewModel
-        self.navigationManager = navigationManager
-    }
     
     var body: some View {
         
@@ -18,7 +12,7 @@ struct PersonInfoView: View {
             }
             VStack {
                 Spacer()
-                if let tabBar = navigationManager.customTabBar {
+                if let tabBar = viewModel.appCoordinator.dependencies.navigationManager.customTabBar {
                     tabBar
                         .padding(.bottom, -40)
                 }

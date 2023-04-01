@@ -39,18 +39,9 @@ struct ItemCardView: View {
     
     var body: some View {
         
-        NavigationLink(
-            destination: DetailView(
-                viewModel: DetailViewModel(
-                    coordinator: viewModel.detailCoordinator,
-                    networkManager: viewModel.networkManager,
-                    navigationManager: navigationManager
-                ),
-                navigationManager: navigationManager
-            )
-            .environmentObject(navigationManager),
-            isActive: $showDetailView) {
-            
+        Button(action: {
+            viewModel.presentDetailView()
+        }, label: {
             ZStack(alignment: .bottomTrailing) {
                 let width: CGFloat = row == 1 ? 174 : 114
                 let height: CGFloat = row == 1 ? 221 : 149
@@ -88,10 +79,10 @@ struct ItemCardView: View {
                     }
                 }
             }
-        }
+        })
         .onAppear(perform: loadImage)
         .onTapGesture {
-            viewModel.navigationManager.customTabBar = AnyView(CustomTabBar(selectedTab: $selectedTab))
+            viewModel.appCoordinator.dependencies.navigationManager.customTabBar = AnyView(CustomTabBar(selectedTab: $selectedTab))
             viewModel.showDetailView = $showDetailView
         }
     }

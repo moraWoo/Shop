@@ -11,7 +11,10 @@ class MainAssembly {
     }
     
     func assemble() -> some View {
-        let viewModel = MainViewModel(appCoordinator: mainCoordinator.parentCoordinator as! AppCoordinator, mainCoordinator: mainCoordinator)
+        let viewModel = MainViewModel(
+            appCoordinator: mainCoordinator.parentCoordinator as! AppCoordinator,
+            mainCoordinator: mainCoordinator
+        )
         let view = MainView(viewModel: viewModel)
         return AnyView(view)
     }

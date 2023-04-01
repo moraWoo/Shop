@@ -43,6 +43,20 @@ extension AppCoordinator {
         let mainView = MainAssembly(dependencies: dependencies, mainCoordinator: mainCoordinator).assemble()
         currentView = AnyView(mainView)
     }
+    
+    func showPersonInfo() {
+        let personInfoCoordinator = PersonInfoCoordinator(dependencies: dependencies)
+        addChildCoordinator(personInfoCoordinator)
+        let personInfoView = PersonInfoAssembly(dependencies: dependencies, personInfoCoordinator: personInfoCoordinator).assemble()
+        currentView = AnyView(personInfoView)
+    }
+    
+    func showDetail() {
+        let detailCoordinator = DetailCoordinator(dependencies: dependencies)
+        addChildCoordinator(detailCoordinator)
+        let detailView = DetailAssembly(dependencies: dependencies, detailCoordinator: detailCoordinator).assemble()
+        currentView = AnyView(detailView)
+    }
 }
 
 extension AppCoordinator {

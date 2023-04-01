@@ -14,7 +14,7 @@ class MainViewModel: ObservableObject {
     private var cancellableSet: Set<AnyCancellable> = []
     let appCoordinator: AppCoordinator
     private let mainCoordinator: MainCoordinator
-    
+
     init(
         appCoordinator: AppCoordinator,
         mainCoordinator: MainCoordinator
@@ -79,20 +79,16 @@ class MainViewModel: ObservableObject {
     }
     
     func goToPersonInfoView() {
-        
-//        let personInfoViewModel = PersonInfoViewModel(coordinator: personInfoCoordinator, loginCoordinator: loginCoordinator, userRepository: userRepository, navigationManager: navigationManager)
-//        let personInfoView = PersonInfoView(viewModel: personInfoViewModel, navigationManager: navigationManager).environmentObject(navigationManager)
-//        navigationManager.navigateTo(view: AnyView(personInfoView))
-        
+        mainCoordinator.parentCoordinator?.removeChildCoordinator(mainCoordinator)
+        appCoordinator.showPersonInfo()
     }
     
     func presentDetailView() {
+        mainCoordinator.parentCoordinator?.removeChildCoordinator(mainCoordinator)
+        appCoordinator.showDetail()
         
-//        let detailViewModel = DetailViewModel(coordinator: detailCoordinator, networkManager: networkManager, navigationManager: navigationManager)
-//        let detailView = DetailView(viewModel: detailViewModel, navigationManager: navigationManager).environmentObject(navigationManager)
-//        navigationManager.navigateTo(view: AnyView(detailView))
+//        appCoordinator.dependencies.navigationManager.navigateTo(view: detailView)
     }
-    
 }
 
 

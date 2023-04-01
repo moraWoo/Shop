@@ -2,7 +2,6 @@ import SwiftUI
 
 struct MainView: View {
     
-//    @EnvironmentObject var appCoordinator: AppCoordinator
     @ObservedObject var viewModel: MainViewModel
     @State private var selectedTab = 0
     @State private var hideMainComponents = false
@@ -57,16 +56,17 @@ struct MainView: View {
                             Spacer()
                         }
                     case 4:
-                        PersonInfoView(
-                            viewModel: PersonInfoViewModel(
-                                coordinator: viewModel.personInfoCoordinator,
-                                loginCoordinator: viewModel.loginCoordinator,
-                                userRepository: viewModel.userRepository,
-                                navigationManager: viewModel.navigationManager
-                            ), navigationManager: viewModel.navigationManager
-                        )
-                        .environmentObject(viewModel.navigationManager
-                        )
+                        EmptyView()
+//                        PersonInfoView(
+//                            viewModel: PersonInfoViewModel(
+//                                coordinator: viewModel.personInfoCoordinator,
+//                                loginCoordinator: viewModel.loginCoordinator,
+//                                userRepository: viewModel.userRepository,
+//                                navigationManager: viewModel.navigationManager
+//                            ), navigationManager: viewModel.navigationManager
+//                        )
+//                        .environmentObject(viewModel.navigationManager
+//                        )
                     default:
                         EmptyView()
                 }
@@ -85,9 +85,14 @@ struct MainView: View {
             .background(Color.clear.edgesIgnoringSafeArea(.all))
             .onAppear {
                 self.viewModel.fetchLatestAndFlashSaleProducts()
-                viewModel.navigationManager.customTabBar = AnyView(CustomTabBar(selectedTab: $selectedTab))
+                viewModel.appCoordinator.dependencies.navigationManager.customTabBar = AnyView(CustomTabBar(selectedTab: $selectedTab))
                 viewModel.showPersonInfoView = $showPersonInfoView
                 
+            }
+            .onChange(of: selectedTab) { newValue in
+                if newValue == 4 {
+                    viewModel.goToPersonInfoView()
+                }
             }
         }
     }

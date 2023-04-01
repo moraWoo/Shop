@@ -1,20 +1,16 @@
 import Combine
 
 class DetailViewModel: ObservableObject {
+        
+    let appCoordinator: AppCoordinator
+    private let detailCoordinator: DetailCoordinator
     
-    @Published var coordinator: DetailCoordinator?
-    
-    let networkManager: NetworkManager
-    let navigationManager: NavigationManager
-
     init(
-        coordinator: DetailCoordinator,
-        networkManager: NetworkManager,
-        navigationManager: NavigationManager
+        appCoordinator: AppCoordinator,
+        detailCoordinator: DetailCoordinator
     ) {
-        self.coordinator = coordinator
-        self.networkManager = networkManager
-        self.navigationManager = navigationManager
+        self.appCoordinator = appCoordinator
+        self.detailCoordinator = detailCoordinator
     }
 }
 
