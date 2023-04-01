@@ -49,22 +49,16 @@ class SignUpViewModel: ObservableObject {
     
     private let emailPredicate = NSPredicate(format: "SELF MATCHES %@", Regex.email.rawValue)
     private let namePredicate = NSPredicate(format: "SELF MATCHES %@", Regex.name.rawValue)
-    private let userRepository: UserRepository
     
-    var coordinator: SignUpCoordinator
-    var loginCoordinator: LoginCoordinator
-    var mainCoordinator: MainCoordinator
-    
+    private let appCoordinator: AppCoordinator
+    private let signUpCoordinator: SignUpCoordinator
+
     init(
-        coordinator: SignUpCoordinator,
-        loginCoordinator: LoginCoordinator,
-        mainCoordinator: MainCoordinator,
-        userRepository: UserRepository
+        appCoordinator: AppCoordinator,
+        signUpCoordinator: SignUpCoordinator
     ) {
-        self.userRepository = userRepository
-        self.coordinator = coordinator
-        self.loginCoordinator = loginCoordinator
-        self.mainCoordinator = mainCoordinator
+        self.appCoordinator = appCoordinator
+        self.signUpCoordinator = signUpCoordinator
         
         $firstName
             .debounce(for: 0.5, scheduler: RunLoop.main)
@@ -104,35 +98,16 @@ class SignUpViewModel: ObservableObject {
     }
     
     func goToLoginView() {
-        guard let parentCoordinator = coordinator.parentCoordinator as? AppCoordinator else {
-            print("Parent coordinator is nil")
-            return
-        }
-        
-        parentCoordinator.removeChildCoordinator(loginCoordinator)
-        loginCoordinator.parentCoordinator = parentCoordinator
-        parentCoordinator.addChildCoordinator(loginCoordinator)
-        
-        let loginView = loginCoordinator.start()
-        parentCoordinator.currentView = loginView
+        signUpCoordinator.parentCoordinator?.removeChildCoordinator(signUpCoordinator)
+        appCoordinator.showLogin()
     }
     
     func goToMainView() {
-        guard let parentCoordinator = coordinator.parentCoordinator as? AppCoordinator else {
-            print("Parent coordinator is nil")
-            return
-        }
-        
-        parentCoordinator.removeChildCoordinator(mainCoordinator)
-        mainCoordinator.parentCoordinator = parentCoordinator
-        parentCoordinator.addChildCoordinator(mainCoordinator)
-        
-        let mainView = mainCoordinator.start()
-        parentCoordinator.currentView = mainView
+        //
     }
     
     func checkExistingUser() -> AnyPublisher<Bool, Never> {
-        userRepository.checkUser(firstName: firstName, lastName: lastName, email: email)
+        appCoordinator.dependencies.userRepository.checkUser(firstName: firstName, lastName: lastName, email: email)
             .map { $0 != nil }
             .eraseToAnyPublisher()
             .receive(on: RunLoop.main)
@@ -145,7 +120,7 @@ class SignUpViewModel: ObservableObject {
     }
 
     func createUser() {
-        userRepository.createUser(firstName: self.firstName, lastName: self.lastName, email: self.email, password: self.password)
+        appCoordinator.dependencies.userRepository.createUser(firstName: self.firstName, lastName: self.lastName, email: self.email, password: self.password)
             .sink { success in
                 if success {
                     self.setUserStatus()
@@ -157,11 +132,11 @@ class SignUpViewModel: ObservableObject {
     }
 
     func setUserStatus() {
-        userRepository.checkUser(firstName: self.firstName)
+        appCoordinator.dependencies.userRepository.checkUser(firstName: self.firstName)
             .sink { user in
                 if let user = user {
-                    self.userRepository.setIsLogged(user: user, isLogged: true)
-                    self.userRepository.saveContext()
+                    self.appCoordinator.dependencies.userRepository.setIsLogged(user: user, isLogged: true)
+                    self.appCoordinator.dependencies.userRepository.saveContext()
                     self.goToMainView()
                 } else {
                     print("Error retrieving created user")
@@ -171,7 +146,7 @@ class SignUpViewModel: ObservableObject {
     }
 
     func signUp() {
-        userRepository.checkUser(firstName: firstName, lastName: lastName, email: email)
+        appCoordinator.dependencies.userRepository.checkUser(firstName: firstName, lastName: lastName, email: email)
             .sink { existingUser in
                 if let _ = existingUser {
                     self.userExists = true

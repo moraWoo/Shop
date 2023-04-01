@@ -2,14 +2,12 @@ import SwiftUI
 
 struct MainView: View {
     
-    @EnvironmentObject var appCoordinator: AppCoordinator
+//    @EnvironmentObject var appCoordinator: AppCoordinator
     @ObservedObject var viewModel: MainViewModel
     @State private var selectedTab = 0
     @State private var hideMainComponents = false
     @State private var showPersonInfoView: Bool = false
     @State private var showDetailView: Bool = false
-    
-    let navigationManager: NavigationManager
     
     var body: some View {
         NavigationView {
@@ -21,7 +19,11 @@ struct MainView: View {
                             SearchBarView()
                             CircleButtonView()
                             
-                            Tab1View(viewModel: viewModel, items: viewModel.items, navigationManager: viewModel.navigationManager)
+                            Tab1View(
+                                viewModel: viewModel,
+                                items: viewModel.items,
+                                navigationManager: viewModel.appCoordinator.dependencies.navigationManager
+                            )
                         }
                     case 1:
                         VStack {
@@ -74,7 +76,7 @@ struct MainView: View {
                     CustomTabBar(selectedTab: $selectedTab)
                         .padding(.bottom, -40)
                 }
-                if let currentView = viewModel.navigationManager.currentView {
+                if let currentView = viewModel.appCoordinator.dependencies.navigationManager.currentView {
                     currentView
                         .transition(.opacity)
                         .zIndex(1)

@@ -9,21 +9,43 @@ class AppCoordinator: ObservableObject, Coordinator {
     var parentCoordinator: Coordinator?
     
     let name: String = "App Coordinator"
-    let navigationManager = NavigationManager()
+    let dependencies: AppDependencies
     
-    func start() -> AnyView {
-        if childCoordinators.isEmpty {
-            let signUpCoordinator = SignUpCoordinator()
-            addChildCoordinator(signUpCoordinator)
-            DispatchQueue.main.async {
-                self.currentView = signUpCoordinator.start()
-            }
-        }
-        printChildCoordinators()
-        
-        return currentView
+    init(dependencies: AppDependencies) {
+        self.dependencies = dependencies
     }
     
+    func start() -> AnyView {
+        showSignUp()
+        return currentView
+    }
+}
+
+extension AppCoordinator {
+    
+    func showSignUp() {
+        let signUpCoordinator = SignUpCoordinator(dependencies: dependencies)
+        addChildCoordinator(signUpCoordinator)
+        let signUpView = SignUpAssembly(dependencies: dependencies, signUpCoordinator: signUpCoordinator).assemble()
+        currentView = AnyView(signUpView)
+    }
+    
+    func showLogin() {
+        let loginCoordinator = LoginCoordinator(dependencies: dependencies)
+        addChildCoordinator(loginCoordinator)
+        let loginView = LoginAssembly(dependencies: dependencies, loginCoordinator: loginCoordinator).assemble()
+        currentView = AnyView(loginView)
+    }
+    
+    func showMain() {
+        let mainCoordinator = MainCoordinator(dependencies: dependencies)
+        addChildCoordinator(mainCoordinator)
+        let mainView = MainAssembly(dependencies: dependencies, mainCoordinator: mainCoordinator).assemble()
+        currentView = AnyView(mainView)
+    }
+}
+
+extension AppCoordinator {
     func addChildCoordinator(_ coordinator: Coordinator) {
         childCoordinators.append(coordinator)
         coordinator.parentCoordinator = self

@@ -11,35 +11,18 @@ class MainViewModel: ObservableObject {
     @Published var showDetailView: Binding<Bool>?
     @Published var showPersonInfoView: Binding<Bool>?
 
-    var coordinator: MainCoordinator
-    var personInfoCoordinator: PersonInfoCoordinator
-    var loginCoordinator: LoginCoordinator
-    var detailCoordinator: DetailCoordinator
-    
-    let navigationManager: NavigationManager
-    let networkManager: NetworkManager
-    
-    let userRepository: UserRepository
     private var cancellableSet: Set<AnyCancellable> = []
+    let appCoordinator: AppCoordinator
+    private let mainCoordinator: MainCoordinator
     
     init(
-        coordinator: MainCoordinator,
-        personInfoCoordinator: PersonInfoCoordinator,
-        detailCoordinator: DetailCoordinator,
-        loginCoordinator: LoginCoordinator,
-        userRepository: UserRepository,
-        networkManager: NetworkManager,
-        navigationManager: NavigationManager
+        appCoordinator: AppCoordinator,
+        mainCoordinator: MainCoordinator
     ) {
-        self.coordinator = coordinator
-        self.personInfoCoordinator = personInfoCoordinator
-        self.detailCoordinator = detailCoordinator
-        self.loginCoordinator = loginCoordinator
-        self.userRepository = userRepository
-        self.networkManager = networkManager
-        self.navigationManager = navigationManager
+        self.appCoordinator = appCoordinator
+        self.mainCoordinator = mainCoordinator
         
-        if let currentUser = userRepository.currentUser,
+        if let currentUser = appCoordinator.dependencies.userRepository.currentUser,
            let avatarData = currentUser.avatar {
             profileImage = UIImage(data: avatarData)
         }
@@ -49,14 +32,13 @@ class MainViewModel: ObservableObject {
     }
     
     func goToMainView() {
-        
-        coordinator.goToMainView()
-        coordinator.parentCoordinator?.addChildCoordinator(coordinator)
+//        coordinator.goToMainView()
+//        coordinator.parentCoordinator?.addChildCoordinator(coordinator)
     }
     
     func fetchLoggedInUser() {
         
-        userRepository.fetchLoggedInUser()
+        appCoordinator.dependencies.userRepository.fetchLoggedInUser()
             .sink { user in
                 self.firstName = user?.firstName
             }
@@ -65,7 +47,7 @@ class MainViewModel: ObservableObject {
     
     func fetchAvatar() {
         
-        userRepository.fetchAvatar()
+        appCoordinator.dependencies.userRepository.fetchAvatar()
             .sink { image in
                 self.profileImage = image
             }
@@ -74,7 +56,7 @@ class MainViewModel: ObservableObject {
     
     func fetchLatestAndFlashSaleProducts() {
         
-        networkManager.fetchLatestAndFlashSale()
+        appCoordinator.dependencies.networkManager.fetchLatestAndFlashSale()
             .sink { [weak self] completion in
                 switch completion {
                     case .finished:
@@ -98,17 +80,17 @@ class MainViewModel: ObservableObject {
     
     func goToPersonInfoView() {
         
-        let personInfoViewModel = PersonInfoViewModel(coordinator: personInfoCoordinator, loginCoordinator: loginCoordinator, userRepository: userRepository, navigationManager: navigationManager)
-        let personInfoView = PersonInfoView(viewModel: personInfoViewModel, navigationManager: navigationManager).environmentObject(navigationManager)
-        navigationManager.navigateTo(view: AnyView(personInfoView))
+//        let personInfoViewModel = PersonInfoViewModel(coordinator: personInfoCoordinator, loginCoordinator: loginCoordinator, userRepository: userRepository, navigationManager: navigationManager)
+//        let personInfoView = PersonInfoView(viewModel: personInfoViewModel, navigationManager: navigationManager).environmentObject(navigationManager)
+//        navigationManager.navigateTo(view: AnyView(personInfoView))
         
     }
     
     func presentDetailView() {
         
-        let detailViewModel = DetailViewModel(coordinator: detailCoordinator, networkManager: networkManager, navigationManager: navigationManager)
-        let detailView = DetailView(viewModel: detailViewModel, navigationManager: navigationManager).environmentObject(navigationManager)
-        navigationManager.navigateTo(view: AnyView(detailView))
+//        let detailViewModel = DetailViewModel(coordinator: detailCoordinator, networkManager: networkManager, navigationManager: navigationManager)
+//        let detailView = DetailView(viewModel: detailViewModel, navigationManager: navigationManager).environmentObject(navigationManager)
+//        navigationManager.navigateTo(view: AnyView(detailView))
     }
     
 }
