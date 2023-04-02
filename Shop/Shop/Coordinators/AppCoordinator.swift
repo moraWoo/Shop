@@ -16,22 +16,21 @@ class AppCoordinator: ObservableObject, Coordinator {
     }
     
     func start() -> AnyView {
-        showSignUp()
+        if childCoordinators.isEmpty {
+            let signUpCoordinator = SignUpCoordinator(dependencies: dependencies)
+            addChildCoordinator(signUpCoordinator)
+            DispatchQueue.main.async {
+                self.currentView = signUpCoordinator.start()
+            }
+        }
+        printChildCoordinators()
+        
         return currentView
     }
 }
 
 extension AppCoordinator {
     
-    func showSignUp() {
-        let signUpCoordinator = SignUpCoordinator(dependencies: dependencies)
-        addChildCoordinator(signUpCoordinator)
-//        DispatchQueue.main.async {
-            let signUpView = SignUpAssembly(dependencies: self.dependencies, signUpCoordinator: signUpCoordinator).assemble()
-            self.currentView = signUpCoordinator.start()
-//        }
-    }
-
     func showLogin() {
         let loginCoordinator = LoginCoordinator(dependencies: dependencies)
         addChildCoordinator(loginCoordinator)

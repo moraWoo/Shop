@@ -21,10 +21,6 @@ struct SignUpView: View {
     @State private var showPasswordInput = false
     @State private var activeAlert: AlertType?
     
-    public init(viewModel: SignUpViewModel) {
-        self.viewModel = viewModel
-    }
-    
     var body: some View {
         
         VStack(spacing: 70) {

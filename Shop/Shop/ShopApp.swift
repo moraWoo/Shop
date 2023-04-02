@@ -4,24 +4,21 @@ import Combine
 @main
 struct ShopApp: App {
     
-    let assembly: AppAssembly
-
-    @ObservedObject var appCoordinator: AppCoordinator = {
-        let dependencies = AppDependencies()
-        return AppAssembly.assemble(dependencies: dependencies)
-    }()
+    @ObservedObject var appCoordinator: AppCoordinator
     
     init() {
         let dependencies = AppDependencies()
-        assembly = AppAssembly()
-        appCoordinator = AppAssembly.assemble(dependencies: dependencies)
+        appCoordinator = AppCoordinator(dependencies: dependencies)
     }
 
     var body: some Scene {
         
         let contentView = appCoordinator.start().environmentObject(appCoordinator)
+        
         WindowGroup {
             contentView.environmentObject(appCoordinator)
         }
     }
 }
+
+
