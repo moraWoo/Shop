@@ -13,8 +13,8 @@ struct Tab1View: View {
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack {
-                ForEach(0..<items.count) { row in
-                    rowContentContainer(row: row)
+                ForEach(items.indices, id: \.self) { index in
+                    rowContentContainer(row: index)
                 }
             }.padding(.bottom, 87)
         }

@@ -7,8 +7,12 @@ struct CustomTextField: View {
     private var prompt: String?
     private var isSecure: Bool
 
-    init(title: String, text: Binding<String>, prompt: String? = nil, isSecure: Bool = false) {
-        
+    init(
+        title: String,
+        text: Binding<String>,
+        prompt: String? = nil,
+        isSecure: Bool = false
+    ) {
         self.title = title
         self.text = text
         self.prompt = prompt

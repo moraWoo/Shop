@@ -2,6 +2,7 @@ import SwiftUI
 import Combine
 
 class NavigationManager: ObservableObject {
+    
     @Published var currentView: AnyView?
     @Published var previousView: AnyView?
     @Published var customTabBar: AnyView?

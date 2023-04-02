@@ -8,15 +8,12 @@ class NetworkManager: ObservableObject {
         guard let latestProductsURL = latestProductsURL, let flashSaleURL = flashSaleURL else {
             return Fail(error: URLError(.badURL)).eraseToAnyPublisher()
         }
-
         let latestPublisher = URLSession.shared.dataTaskPublisher(for: latestProductsURL)
             .map(\.data)
             .decode(type: LatestProductsResponse.self, decoder: JSONDecoder())
-
         let flashSalePublisher = URLSession.shared.dataTaskPublisher(for: flashSaleURL)
             .map(\.data)
             .decode(type: FlashSaleResponse.self, decoder: JSONDecoder())
-
         return Publishers.Zip(latestPublisher, flashSalePublisher)
             .eraseToAnyPublisher()
     }
@@ -26,7 +23,6 @@ class NetworkManager: ObservableObject {
         guard let productsURL = productsURL else {
             return Fail(error: URLError(.badURL)).eraseToAnyPublisher()
         }
-
         return URLSession.shared.dataTaskPublisher(for: productsURL)
             .map(\.data)
             .decode(type: [ProductDetails].self, decoder: JSONDecoder())

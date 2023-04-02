@@ -15,7 +15,7 @@ struct CustomTabBar: View {
     var body: some View {
         
         HStack() {
-            ForEach(0..<tabBarItems.count) { index in
+            ForEach(0..<tabBarItems.count, id: \.self) { index in
                 Button(action: {
                     selectedTab = index
                 }) {

@@ -147,15 +147,14 @@ class SignUpViewModel: ObservableObject {
     }
 
     func signUp() {
-        appCoordinator.dependencies.userRepository.checkUser(firstName: firstName, lastName: lastName, email: email)
-            .sink { existingUser in
-                if let _ = existingUser {
+        checkExistingUser()
+            .sink { userExists in
+                if userExists {
                     self.userExists = true
                 } else {
-                    self.checkExistingUser()
+                    self.createUser()
                 }
             }
             .store(in: &cancellableSet)
     }
-
 }

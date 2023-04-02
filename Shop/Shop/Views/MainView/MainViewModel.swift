@@ -49,9 +49,8 @@ class MainViewModel: ObservableObject {
     }
     
     func fetchLatestAndFlashSaleProducts() {
-        
         appCoordinator.dependencies.networkManager.fetchLatestAndFlashSale()
-            .sink { [weak self] completion in
+            .sink { completion in
                 switch completion {
                     case .finished:
                         print("Successfully fetched latest and flash sale products")

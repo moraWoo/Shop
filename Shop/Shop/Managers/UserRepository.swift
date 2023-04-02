@@ -23,7 +23,6 @@ class UserRepository: ObservableObject {
     }
     
     init(coreDataManager: CoreDataManager = CoreDataManager.shared) {
-        
         self.coreDataManger = coreDataManager
     }
     
