@@ -28,17 +28,25 @@ class PersonInfoViewModel: ObservableObject {
     
     func logout() {
         if let currentUser = appCoordinator.dependencies.userRepository.currentUser {
-            appCoordinator.dependencies.userRepository.setIsLogged(user: currentUser, isLogged: false)
+            appCoordinator.dependencies.userRepository.setIsLogged(
+                user: currentUser,
+                isLogged: false
+            )
             appCoordinator.dependencies.userRepository.saveContext()
         }
-        personInfoCoordinator.parentCoordinator?.removeChildCoordinator(personInfoCoordinator)
+        personInfoCoordinator.parentCoordinator?.removeChildCoordinator(
+            personInfoCoordinator
+        )
         appCoordinator.showLogin()
     }
     
     func updateAvatar(image: UIImage) {
         
         if let user = appCoordinator.dependencies.userRepository.currentUser {
-            appCoordinator.dependencies.userRepository.updateAvatar(user: user, avatar: image)
+            appCoordinator.dependencies.userRepository.updateAvatar(
+                user: user,
+                avatar: image
+            )
             profileImage = image
         }
     }

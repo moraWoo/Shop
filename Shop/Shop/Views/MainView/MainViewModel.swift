@@ -2,9 +2,7 @@ import SwiftUI
 import Combine
 
 class MainViewModel: ObservableObject {
-    
-    @Published var isDetailViewShowing: Bool = false
-    
+        
     @Published var profileImage: UIImage?
     @Published var firstName: String?
     @Published var items: [[Any]] = [[], [], []]
@@ -12,6 +10,7 @@ class MainViewModel: ObservableObject {
     @Published var showPersonInfoView: Binding<Bool>?
 
     private var cancellableSet: Set<AnyCancellable> = []
+    
     let appCoordinator: AppCoordinator
     private let mainCoordinator: MainCoordinator
 

@@ -17,7 +17,11 @@ struct ColorPickerView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 9))
                     .overlay(
                         RoundedRectangle(cornerRadius: 9)
-                            .stroke(index == 0 ? (Color(red: 173/255, green: 173/255, blue: 173/255)) : (isSelected ? Color.gray : Color.white), lineWidth: 2)
+                            .stroke(index == 0 ? (Color(
+                                red: 173/255,
+                                green: 173/255,
+                                blue: 173/255
+                            )) : (isSelected ? Color.gray : Color.white), lineWidth: 2)
                     )
                     .onTapGesture {
                         selectedColor = index

@@ -3,14 +3,13 @@ import Combine
 
 struct ItemCardView: View {
     
-    @EnvironmentObject var navigationManager: NavigationManager
     @EnvironmentObject var viewModel: MainViewModel
+
     @State private var selectedTab = 0
-
-    @Binding var showDetailView: Bool
-
     @State private var uiImage: UIImage? = nil
     @State private var isLoading: Bool = true
+
+    @Binding var showDetailView: Bool
     
     let item: Any
     let row: Int

@@ -5,7 +5,6 @@ struct ChooseColor: View {
     var body: some View {
         
         VStack {
-            
             HStack {
                 Text("Color:")
                     .customFont(size: 10, weight: .semibold)

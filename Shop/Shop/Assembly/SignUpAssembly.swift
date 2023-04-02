@@ -11,7 +11,11 @@ class SignUpAssembly {
     }
     
     func assemble() -> some View {
-        let viewModel = SignUpViewModel(appCoordinator: signUpCoordinator.parentCoordinator as! AppCoordinator, signUpCoordinator: signUpCoordinator)
+        guard let appCoordinator = signUpCoordinator.parentCoordinator as? AppCoordinator else {
+            print("Error: signUpCoordinator.parentCoordinator is not an instance of the AppCoordinator class.")
+            return AnyView(EmptyView())
+        }
+        let viewModel = SignUpViewModel(appCoordinator: appCoordinator, signUpCoordinator: signUpCoordinator)
         let view = SignUpView(viewModel: viewModel)
         return AnyView(view)
     }

@@ -72,7 +72,10 @@ struct SettingsList: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                TopView(viewModel: viewModel, profileImage: $viewModel.profileImage)
+                TopView(
+                    viewModel: viewModel,
+                    profileImage: $viewModel.profileImage
+                )
 
                 VStack(alignment: .leading) {
                     ForEach(Array(zip(labels, uniquePics)), id: \.0) { label, pic in

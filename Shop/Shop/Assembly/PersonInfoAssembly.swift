@@ -11,7 +11,12 @@ class PersonInfoAssembly {
     }
     
     func assemble() -> some View {
-        let viewModel = PersonInfoViewModel(appCoordinator: personInfoCoordinator.parentCoordinator as! AppCoordinator, personInfoCoordinator: personInfoCoordinator)
+        guard let appCoordinator = personInfoCoordinator.parentCoordinator as? AppCoordinator else {
+            print("Error: personInfoCoordinator.parentCoordinator is not an instance of the AppCoordinator class.")
+            return AnyView(EmptyView())
+        }
+        let viewModel = PersonInfoViewModel(appCoordinator: appCoordinator, personInfoCoordinator: personInfoCoordinator)
+        
         let view = PersonInfoView(viewModel: viewModel)
         return AnyView(view)
     }

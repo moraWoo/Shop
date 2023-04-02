@@ -25,8 +25,15 @@ struct LoginView: View, SecuredTextFieldParentProtocol {
                 Text("Welcome back")
                     .customFont(size: 26, weight: .semibold)
             VStack(spacing: 35) {
-                CustomTextField(title: "First name", text: $viewModel.firstName, prompt: viewModel.firstNamePrompt)
-                SecuredTextFieldView(text: $viewModel.password, parent: self)
+                CustomTextField(
+                    title: "First name",
+                    text: $viewModel.firstName,
+                    prompt: viewModel.firstNamePrompt
+                )
+                SecuredTextFieldView(
+                    text: $viewModel.password,
+                    parent: self
+                )
             }.padding(.leading, 43)
                 .padding(.trailing, 43)
             

@@ -23,8 +23,14 @@ class LoginViewModel: ObservableObject {
     
     private var cancellableSet: Set<AnyCancellable> = []
     
-    private let namePredicate = NSPredicate(format: "SELF MATCHES %@", Regex.name.rawValue)
-    private let passwordPredicate = NSPredicate(format: "SELF MATCHES %@", Regex.password.rawValue)
+    private let namePredicate = NSPredicate(
+        format: "SELF MATCHES %@",
+        Regex.name.rawValue
+    )
+    private let passwordPredicate = NSPredicate(
+        format: "SELF MATCHES %@",
+        Regex.password.rawValue
+    )
     
     let appCoordinator: AppCoordinator
     private let loginCoordinator: LoginCoordinator

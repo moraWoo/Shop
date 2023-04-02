@@ -11,10 +11,12 @@ class DetailAssembly {
     }
     
     func assemble() -> some View {
-        let viewModel = DetailViewModel(
-            appCoordinator: detailCoordinator.parentCoordinator as! AppCoordinator,
-            detailCoordinator: detailCoordinator
-        )
+        guard let appCoordinator = detailCoordinator.parentCoordinator as? AppCoordinator else {
+            print("Error: detailCoordinator.parentCoordinator is not an instance of the AppCoordinator class.")
+            return AnyView(EmptyView())
+        }
+        let viewModel = DetailViewModel(appCoordinator: appCoordinator, detailCoordinator: detailCoordinator)
+        
         let view = DetailView(viewModel: viewModel)
         return AnyView(view)
     }

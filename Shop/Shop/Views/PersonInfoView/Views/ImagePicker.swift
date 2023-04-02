@@ -20,7 +20,11 @@ struct ImagePicker: UIViewControllerRepresentable {
     }
     
     func makeCoordinator() -> Coordinator {
-        Coordinator(self, imageBinding: $image, viewModel: viewModel)
+        Coordinator(
+            self,
+            imageBinding: $image,
+            viewModel: viewModel
+        )
     }
     
     class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
@@ -29,7 +33,11 @@ struct ImagePicker: UIViewControllerRepresentable {
         let imageBinding: Binding<UIImage?>
         let viewModel: PersonInfoViewModel
 
-        init(_ parent: ImagePicker, imageBinding: Binding<UIImage?>, viewModel: PersonInfoViewModel) {
+        init(
+            _ parent: ImagePicker,
+            imageBinding: Binding<UIImage?>,
+            viewModel: PersonInfoViewModel
+        ) {
             self.parent = parent
             self.imageBinding = imageBinding
             self.viewModel = viewModel

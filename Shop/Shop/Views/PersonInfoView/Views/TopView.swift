@@ -10,7 +10,6 @@ struct TopView: View {
 
         
         VStack {
-
             HStack {
                 Button {
                     viewModel.appCoordinator.showMain()
@@ -20,10 +19,13 @@ struct TopView: View {
                         .foregroundColor(.black)
                         .frame(width: 20, height: 20)
                 }.padding(.leading, 32)
+                
                 Spacer()
+                
                 Text("Profile")
                     .customFont(size: 20, weight: .bold)
                 Spacer()
+                
             }.padding(.top, 20)
                 .padding(.trailing, 50)
             if let uiImage = profileImage {

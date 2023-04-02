@@ -11,7 +11,11 @@ class LoginAssembly {
     }
     
     func assemble() -> some View {
-        let viewModel = LoginViewModel(appCoordinator: loginCoordinator.parentCoordinator as! AppCoordinator, loginCoordinator: loginCoordinator)
+        guard let appCoordinator = loginCoordinator.parentCoordinator as? AppCoordinator else {
+            print("Error: loginCoordinator.parentCoordinator is not an instance of the AppCoordinator class.")
+            return AnyView(EmptyView())
+        }
+        let viewModel = LoginViewModel(appCoordinator: appCoordinator, loginCoordinator: loginCoordinator)
         let view = LoginView(viewModel: viewModel)
         return AnyView(view)
     }

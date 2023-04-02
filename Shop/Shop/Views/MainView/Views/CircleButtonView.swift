@@ -14,6 +14,7 @@ struct CircleButtonView: View {
         GeometryReader { geometry in
             let buttonWidth = (geometry.size.width - CGFloat(tags.count - 1) * 21) / CGFloat(tags.count)
             let imageWidth = buttonWidth * 0.5
+            
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .center, spacing: 12) {
                     ForEach(Array(zip(tags, pics)), id: \.0) { tag, pic in

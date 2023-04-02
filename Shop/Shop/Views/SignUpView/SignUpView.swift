@@ -29,9 +29,23 @@ struct SignUpView: View {
             VStack(spacing: 15) {
                 
                 VStack(spacing: 35) {
-                    CustomTextField(title: "First name", text: $viewModel.firstName, prompt: viewModel.firstNamePrompt)
-                    CustomTextField(title: "Last name", text: $viewModel.lastName, prompt: viewModel.lastNamePrompt)
-                    CustomTextField(title: "Email", text: $viewModel.email, prompt: viewModel.emailPrompt)
+                    
+                    CustomTextField(
+                        title: "First name",
+                        text: $viewModel.firstName,
+                        prompt: viewModel.firstNamePrompt
+                    )
+                    CustomTextField(
+                        title: "Last name",
+                        text: $viewModel.lastName,
+                        prompt: viewModel.lastNamePrompt
+                    )
+                    CustomTextField(
+                        title: "Email",
+                        text: $viewModel.email,
+                        prompt: viewModel.emailPrompt
+                    )
+                    
                     Button {
                         if viewModel.firstName.isEmpty || viewModel.lastName.isEmpty || viewModel.email.isEmpty {
                             activeAlert = .fieldsEmpty

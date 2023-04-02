@@ -14,7 +14,11 @@ struct MainView: View {
                 switch selectedTab {
                     case 0:
                         VStack {
-                            TopBarView(viewModel: viewModel, profileImage: $viewModel.profileImage)
+                            TopBarView(
+                                viewModel: viewModel,
+                                profileImage: $viewModel.profileImage
+                            
+                            )
                             SearchBarView()
                             CircleButtonView()
                             
@@ -26,7 +30,10 @@ struct MainView: View {
                         }
                     case 1:
                         VStack {
-                            TopBarView(viewModel: viewModel, profileImage: $viewModel.profileImage)
+                            TopBarView(
+                                viewModel: viewModel,
+                                profileImage: $viewModel.profileImage
+                            )
                             SearchBarView()
                             CircleButtonView()
                             Tab2View()
@@ -36,8 +43,7 @@ struct MainView: View {
                         VStack {
                             TopBarView(
                                 viewModel: viewModel,
-                                profileImage:
-                                    $viewModel.profileImage
+                                profileImage: $viewModel.profileImage
                             )
                             SearchBarView()
                             CircleButtonView()

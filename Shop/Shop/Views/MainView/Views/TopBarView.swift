@@ -6,7 +6,10 @@ struct TopBarView: View {
     @Binding var profileImage: UIImage?
     var viewModel: MainViewModel
     
-    init(viewModel: MainViewModel, profileImage: Binding<UIImage?>) {
+    init(
+        viewModel: MainViewModel,
+        profileImage: Binding<UIImage?>
+    ) {
         self.viewModel = viewModel
         self._profileImage = profileImage
     }
