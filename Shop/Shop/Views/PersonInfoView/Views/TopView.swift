@@ -7,11 +7,25 @@ struct TopView: View {
     @Binding var profileImage: UIImage?
     
     var body: some View {
+
         
         VStack {
-            Text("Profile")
-                .customFont(size: 15, weight: .bold)
-                .padding(.top, 19)
+
+            HStack {
+                Button {
+                    viewModel.appCoordinator.showMain()
+                } label: {
+                    Image(systemName: "arrow.left")
+                        .resizable()
+                        .foregroundColor(.black)
+                        .frame(width: 20, height: 20)
+                }.padding(.leading, 32)
+                Spacer()
+                Text("Profile")
+                    .customFont(size: 20, weight: .bold)
+                Spacer()
+            }.padding(.top, 20)
+                .padding(.trailing, 50)
             if let uiImage = profileImage {
                 Image(uiImage: uiImage)
                     .resizable()
@@ -26,7 +40,6 @@ struct TopView: View {
                     .aspectRatio(contentMode: .fit)
                     .scaledToFit()
             }
-            
             Button {
                 showImagePicker.toggle()
             } label: {
@@ -69,4 +82,3 @@ struct TopView: View {
         }
     }
 }
-

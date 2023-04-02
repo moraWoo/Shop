@@ -17,7 +17,7 @@ struct MainImage: View {
                     Image(systemName: "chevron.left")
                         .resizable()
                         .foregroundColor(.black)
-                        .frame(width: 20, height: 30)
+                        .frame(width: 15, height: 25)
                 }
             }.padding(.leading, -300)
                 .padding(.bottom, 263)

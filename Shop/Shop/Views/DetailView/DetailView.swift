@@ -10,6 +10,7 @@ struct DetailView: View {
             VStack {
                 MainImage(viewModel: viewModel)
                     .padding(.bottom, 10)
+                    .padding(.top, 30)
                 ZoomImagesView()
                     .padding(.bottom, 22)
                 DetailText()
