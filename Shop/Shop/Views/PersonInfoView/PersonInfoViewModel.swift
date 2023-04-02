@@ -27,25 +27,12 @@ class PersonInfoViewModel: ObservableObject {
     }
     
     func logout() {
-//        if let currentUser = userRepository.currentUser {
-//            userRepository.setIsLogged(user: currentUser, isLogged: false)
-//            userRepository.saveContext()
-//        }
-//
-//        guard let parentCoordinator = coordinator.parentCoordinator as? AppCoordinator else { return }
-//        parentCoordinator.removeChildCoordinator(coordinator)
-//
-//        if let loginCoordinator = parentCoordinator.childCoordinators.first(where: { $0 is LoginCoordinator }) {
-//            parentCoordinator.removeChildCoordinator(loginCoordinator)
-//        }
-//
-//        loginCoordinator.parentCoordinator = parentCoordinator
-//        parentCoordinator.addChildCoordinator(loginCoordinator)
-//
-//        DispatchQueue.main.async {
-//            let loginView = self.loginCoordinator.start()
-//            parentCoordinator.currentView = loginView
-//        }
+        if let currentUser = appCoordinator.dependencies.userRepository.currentUser {
+            appCoordinator.dependencies.userRepository.setIsLogged(user: currentUser, isLogged: false)
+            appCoordinator.dependencies.userRepository.saveContext()
+        }
+        personInfoCoordinator.parentCoordinator?.removeChildCoordinator(personInfoCoordinator)
+        appCoordinator.showLogin()
     }
     
     func updateAvatar(image: UIImage) {

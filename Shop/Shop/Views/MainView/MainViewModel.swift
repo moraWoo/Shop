@@ -86,8 +86,6 @@ class MainViewModel: ObservableObject {
     func presentDetailView() {
         mainCoordinator.parentCoordinator?.removeChildCoordinator(mainCoordinator)
         appCoordinator.showDetail()
-        
-//        appCoordinator.dependencies.navigationManager.navigateTo(view: detailView)
     }
 }
 

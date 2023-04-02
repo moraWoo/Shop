@@ -8,7 +8,7 @@ struct DetailView: View {
         
         ZStack {
             VStack {
-                MainImage()
+                MainImage(viewModel: viewModel)
                     .padding(.bottom, 10)
                 ZoomImagesView()
                     .padding(.bottom, 22)

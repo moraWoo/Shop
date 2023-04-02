@@ -103,7 +103,8 @@ class SignUpViewModel: ObservableObject {
     }
     
     func goToMainView() {
-        //
+        signUpCoordinator.parentCoordinator?.removeChildCoordinator(signUpCoordinator)
+        appCoordinator.showMain()
     }
     
     func checkExistingUser() -> AnyPublisher<Bool, Never> {
