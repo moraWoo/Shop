@@ -16,16 +16,4 @@ class PersonInfoCoordinator: Coordinator {
         let personInfoView = PersonInfoAssembly(dependencies: dependencies, personInfoCoordinator: self).assemble()
         return AnyView(personInfoView)
     }
-    
-//    func addChildCoordinator(_ coordinator: Coordinator) {
-//        childCoordinators.append(coordinator)
-//        coordinator.parentCoordinator = self
-//    }
-//    
-//    func removeChildCoordinator(_ coordinator: Coordinator) {
-//        if let index = childCoordinators.firstIndex(where: { $0 === coordinator }) {
-//            childCoordinators.remove(at: index)
-//            coordinator.parentCoordinator = nil
-//        }
-//    }
 }

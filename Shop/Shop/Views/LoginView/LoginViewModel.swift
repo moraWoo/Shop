@@ -26,7 +26,7 @@ class LoginViewModel: ObservableObject {
     private let namePredicate = NSPredicate(format: "SELF MATCHES %@", Regex.name.rawValue)
     private let passwordPredicate = NSPredicate(format: "SELF MATCHES %@", Regex.password.rawValue)
     
-    private let appCoordinator: AppCoordinator
+    let appCoordinator: AppCoordinator
     private let loginCoordinator: LoginCoordinator
 
     init(

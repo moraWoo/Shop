@@ -8,10 +8,22 @@ struct LoginView: View, SecuredTextFieldParentProtocol {
     @State private var showingAlert = false
     
     var body: some View {
+
         VStack(spacing: 70) {
-            Spacer()
-            Text("Welcome back")
-                .customFont(size: 26, weight: .semibold)
+            HStack {
+                Button {
+                    viewModel.appCoordinator.showSignUp()
+                } label: {
+                    Image(systemName: "arrow.left")
+                        .resizable()
+                        .foregroundColor(.black)
+                        .frame(width: 20, height: 20)
+                }.padding(.leading, 43)
+                    .padding(.top, 30)
+                Spacer()
+            }
+                Text("Welcome back")
+                    .customFont(size: 26, weight: .semibold)
             VStack(spacing: 35) {
                 CustomTextField(title: "First name", text: $viewModel.firstName, prompt: viewModel.firstNamePrompt)
                 SecuredTextFieldView(text: $viewModel.password, parent: self)
