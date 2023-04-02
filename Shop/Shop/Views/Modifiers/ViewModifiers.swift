@@ -62,7 +62,7 @@ struct MiniButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .padding()
-            .frame(width: width, height: height) // используем заданные значения ширины и высоты
+            .frame(width: width, height: height)
             .background(Color(red: 78/255, green: 85/255, blue: 215/255))
             .foregroundColor(.white)
             .cornerRadius(8)

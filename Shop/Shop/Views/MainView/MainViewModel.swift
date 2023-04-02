@@ -31,11 +31,6 @@ class MainViewModel: ObservableObject {
         fetchLatestAndFlashSaleProducts()
     }
     
-    func goToMainView() {
-//        coordinator.goToMainView()
-//        coordinator.parentCoordinator?.addChildCoordinator(coordinator)
-    }
-    
     func fetchLoggedInUser() {
         
         appCoordinator.dependencies.userRepository.fetchLoggedInUser()
@@ -72,10 +67,6 @@ class MainViewModel: ObservableObject {
                 }
             }
             .store(in: &cancellableSet)
-    }
-    
-    func personInfo() {
-        goToPersonInfoView()
     }
     
     func goToPersonInfoView() {

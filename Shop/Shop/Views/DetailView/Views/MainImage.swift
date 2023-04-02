@@ -31,7 +31,7 @@ struct MainImage: View {
                     
                     VStack {
                         Button(action: {
-                                // Действие при нажатии на кнопку
+                            //
                         }, label: {
                             Image("heartButton")
                                 .background(Color.clear)
@@ -43,7 +43,7 @@ struct MainImage: View {
                             .background(Color(red: 84/255, green: 85/255, blue: 137/255))
                         
                         Button(action: {
-                                // Действие при нажатии на кнопку
+                                //
                         }, label: {
                             Image("shareButton")
                                 .background(Color.clear)

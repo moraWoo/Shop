@@ -57,16 +57,6 @@ struct MainView: View {
                         }
                     case 4:
                         EmptyView()
-//                        PersonInfoView(
-//                            viewModel: PersonInfoViewModel(
-//                                coordinator: viewModel.personInfoCoordinator,
-//                                loginCoordinator: viewModel.loginCoordinator,
-//                                userRepository: viewModel.userRepository,
-//                                navigationManager: viewModel.navigationManager
-//                            ), navigationManager: viewModel.navigationManager
-//                        )
-//                        .environmentObject(viewModel.navigationManager
-//                        )
                     default:
                         EmptyView()
                 }
