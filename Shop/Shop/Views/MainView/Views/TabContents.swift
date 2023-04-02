@@ -2,21 +2,34 @@ import SwiftUI
 
 struct Tab1View: View {
     
+    var viewModel: MainViewModel
+    let navigationManager: NavigationManager
+    
     let items: [[Any]]
     let title = [
         "Latest", "Flash Sale", "Brands"
     ]
-
+    
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack {
                 ForEach(0..<items.count) { row in
-                    VStack(alignment: .trailing) {
-                        rowTitle(row: row)
-                        rowContent(row: row)
-                    }
+                    rowContentContainer(row: row)
                 }
             }.padding(.bottom, 87)
+        }
+    }
+    
+    init(viewModel: MainViewModel, items: [[Any]], navigationManager: NavigationManager) {
+        self.viewModel = viewModel
+        self.items = items
+        self.navigationManager = navigationManager
+    }
+    
+    private func rowContentContainer(row: Int) -> some View {
+        VStack(alignment: .trailing) {
+            rowTitle(row: row)
+            rowContent(row: row)
         }
     }
     
@@ -41,19 +54,20 @@ struct Tab1View: View {
     private func rowContent(row: Int) -> some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 12) {
-                ForEach(0..<items[row].count, id: \.self) { index in
-                    let item = items[row][index]
-                    if let latestProduct = item as? LatestProduct {
-                        ItemCardView(item: latestProduct, row: row)
-                    } else if let flashSaleProduct = item as? FlashSaleProduct {
-                        ItemCardView(item: flashSaleProduct, row: row)
-                    }
-                }
+                rowItems(row: row)
             }
             .padding(.horizontal, 11)
         }
     }
+    
+    private func rowItems(row: Int) -> some View {
+        ForEach(items[row].indices, id: \.self) { index in
+            let item = items[row][index]
+            ItemRowComponent(item: item, navigationManager: navigationManager, viewModel: viewModel, row: row)
+        }
+    }
 }
+
 
 struct Tab2View: View {
     var body: some View {
@@ -74,7 +88,46 @@ struct Tab4View: View {
 }
 
 struct Tab5View: View {
+    
+    @EnvironmentObject var viewModel: MainViewModel
+    
     var body: some View {
-        Text("Tab 5 Content")
+        Button(action: {
+            viewModel.showPersonInfoView?.wrappedValue = true
+        }) {
+            Text("Show Person Info")
+                .foregroundColor(.white)
+                .padding()
+                .background(Color.blue)
+                .cornerRadius(10)
+        }
+    }
+}
+
+struct ItemRowComponent: View {
+    
+    @State private var showDetailView: Bool = false
+
+    let item: Any
+    let navigationManager: NavigationManager
+    let viewModel: MainViewModel
+    let row: Int
+    
+    var body: some View {
+        itemCardView()
+    }
+    
+    private func itemCardView() -> some View {
+        if let latestProduct = item as? LatestProduct {
+            return AnyView(ItemCardView(showDetailView: $showDetailView, item: latestProduct, row: row)
+                .environmentObject(navigationManager)
+                .environmentObject(viewModel))
+        } else if let flashSaleProduct = item as? FlashSaleProduct {
+            return AnyView(ItemCardView(showDetailView: $showDetailView, item: flashSaleProduct, row: row)
+                .environmentObject(navigationManager)
+                .environmentObject(viewModel))
+        } else {
+            return AnyView(EmptyView())
+        }
     }
 }

@@ -5,38 +5,15 @@ class SignUpCoordinator: Coordinator {
     
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?
-    var view: AnyView?
-    let userRepository = UserRepository()
+    let dependencies: AppDependencies
+    let name: String = "Sign Up Coordinator"
+
+    init(dependencies: AppDependencies) {
+        self.dependencies = dependencies
+    }
     
     func start() -> AnyView {
-
-        let dependencies = AppDependencies(
-            signUpCoordinator: self,
-            loginCoordinator: LoginCoordinator(),
-            mainCoordinator: MainCoordinator(),
-            personInfoCoordinator: PersonInfoCoordinator(),
-            detailCoordinator: DetailCoordinator(),
-            userRepository: userRepository
-        )
-        let signUpView = SignUpAssembly(dependencies: dependencies).assemble(userRepository: userRepository)
-        view = AnyView(signUpView)
-        if let view = view {
-            return view
-        } else {
-            return AnyView(EmptyView())
-        }
-    }
-    
-    func addChildCoordinator(_ coordinator: Coordinator) {
-        childCoordinators.append(coordinator)
-        coordinator.parentCoordinator = self
-    }
-    
-    func removeChildCoordinator(_ coordinator: Coordinator) {
-        if let index = childCoordinators.firstIndex(where: { $0 === coordinator }) {
-            childCoordinators.remove(at: index)
-            coordinator.parentCoordinator = nil
-            view = nil
-        }
+        let signUpView = SignUpAssembly(dependencies: dependencies, signUpCoordinator: self).assemble()
+        return AnyView(signUpView)
     }
 }

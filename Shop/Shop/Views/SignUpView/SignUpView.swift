@@ -2,6 +2,7 @@ import SwiftUI
 import Combine
 
 enum AlertType: Identifiable {
+    
     case fieldsEmpty, userExists
     
     var id: Int {
@@ -19,10 +20,6 @@ struct SignUpView: View {
     @State private var showingAlertTextFieldsIsEmpty = false
     @State private var showPasswordInput = false
     @State private var activeAlert: AlertType?
-    
-    public init(viewModel: SignUpViewModel) {
-        self.viewModel = viewModel
-    }
     
     var body: some View {
         

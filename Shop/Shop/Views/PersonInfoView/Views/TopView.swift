@@ -1,15 +1,31 @@
 import SwiftUI
 
 struct TopView: View {
+    
     @ObservedObject var viewModel: PersonInfoViewModel
-    @Binding var profileImage: UIImage?
     @State private var showImagePicker = false
+    @Binding var profileImage: UIImage?
     
     var body: some View {
+
+        
         VStack {
-            Text("Profile")
-                .customFont(size: 15, weight: .bold)
-                .padding(.top, 19)
+
+            HStack {
+                Button {
+                    viewModel.appCoordinator.showMain()
+                } label: {
+                    Image(systemName: "arrow.left")
+                        .resizable()
+                        .foregroundColor(.black)
+                        .frame(width: 20, height: 20)
+                }.padding(.leading, 32)
+                Spacer()
+                Text("Profile")
+                    .customFont(size: 20, weight: .bold)
+                Spacer()
+            }.padding(.top, 20)
+                .padding(.trailing, 50)
             if let uiImage = profileImage {
                 Image(uiImage: uiImage)
                     .resizable()
@@ -34,8 +50,7 @@ struct TopView: View {
             }
             .sheet(isPresented: $showImagePicker) {
                 ImagePicker(
-                    image: $profileImage,
-                    viewModel: viewModel,
+                    viewModel: viewModel, image: $profileImage,
                     firstName: viewModel.firstName ?? "Name haven't loaded",
                     onFinishPicking: { image in
                         viewModel.updateAvatar(image: image)
@@ -43,7 +58,7 @@ struct TopView: View {
                 )
             }
 
-            Text(viewModel.userRepository.currentUser?.firstName ?? "Not Loaded Name")
+            Text(viewModel.appCoordinator.dependencies.userRepository.currentUser?.firstName ?? "Not Loaded Name")
                 .customFont(size: 15, weight: .bold)
                 .foregroundColor(Color(red: 63/255, green: 63/255, blue: 63/255))
                 .padding(.bottom, 36)
@@ -53,7 +68,9 @@ struct TopView: View {
                     print("Login...")
                 } label: {
                     Text("Upload Item")
-                }.buttonStyle(PrimaryButtonStyle())
+                }
+                .buttonStyle(PrimaryButtonStyle())
+                
                 Image("share")
                     .frame(height: 15.0, alignment: Alignment.leading)
                     .padding(.leading, 50)
@@ -61,7 +78,7 @@ struct TopView: View {
             }
             .padding(.leading, 43)
             .padding(.trailing, 43)
+            .padding(.bottom, 10)
         }
     }
 }
-

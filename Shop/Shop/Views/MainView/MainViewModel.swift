@@ -3,62 +3,37 @@ import Combine
 
 class MainViewModel: ObservableObject {
     
+    @Published var isDetailViewShowing: Bool = false
+    
     @Published var profileImage: UIImage?
     @Published var firstName: String?
     @Published var items: [[Any]] = [[], [], []]
+    @Published var showDetailView: Binding<Bool>?
+    @Published var showPersonInfoView: Binding<Bool>?
 
-    var coordinator: MainCoordinator
-    var personInfoCoordinator: PersonInfoCoordinator
-    private let userRepository: UserRepository
-    private let networkManager: NetworkManager
     private var cancellableSet: Set<AnyCancellable> = []
-    
+    let appCoordinator: AppCoordinator
+    private let mainCoordinator: MainCoordinator
+
     init(
-        coordinator: MainCoordinator,
-        personInfoCoordinator: PersonInfoCoordinator,
-        userRepository: UserRepository,
-        networkManager: NetworkManager
+        appCoordinator: AppCoordinator,
+        mainCoordinator: MainCoordinator
     ) {
-        self.coordinator = coordinator
-        self.personInfoCoordinator = personInfoCoordinator
-        self.userRepository = userRepository
-        self.networkManager = networkManager
+        self.appCoordinator = appCoordinator
+        self.mainCoordinator = mainCoordinator
         
-        fetchLoggedInUser()
-        if let currentUser = userRepository.currentUser,
+        if let currentUser = appCoordinator.dependencies.userRepository.currentUser,
            let avatarData = currentUser.avatar {
             profileImage = UIImage(data: avatarData)
         }
         
+        fetchLoggedInUser()
         fetchLatestAndFlashSaleProducts()
     }
     
-    func goToMainView() {
-        coordinator.goToMainView()
-        coordinator.parentCoordinator?.addChildCoordinator(coordinator)
-    }
-    
-    func personInfo() {
-        goToPersonInfoView()
-    }
-    
-    func goToPersonInfoView() {
-        guard let parentCoordinator = coordinator.parentCoordinator as? AppCoordinator else {
-            print("Parent coordinator is nil")
-            return
-        }
-        
-        parentCoordinator.removeChildCoordinator(personInfoCoordinator)
-        personInfoCoordinator.parentCoordinator = parentCoordinator
-        parentCoordinator.addChildCoordinator(personInfoCoordinator)
-        
-        let personInfoView = personInfoCoordinator.start()
-        
-        parentCoordinator.currentView = personInfoView
-    }
-    
     func fetchLoggedInUser() {
-        userRepository.fetchLoggedInUser()
+        
+        appCoordinator.dependencies.userRepository.fetchLoggedInUser()
             .sink { user in
                 self.firstName = user?.firstName
             }
@@ -66,21 +41,23 @@ class MainViewModel: ObservableObject {
     }
     
     func fetchAvatar() {
-        userRepository.fetchAvatar()
+        
+        appCoordinator.dependencies.userRepository.fetchAvatar()
             .sink { image in
                 self.profileImage = image
             }
             .store(in: &cancellableSet)
     }
-
+    
     func fetchLatestAndFlashSaleProducts() {
-        networkManager.fetchLatestAndFlashSale()
+        
+        appCoordinator.dependencies.networkManager.fetchLatestAndFlashSale()
             .sink { [weak self] completion in
                 switch completion {
-                case .finished:
-                    print("Successfully fetched latest and flash sale products")
-                case .failure(let error):
-                    print("Error fetching latest and flash sale products: \(error)")
+                    case .finished:
+                        print("Successfully fetched latest and flash sale products")
+                    case .failure(let error):
+                        print("Error fetching latest and flash sale products: \(error)")
                 }
             } receiveValue: { [weak self] (latestProductsResponse, flashSaleResponse) in
                 DispatchQueue.main.async {
@@ -91,5 +68,16 @@ class MainViewModel: ObservableObject {
             }
             .store(in: &cancellableSet)
     }
+    
+    func goToPersonInfoView() {
+        mainCoordinator.parentCoordinator?.removeChildCoordinator(mainCoordinator)
+        appCoordinator.showPersonInfo()
+    }
+    
+    func presentDetailView() {
+        mainCoordinator.parentCoordinator?.removeChildCoordinator(mainCoordinator)
+        appCoordinator.showDetail()
+    }
 }
+
 

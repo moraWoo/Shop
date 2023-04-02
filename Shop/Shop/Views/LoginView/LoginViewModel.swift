@@ -12,10 +12,7 @@ class LoginViewModel: ObservableObject {
     @Published private var isValidPassword = false
     
     @Published var showErrorAlert = false
-    
-    var coordinator: Coordinator
-    var mainCoordinator: MainCoordinator
-    
+        
     var firstNamePrompt: String? {
         if isValidFirstName == true || firstName.isEmpty {
             return nil
@@ -29,16 +26,15 @@ class LoginViewModel: ObservableObject {
     private let namePredicate = NSPredicate(format: "SELF MATCHES %@", Regex.name.rawValue)
     private let passwordPredicate = NSPredicate(format: "SELF MATCHES %@", Regex.password.rawValue)
     
-    private let userRepository: UserRepository
-    
+    let appCoordinator: AppCoordinator
+    private let loginCoordinator: LoginCoordinator
+
     init(
-        coordinator: Coordinator,
-        mainCoordinator: MainCoordinator,
-        userRepository: UserRepository
+        appCoordinator: AppCoordinator,
+        loginCoordinator: LoginCoordinator
     ) {
-        self.coordinator = coordinator
-        self.mainCoordinator = mainCoordinator
-        self.userRepository = userRepository
+        self.appCoordinator = appCoordinator
+        self.loginCoordinator = loginCoordinator
         
         $firstName
             .debounce(for: 0.5, scheduler: RunLoop.main)
@@ -75,17 +71,8 @@ class LoginViewModel: ObservableObject {
     }
     
     func goToMainView() {
-        guard let parentCoordinator = coordinator.parentCoordinator as? AppCoordinator else {
-            print("Parent coordinator is nil")
-            return
-        }
-        
-        parentCoordinator.removeChildCoordinator(mainCoordinator)
-        mainCoordinator.parentCoordinator = parentCoordinator
-        parentCoordinator.addChildCoordinator(mainCoordinator)
-        
-        let mainView = mainCoordinator.start()
-        parentCoordinator.currentView = mainView
+        loginCoordinator.parentCoordinator?.removeChildCoordinator(loginCoordinator)
+        appCoordinator.showMain()
     }
     
     func login() {
@@ -95,10 +82,10 @@ class LoginViewModel: ObservableObject {
             return
         }
         
-        userRepository.checkUser(firstName: firstName, password: password)
+        appCoordinator.dependencies.userRepository.checkUser(firstName: firstName, password: password)
             .sink { user in
                 if let user = user {
-                    self.userRepository.setIsLogged(user: user, isLogged: true)
+                    self.appCoordinator.dependencies.userRepository.setIsLogged(user: user, isLogged: true)
                     self.successfulLogin()
                 } else {
                     print("Invalid credentials")

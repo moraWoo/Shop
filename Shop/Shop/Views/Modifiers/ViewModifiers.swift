@@ -55,6 +55,24 @@ struct PrimaryButtonStyle: ButtonStyle {
     }
 }
 
+struct MiniButtonStyle: ButtonStyle {
+    let width: CGFloat
+    let height: CGFloat
+    
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .padding()
+            .frame(width: width, height: height)
+            .background(Color(red: 78/255, green: 85/255, blue: 215/255))
+            .foregroundColor(.white)
+            .cornerRadius(8)
+            .font(.custom("Montserrat-Regular", size: 8))
+            .fontWeight(.bold)
+            .scaleEffect(configuration.isPressed ? 1.2 : 1)
+            .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
+    }
+}
+
 struct AppleGoogleButtonStyle: ButtonStyle {
     
     func makeBody(configuration: Configuration) -> some View {
@@ -88,23 +106,41 @@ extension SecureField {
 }
 
 struct TopRoundedRectangle: Shape {
-    
     var cornerRadius: CGFloat
-
+    
     func path(in rect: CGRect) -> Path {
+        // Вычисляем координаты верхних левой и правой точек
+        let topLeft = CGPoint(x: rect.minX, y: rect.minY + cornerRadius)
+        let topRight = CGPoint(x: rect.maxX - cornerRadius, y: rect.minY + cornerRadius)
+        // Вычисляем координаты нижних правой и левой точек
+        let bottomRight = CGPoint(x: rect.maxX, y: rect.maxY)
+        let bottomLeft = CGPoint(x: rect.minX, y: rect.maxY)
+        
         var path = Path()
-
-        path.move(to: CGPoint(x: 0, y: rect.height))
-        path.addLine(to: CGPoint(x: 0, y: cornerRadius))
-        path.addArc(center: CGPoint(x: cornerRadius, y: cornerRadius), radius: cornerRadius, startAngle: Angle(degrees: 180), endAngle: Angle(degrees: 90), clockwise: false)
-        path.addLine(to: CGPoint(x: rect.width - cornerRadius, y: 0))
-        path.addArc(center: CGPoint(x: rect.width - cornerRadius, y: cornerRadius), radius: cornerRadius, startAngle: Angle(degrees: 90), endAngle: Angle(degrees: 0), clockwise: false)
-        path.addLine(to: CGPoint(x: rect.width, y: rect.height))
-        path.addLine(to: CGPoint(x: 0, y: rect.height))
-
+        // Начинаем с левой верхней точки и добавляем дугу влево-вверх
+        path.move(to: topLeft)
+        path.addArc(center: CGPoint(x: topLeft.x + cornerRadius, y: topLeft.y), radius: cornerRadius, startAngle: Angle(degrees: 180), endAngle: Angle(degrees: 270), clockwise: false)
+        // Добавляем линию до верхней правой точки
+        path.addLine(to: CGPoint(x: topRight.x, y: rect.minY))
+        // Добавляем дугу вправо-вверх
+        path.addArc(center: CGPoint(x: topRight.x, y: topRight.y), radius: cornerRadius, startAngle: Angle(degrees: -90), endAngle: Angle(degrees: 0), clockwise: false)
+        // Добавляем линию до правой нижней точки
+        path.addLine(to: bottomRight)
+        // Добавляем линию до левой нижней точки
+        path.addLine(to: bottomLeft)
+        // Добавляем линию до левой верхней точки
+        path.addLine(to: topLeft)
+        // Завершаем путь
+        path.closeSubpath()
+        
         return path
     }
 }
+
+
+
+
+
 
 struct RoundedCornersShape: Shape {
     

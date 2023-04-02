@@ -3,6 +3,7 @@ import SwiftUI
 struct PickerLocation: View {
     
     @State private var selectedLocation = 0
+    
     let locations = ["Нью-Йорк", "Лос-Анджелес", "Сан-Франциско", "Москва", "Сидней"]
     
     var body: some View {

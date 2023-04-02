@@ -3,26 +3,16 @@ import SwiftUI
 class PersonInfoAssembly {
     
     let dependencies: AppDependencies
-    
-    init(dependencies: AppDependencies) {
+    let personInfoCoordinator: PersonInfoCoordinator
+
+    init(dependencies: AppDependencies, personInfoCoordinator: PersonInfoCoordinator) {
         self.dependencies = dependencies
+        self.personInfoCoordinator = personInfoCoordinator
     }
     
-    func assemble(userRepository: UserRepository) -> some View {
-        
-        guard let personInfoCoordinator = dependencies.personInfoCoordinator,
-              let loginCoordinator = dependencies.loginCoordinator else {
-            fatalError("PersonInfoCoordinator or LoginCoordinator is missing")
-        }
-        
-        let viewModel = PersonInfoViewModel(
-            coordinator: personInfoCoordinator,
-            loginCoordinator: loginCoordinator,
-            userRepository: dependencies.userRepository
-        )
+    func assemble() -> some View {
+        let viewModel = PersonInfoViewModel(appCoordinator: personInfoCoordinator.parentCoordinator as! AppCoordinator, personInfoCoordinator: personInfoCoordinator)
         let view = PersonInfoView(viewModel: viewModel)
-        personInfoCoordinator.view = AnyView(view)
-
         return AnyView(view)
     }
 }

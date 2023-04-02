@@ -2,29 +2,20 @@ import Foundation
 
 class AppDependencies {
     
-    let signUpCoordinator: SignUpCoordinator?
-    let loginCoordinator: LoginCoordinator?
-    let mainCoordinator: MainCoordinator?
-    let personInfoCoordinator: PersonInfoCoordinator?
-    let detailCoordinator: DetailCoordinator?
-    let userRepository: UserRepository
-    let networkManager: NetworkManager
+    lazy var coreDataManager: CoreDataManager = CoreDataManager.shared
+    lazy var userRepository: UserRepository = UserRepository(coreDataManager: coreDataManager)
+    lazy var networkManager: NetworkManager = NetworkManager()
+    lazy var navigationManager: NavigationManager = NavigationManager()
     
     init(
-        signUpCoordinator: SignUpCoordinator? = nil,
-        loginCoordinator: LoginCoordinator? = nil,
-        mainCoordinator: MainCoordinator? = nil,
-        personInfoCoordinator: PersonInfoCoordinator? = nil,
-        detailCoordinator: DetailCoordinator? = nil,
-        userRepository: UserRepository = UserRepository(),
-        networkManager: NetworkManager = NetworkManager()
+        coreDataManager: CoreDataManager = CoreDataManager.shared,
+        userRepository: UserRepository? = nil,
+        networkManager: NetworkManager = NetworkManager(),
+        navigationManager: NavigationManager = NavigationManager()
     ) {
-        self.loginCoordinator = loginCoordinator
-        self.signUpCoordinator = signUpCoordinator
-        self.mainCoordinator = mainCoordinator
-        self.personInfoCoordinator = personInfoCoordinator
-        self.detailCoordinator = detailCoordinator
-        self.userRepository = userRepository
+        self.coreDataManager = coreDataManager
         self.networkManager = networkManager
+        self.navigationManager = navigationManager
+        self.userRepository = userRepository ?? UserRepository(coreDataManager: coreDataManager)
     }
 }

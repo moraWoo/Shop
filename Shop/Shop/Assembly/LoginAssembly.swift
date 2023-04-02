@@ -3,26 +3,16 @@ import SwiftUI
 class LoginAssembly {
     
     let dependencies: AppDependencies
-    
-    init(dependencies: AppDependencies) {
+    let loginCoordinator: LoginCoordinator
+
+    init(dependencies: AppDependencies, loginCoordinator: LoginCoordinator) {
         self.dependencies = dependencies
+        self.loginCoordinator = loginCoordinator
     }
     
-    func assemble(userRepository: UserRepository) -> some View {
-        
-        guard let loginCoordinator = dependencies.loginCoordinator,
-              let mainCoordinator = dependencies.mainCoordinator else {
-            fatalError("LoginCoordinator or MainCoordinator is missing")
-        }
-        
-        let viewModel = LoginViewModel(
-            coordinator: loginCoordinator,
-            mainCoordinator: mainCoordinator,
-            userRepository: dependencies.userRepository
-        )
+    func assemble() -> some View {
+        let viewModel = LoginViewModel(appCoordinator: loginCoordinator.parentCoordinator as! AppCoordinator, loginCoordinator: loginCoordinator)
         let view = LoginView(viewModel: viewModel)
-        loginCoordinator.view = AnyView(view)
-
         return AnyView(view)
     }
 }

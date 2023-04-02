@@ -3,24 +3,19 @@ import SwiftUI
 class DetailAssembly {
     
     let dependencies: AppDependencies
-    
-    init(dependencies: AppDependencies) {
+    let detailCoordinator: DetailCoordinator
+
+    init(dependencies: AppDependencies, detailCoordinator: DetailCoordinator) {
         self.dependencies = dependencies
+        self.detailCoordinator = detailCoordinator
     }
     
     func assemble() -> some View {
-        
-        guard let detailCoordinator = dependencies.detailCoordinator else {
-            fatalError("DetailCoordinator is missing")
-        }
-        
         let viewModel = DetailViewModel(
-            coordinator: detailCoordinator,
-            networkManager: dependencies.networkManager
+            appCoordinator: detailCoordinator.parentCoordinator as! AppCoordinator,
+            detailCoordinator: detailCoordinator
         )
         let view = DetailView(viewModel: viewModel)
-        detailCoordinator.view = AnyView(view)
-
         return AnyView(view)
     }
 }

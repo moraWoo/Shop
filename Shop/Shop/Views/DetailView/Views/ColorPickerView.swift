@@ -1,11 +1,13 @@
 import SwiftUI
 
 struct ColorPickerView: View {
+    
     @State private var selectedColor: Int = 0
     
     let colors: [Color] = [.white, .gray, .black]
     
     var body: some View {
+        
         HStack {
             ForEach(0..<colors.count, id: \.self) { index in
                 let color = colors[index]
