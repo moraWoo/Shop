@@ -10,6 +10,7 @@ struct ShopApp: App {
         let dependencies = AppDependencies()
         appCoordinator = AppCoordinator(dependencies: dependencies)
     }
+
     var body: some Scene {
 
         let contentView = appCoordinator.start().environmentObject(appCoordinator)

@@ -6,7 +6,7 @@ class MainCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     var parentCoordinator: Coordinator?
     let dependencies: AppDependencies
-    let name: String = "Sign Up Coordinator"
+    let name: String = "Main Coordinator"
 
     init(dependencies: AppDependencies) {
         self.dependencies = dependencies
