@@ -1,81 +1,76 @@
-import SwiftUI
 import Combine
+import SwiftUI
 
 class MainViewModel: ObservableObject {
-        
-    @Published var profileImage: UIImage?
-    @Published var firstName: String?
-    @Published var items: [[Any]] = [[], [], []]
-    @Published var showDetailView: Binding<Bool>?
-    @Published var showPersonInfoView: Binding<Bool>?
+  @Published var profileImage: UIImage?
+  @Published var firstName: String?
+  @Published var items: [[Any]] = [[], [], []]
+  @Published var showDetailView: Binding<Bool>?
+  @Published var showPersonInfoView: Binding<Bool>?
 
-    private var cancellableSet: Set<AnyCancellable> = []
-    
-    let appCoordinator: AppCoordinator
-    private let mainCoordinator: MainCoordinator
+  private var cancellableSet: Set<AnyCancellable> = []
 
-    init(
-        appCoordinator: AppCoordinator,
-        mainCoordinator: MainCoordinator
-    ) {
-        self.appCoordinator = appCoordinator
-        self.mainCoordinator = mainCoordinator
-        
-        if let currentUser = appCoordinator.dependencies.userRepository.currentUser,
-           let avatarData = currentUser.avatar {
-            profileImage = UIImage(data: avatarData)
+  let appCoordinator: AppCoordinator
+  private let mainCoordinator: MainCoordinator
+
+  init(
+    appCoordinator: AppCoordinator,
+    mainCoordinator: MainCoordinator
+  ) {
+    self.appCoordinator = appCoordinator
+    self.mainCoordinator = mainCoordinator
+
+    if let currentUser = appCoordinator.dependencies.userRepository.currentUser,
+      let avatarData = currentUser.avatar {
+      profileImage = UIImage(data: avatarData)
+    }
+
+    fetchLoggedInUser()
+    fetchLatestAndFlashSaleProducts()
+  }
+
+  func fetchLoggedInUser() {
+    appCoordinator.dependencies.userRepository.fetchLoggedInUser()
+      .sink { user in
+        self.firstName = user?.firstName
+      }
+      .store(in: &cancellableSet)
+  }
+
+  func fetchAvatar() {
+    appCoordinator.dependencies.userRepository.fetchAvatar()
+      .sink { image in
+        self.profileImage = image
+      }
+      .store(in: &cancellableSet)
+  }
+
+  func fetchLatestAndFlashSaleProducts() {
+    appCoordinator.dependencies.networkManager.fetchLatestAndFlashSale()
+      .sink { completion in
+        switch completion {
+        case .finished:
+          print("Successfully fetched latest and flash sale products")
+        case .failure(let error):
+          print("Error fetching latest and flash sale products: \(error)")
         }
-        
-        fetchLoggedInUser()
-        fetchLatestAndFlashSaleProducts()
-    }
-    
-    func fetchLoggedInUser() {
-        
-        appCoordinator.dependencies.userRepository.fetchLoggedInUser()
-            .sink { user in
-                self.firstName = user?.firstName
-            }
-            .store(in: &cancellableSet)
-    }
-    
-    func fetchAvatar() {
-        
-        appCoordinator.dependencies.userRepository.fetchAvatar()
-            .sink { image in
-                self.profileImage = image
-            }
-            .store(in: &cancellableSet)
-    }
-    
-    func fetchLatestAndFlashSaleProducts() {
-        appCoordinator.dependencies.networkManager.fetchLatestAndFlashSale()
-            .sink { completion in
-                switch completion {
-                    case .finished:
-                        print("Successfully fetched latest and flash sale products")
-                    case .failure(let error):
-                        print("Error fetching latest and flash sale products: \(error)")
-                }
-            } receiveValue: { [weak self] (latestProductsResponse, flashSaleResponse) in
-                DispatchQueue.main.async {
-                    self?.items[0] = latestProductsResponse.latest
-                    self?.items[1] = flashSaleResponse.flashSale
-                    self?.items[2] = latestProductsResponse.latest + flashSaleResponse.flashSale
-                }
-            }
-            .store(in: &cancellableSet)
-    }
-    
-    func goToPersonInfoView() {
-        mainCoordinator.parentCoordinator?.removeChildCoordinator(mainCoordinator)
-        appCoordinator.showPersonInfo()
-    }
-    
-    func presentDetailView() {
-        mainCoordinator.parentCoordinator?.removeChildCoordinator(mainCoordinator)
-        appCoordinator.showDetail()
-    }
+      } receiveValue: { [weak self] latestProductsResponse, flashSaleResponse in
+        DispatchQueue.main.async {
+          self?.items[0] = latestProductsResponse.latest
+          self?.items[1] = flashSaleResponse.flashSale
+          self?.items[2] = latestProductsResponse.latest + flashSaleResponse.flashSale
+        }
+      }
+      .store(in: &cancellableSet)
+  }
+
+  func goToPersonInfoView() {
+    mainCoordinator.parentCoordinator?.removeChildCoordinator(mainCoordinator)
+    appCoordinator.showPersonInfo()
+  }
+
+  func presentDetailView() {
+    mainCoordinator.parentCoordinator?.removeChildCoordinator(mainCoordinator)
+    appCoordinator.showDetail()
+  }
 }
-
-

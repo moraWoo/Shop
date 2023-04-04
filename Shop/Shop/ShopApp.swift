@@ -1,22 +1,20 @@
-import SwiftUI
 import Combine
+import SwiftUI
 
 @main
 struct ShopApp: App {
+  @ObservedObject var appCoordinator: AppCoordinator
 
-    @ObservedObject var appCoordinator: AppCoordinator
+  init() {
+    let dependencies = AppDependencies()
+    appCoordinator = AppCoordinator(dependencies: dependencies)
+  }
 
-    init() {
-        let dependencies = AppDependencies()
-        appCoordinator = AppCoordinator(dependencies: dependencies)
+  var body: some Scene {
+    let contentView = appCoordinator.start().environmentObject(appCoordinator)
+
+    WindowGroup {
+      contentView.environmentObject(appCoordinator)
     }
-
-    var body: some Scene {
-
-        let contentView = appCoordinator.start().environmentObject(appCoordinator)
-
-        WindowGroup {
-            contentView.environmentObject(appCoordinator)
-        }
-    }
+  }
 }

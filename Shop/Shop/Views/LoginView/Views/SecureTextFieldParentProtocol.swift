@@ -1,6 +1,5 @@
 import Foundation
 
 protocol SecuredTextFieldParentProtocol {
-    
-        var hideKeyboard: (() -> Void)? { get set }
+  var hideKeyboard: (() -> Void)? { get set }
 }
