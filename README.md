@@ -3,7 +3,7 @@ Used:
 - assemblies(DI)
 - dependencies
 - protocols
-- MVVM with coordinators (AppCoordinator and ChildCoordinators
+- MVVM with coordinators (AppCoordinator and ChildCoordinators)
 - SwiftUI
 - Combine
 - CoreData
